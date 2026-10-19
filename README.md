@@ -1,0 +1,133 @@
+# YSM 体验优化（YSM Enhancements）1.0.0 正式版
+
+[English](README.en.md)
+
+针对官方 YSM 2.6.5 的独立第三方客户端补丁：新增模型驱动的 Z 按钮面板、加载器原生配置入口，并修复按键状态、快捷键、数值读取和界面控件问题。不包含、覆盖或修改 YSM 原始 jar、模型及存档。与 YSM 官方无隶属关系。
+
+## 相对官方 YSM 2.6.5 的新增功能
+
+- **Z 按钮面板**：可替换官方 Z 轮盘，读取当前模型作者定义的菜单、分类、参数和动作，支持菜单分页及参数滚动。
+- **模型预览操作**：支持拖动旋转整个模型、滚轮及 ± 按钮缩放，点击百分比复位预览视角和缩放。
+- **参数输入与键盘操作**：滑条支持直接输入数值、Enter 确认、Esc 取消、Tab 导航及左右方向键调整，操作继续触发模型作者定义的回调。
+- **面板导航与状态显示**：使用半透明灰黑面板，以 `›`、`‹` 标识子目录和返回入口；独立开关显示“已勾选／未勾选”，选项组使用亮／暗圆点。
+- **加载器原生配置入口**：从 Mods 配置界面分别控制按钮面板和各项修复，默认全部开启；关闭按钮面板即可使用官方轮盘。
+
+## 修复的官方问题
+
+以下修复以官方 YSM 2.6.5 为对比基准：
+
+1. **按键状态残留**：切换窗口、打开背包等界面或松开按键后，清理 YSM 中残留的按住状态，避免 Ctrl 等按键继续生效。
+2. **动作锁定快捷键误触发**：检查配置的修饰键和游戏操作环境，使锁定快捷键按绑定条件触发。
+3. **鼠标快捷键不生效**：让绑定到鼠标按钮的 YSM 快捷键触发原有动作逻辑。
+4. **隐藏控件仍可点击**：阻止官方轮盘滚动区域外的隐藏模型控件响应点击。
+5. **滚动箭头状态错误**：滚动或异步加载控件后，及时更新上下箭头是否可用。
+6. **科学计数法读取错误**：正确读取 `1e-5` 等格式的模型变量。
+7. **缩放滑条首次显示错误**：当零初值超出滑条可选范围时，根据模型缩放表达式中明确的回退常数初始化显示。例如作者写有 `v.roaming.player_size==0?1:v.roaming.player_size` 时，首次显示为 1。兼容官方轮盘和按钮面板；打开界面时不修改模型变量或发送同步。
+8. **负数开关状态错误**：将负数且非零的模型变量正确显示为已勾选。
+9. **搜索光标和选区丢失**：模型搜索列表重建时，保留光标、选区及文本显示位置。
+10. **延迟回调造成控件叠加**：丢弃旧配置页或已关闭界面的异步控件回调，避免旧控件叠到当前界面。
+
+## 发布信息
+
+- 发布类型：正式版；版本标签：`v1.0.0`。
+- MODID：`ysm_enhancements`；版本：`1.0.0`。
+- 安装包：`ysm-enhancements-1.0.0-forge-neoforge.jar`。
+- 配置文件：`config/ysm_enhancements-client.toml`。
+
+## 支持范围
+
+同一个 `ysm-enhancements-1.0.0-forge-neoforge.jar` 支持以下两组环境：
+
+| Minecraft | 加载器 | YSM | 本地验证使用的加载器 |
+|---|---|---|---|
+| 1.21.1 | NeoForge 21.1.x | 2.6.5 NeoForge | 21.1.249 |
+| 1.20.1 | Forge 47.x | 2.6.5 Forge | 47.4.16 |
+
+这不代表整个 1.20–1.21 系列兼容。Fabric、其他 Minecraft 小版本、旧 NeoForge 1.20.1 及其他 YSM 版本未适配。运行游戏需使用该 Minecraft 版本要求的 Java；补丁字节码为 Java 17，构建需要 JDK 21。
+
+## 安装与配置
+
+1. 完全退出游戏。如 mods 文件夹中已有 `ysm-input-reset-*.jar` 或其他版本的 `ysm-enhancements-*.jar`，请先移除，避免重复加载补丁。
+2. 保留原来的 YSM 2.6.5，把新补丁 jar 放到同一个 mods 文件夹。
+3. 启动游戏，进入 Mods → YSM 体验优化（YSM Enhancements）→ 配置。
+
+NeoForge 1.21.1 使用加载器提供的 ConfigurationScreen；Forge 1.20.1 使用挂在同一 Mods 配置入口的原版按钮界面，点击“完成”保存。Forge 的具体布局与 NeoForge 不同，开关含义和默认值相同，不需要额外配置界面模组。
+
+配置保存于该实例的 `config/ysm_enhancements-client.toml`，由加载器 CLIENT 配置系统管理。保存后重新打开 Z 面板即可检查效果。按钮面板与修复开关互相独立：关闭按钮面板会恢复原轮盘，其他修复仍可继续开启。客户端安装即可，服务器不需要安装此补丁。卸载时退出游戏并删除本补丁 jar。
+
+## 默认开启的功能
+
+| 配置项 | 功能 |
+|---|---|
+| interface.buttonPanel | 用按钮替换 Z 轮盘，读取当前模型作者定义的菜单、分类、控件、变量和动作 |
+| fixes.inputReset | 修复 Ctrl 等按键在切窗口、打开背包等 GUI 后仍残留按住状态 |
+| fixes.shortcutContext | 动作锁定快捷键遵循修饰键和游戏操作环境 |
+| fixes.mouseShortcuts | YSM 快捷键绑定鼠标按钮时，转交给原有动作逻辑 |
+| fixes.clippedControls | 阻止原轮盘滚动区域外的隐藏控件响应点击 |
+| fixes.scrollArrows | 更新原轮盘滚动及异步加载后的箭头状态 |
+| fixes.numericValues | 正确读取科学计数法变量，例如 1e-5 |
+| fixes.scaleDefaults | 对超出范围的零初值，按模型缩放表达式中明确的回退常数初始化滑条显示 |
+| fixes.booleanValues | 负数且非零的变量显示为已勾选 |
+| fixes.searchCaret | 模型搜索列表重建时保留光标及选区 |
+| fixes.staleCallbacks | 丢弃旧配置或已关闭界面的延迟控件回调，避免控件叠加 |
+
+## 新面板操作
+
+- 固定外框尺寸随游戏 GUI 分辨率适配；切换分类、配置及分页时保持外框大小。
+- 半透明灰黑色面板，左侧人物预览约占一半；超长文字省略显示，居中文字按截短后的实际宽度对齐。
+- 人物区滚轮或底部 ± 缩放；横向拖动完整旋转，纵向拖动在 ±45° 内调整俯仰；点击百分比复位预览。
+- 按钮文字来自模型，参数多时滚动，菜单多时分页；不按中文名称猜测绑定。
+- 带浅色侧边标记和 `›` 的卡片能进入配置或子目录。配置卡片旁的播放按钮执行作者对应的动作；返回按钮退回上一级。
+- 点击滑条数值可输入，Enter 确认，Esc 取消；Tab 切换操作点，滑条可用左右方向键调整。数值输入和方向键操作均触发模型作者定义的回调。
+- 独立开关显示“已勾选／未勾选”，选项组统一显示左侧亮／暗圆点；均读取 YSM 实际创建的控件状态。选中由作者定义含义，不统一等同于部件显示；不会替作者反转变量。变量异步读取完成前，相关控件可能尚未出现。
+- 同一参数页异步重建时保留列表和滚动位置，等待期间暂停旧控件交互；切换到不同参数页时从顶部显示。
+- 鼠标点击后不残留焦点框，Tab 导航时显示焦点提示。预览渲染结束或失败后恢复玩家原有姿态。
+
+人物预览使用游戏实体渲染，按实体碰撞箱估计初始大小，夸张动画或大型配件可能需要手动缩放。面板固定文字目前为中文，模型按钮名称使用模型提供的翻译。
+
+## 保留的模型语义
+
+缩放滑条显示修复读取作者写下的明确规则：“变量为 0 时使用常数，否则使用该变量”（包括相等判断换位、不等判断及算术组合）。已有非零值、可选的 0、复杂条件、函数、赋值及冲突规则均保留原逻辑，不会把所有 0 强制改为 1，也不据此推断帽子等部件的显示含义。
+
+不提供“全部恢复作者默认值”：模型格式未提供统一的完整默认值定义，缩放表达式也不能代表所有参数的初始状态。预览百分比的复位只影响观察角度和预览缩放。
+
+不包含 roaming 超限同步、高等级药水同步溢出或 SlashBlade 相关修复。
+
+## 实机复测要点
+
+先检查 Mods 配置按钮可用、各项默认开启；关闭并保存面板替换后重新打开 Z，应恢复原轮盘。重新开启后检查模型菜单及参数；拖动滑条、输入数值和按方向键时，数值和模型都应变化。
+
+用未调整过的 Rooboko 模型检查大小、头部、尾巴尺寸是否显示作者的回退值 1。已经保存的非零值会继续显示原值，不会强行恢复。旋转到侧面和背面确认头部、身体完整，并检查灰黑面板、百分比对齐和二级入口标记。
+
+按住 Ctrl 切窗口或打开背包，在外部松开，返回后不应继续缩小；快速反复切换参数页，旧控件不应叠到当前页。打开界面会结束本次按住操作；如果一直没有松开，需要松开再按一次。
+
+若配置入口或面板报错，保留当前实例的 `logs/latest.log`。面板渲染反射失败时会记录 `[YSM patch] Button panel unavailable` 并对当前界面退回原轮盘；输入缓存绑定失败记录 `PATCH DISABLED`。
+
+## 验证情况
+
+已通过编译、实际类文件注入、反射接口检查、原生配置读写、滑条与模型表达式回归，以及 OpenGL 预览深度测试。具体环境和检查项见 [验证记录](VERIFICATION.txt)。
+
+尚未在完整 Minecraft 整合包内启动本发布版进行实机画面确认。
+
+## 源码与构建
+
+使用 JDK 21；Gradle Wrapper 为 9.5.1。首次构建下载 Gradle、Mixin、ASM 等依赖。`-PminecraftLibraries` 应指向同时包含构建脚本所列 Forge 1.20.1 和 NeoForge 1.21.1 API 的本机 Minecraft libraries 目录。这些依赖不打入补丁。
+
+```powershell
+.\gradlew.bat build '-PminecraftLibraries=C:/your-instance/.minecraft/libraries'
+```
+
+默认 `build` 执行输入回归测试；其他专项检查需要显式运行下列任务。测试参数：`ysmJar` 为对应的原始 YSM jar；`minecraftJar` 为加载器修补后的客户端 jar；`minecraftBaseJar` 为基础完整客户端 jar；`loaderApiJar` 为加载器 universal jar；`configLoader` 为 neo 或 forge。
+
+```powershell
+.\gradlew.bat regressionTest clientPatchTest mixinSmokeTest apiContractTest sliderContractTest nativeConfigTest previewInteractionTest previewDepthTest scaleDefaultsTest `
+  '-PminecraftLibraries=C:/your-instance/.minecraft/libraries' `
+  '-PysmJar=C:/jars/ysm.jar' `
+  '-PminecraftJar=C:/jars/loader-client.jar' `
+  '-PminecraftBaseJar=C:/jars/client-srg.jar' `
+  '-PloaderApiJar=C:/jars/loader-universal.jar' '-PconfigLoader=neo'
+```
+
+Forge 1.20.1 的 Mixin 测试另加 `-PlegacyMixinJar=C:/jars/mixin-0.8.5.jar`。可选 `-PmodelZip=C:/models/model.zip` 只读检查模型的 roaming 缩放表达式。测试不启动 Minecraft、不运行 YSM 原生模型库、不读取世界；深度回归在一次性隐藏 GLFW 窗口中实际执行 OpenGL，目前测试配置使用 Windows 原生库。编译依赖及测试使用的 LWJGL 原生库不打入成品。
+
+本补丁代码使用 MIT 许可证。YSM 与 Minecraft 的许可不变；源码包不含它们的原始或反编译源码及模型资源。

@@ -1,0 +1,165 @@
+plugins { id 'java' }
+
+group = 'dev.local.ysmenhancements'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.fabricmc.net/' }
+}
+
+dependencies {
+    compileOnly 'net.fabricmc:sponge-mixin:0.15.2+mixin.0.8.7'
+    compileOnly 'org.ow2.asm:asm-tree:9.7.1'
+    compileOnly 'org.joml:joml:1.10.5'
+    testImplementation 'net.fabricmc:sponge-mixin:0.15.2+mixin.0.8.7'
+    testImplementation 'org.ow2.asm:asm-tree:9.7.1'
+    testImplementation 'org.ow2.asm:asm-util:9.7.1'
+    testImplementation 'org.apache.commons:commons-lang3:3.14.0'
+    testImplementation 'org.joml:joml:1.10.5'
+    testImplementation 'it.unimi.dsi:fastutil:8.5.12'
+    testImplementation 'com.google.code.gson:gson:2.10.1'
+    // Compile against the user's installed, unmodified APIs; these are never packaged.
+    if (project.hasProperty('minecraftLibraries')) {
+        def libs = file(project.property('minecraftLibraries'))
+        compileOnly files(
+            new File(libs, 'net/minecraft/client/1.20.1-20230612.114412/client-1.20.1-20230612.114412-srg.jar'),
+            new File(libs, 'net/minecraftforge/javafmllanguage/1.20.1-47.4.16/javafmllanguage-1.20.1-47.4.16.jar'),
+            new File(libs, 'net/neoforged/fancymodloader/loader/4.0.44/loader-4.0.44.jar'),
+            new File(libs, 'net/neoforged/mergetool/2.0.0/mergetool-2.0.0-api.jar'),
+            new File(libs, 'com/mojang/brigadier/1.1.8/brigadier-1.1.8.jar'))
+        for (def library : ['lwjgl', 'lwjgl-opengl', 'lwjgl-glfw']) {
+            testImplementation files(new File(libs, "org/lwjgl/${library}/3.3.3/${library}-3.3.3.jar"))
+            testRuntimeOnly files(new File(libs, "org/lwjgl/${library}/3.3.3/${library}-3.3.3-natives-windows.jar"))
+        }
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 17
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-proc:none']
+}
+
+tasks.withType(Jar).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+    from('LICENSE')
+}
+
+jar {
+    archiveFileName = "ysm-enhancements-${version}-forge-neoforge.jar"
+    manifest.attributes(
+        'MixinConfigs': 'ysm_enhancements.mixins.json',
+        'Implementation-Title': 'YSM Enhancements',
+        'Implementation-Version': project.version,
+        'Automatic-Module-Name': 'ysm_enhancements'
+    )
+}
+
+// Pass -PysmJar=/path/to/ysm.jar to validate the original input class without
+// starting Minecraft or initializing YSM's native/model/encryption components.
+tasks.register('regressionTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.local.ysmenhancements.RegressionTest'
+    if (project.hasProperty('ysmJar')) args project.property('ysmJar')
+}
+
+tasks.register('mixinSmokeTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    if (project.hasProperty('legacyMixinJar')) {
+        classpath = files(project.property('legacyMixinJar')) + sourceSets.test.runtimeClasspath.filter {
+            !it.name.startsWith('sponge-mixin-')
+        }
+    }
+    mainClass = 'dev.local.ysmenhancements.testservice.MixinSmokeTest'
+    systemProperty 'mixin.service', 'dev.local.ysmenhancements.testservice.TestMixinService'
+    if (project.hasProperty('minecraftJar')) args project.property('minecraftJar')
+    if (project.hasProperty('minecraftBaseJar')) args project.property('minecraftBaseJar')
+    if (project.hasProperty('ysmJar') && project.hasProperty('minecraftBaseJar')) args project.property('ysmJar')
+}
+
+tasks.register('clientPatchTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.local.ysmenhancements.ClientPatchTest'
+    if (project.hasProperty('ysmJar')) args project.property('ysmJar')
+}
+
+tasks.register('nativeConfigTest', JavaExec) {
+    dependsOn testClasses
+    def profile = project.findProperty('configLoader') ?: 'neo'
+    classpath = sourceSets.test.runtimeClasspath
+    if (project.hasProperty('minecraftLibraries')) {
+        def libs = file(project.property('minecraftLibraries'))
+        classpath += fileTree(libs) {
+            include "com/electronwill/night-config/**/${profile == 'neo' ? '3.8.3' : '3.6.4'}/*.jar"
+            include 'com/google/guava/guava/32.1.2-jre/*.jar'
+            include 'com/google/guava/failureaccess/1.0.1/*.jar'
+            include 'org/slf4j/slf4j-api/2.0.9/*.jar'
+            include 'org/apache/logging/log4j/log4j-api/*/*.jar'
+            if (profile == 'neo') {
+                include 'net/neoforged/fancymodloader/loader/4.0.44/*.jar'
+                include 'net/neoforged/bus/8.0.5/*.jar'
+                include 'net/neoforged/neoforge/21.1.249/*-universal.jar'
+            } else {
+                include 'net/minecraftforge/fmlcore/1.20.1-47.4.16/*.jar'
+                include 'net/minecraftforge/forge/1.20.1-47.4.16/*-universal.jar'
+            }
+        }
+    }
+    mainClass = 'dev.local.ysmenhancements.config.NativeConfigTest'
+    args profile
+}
+
+tasks.register('apiContractTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.local.ysmenhancements.ApiContractTest'
+    for (def property : ['ysmJar', 'minecraftJar', 'minecraftBaseJar', 'loaderApiJar']) {
+        if (project.hasProperty(property)) args project.property(property)
+    }
+}
+
+tasks.register('sliderContractTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.local.ysmenhancements.SliderContractTest'
+    args project.findProperty('configLoader') ?: 'neo'
+    for (def property : ['loaderApiJar', 'minecraftBaseJar']) {
+        if (project.hasProperty(property)) args project.property(property)
+    }
+}
+
+tasks.register('previewInteractionTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.local.ysmenhancements.ui.PreviewInteractionTest'
+}
+
+tasks.register('scaleDefaultsTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    if (project.hasProperty('ysmJar')) classpath += files(project.property('ysmJar'))
+    mainClass = 'dev.local.ysmenhancements.fixes.ScaleDefaultsTest'
+    args project.findProperty('configLoader') ?: 'neo'
+    if (project.hasProperty('modelZip')) args project.property('modelZip')
+}
+
+tasks.register('previewDepthTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.local.ysmenhancements.ui.PreviewDepthTest'
+}
+
+check.dependsOn regressionTest
+// These tests run as isolated Java programs; no JUnit engine is required.
+test.enabled = false

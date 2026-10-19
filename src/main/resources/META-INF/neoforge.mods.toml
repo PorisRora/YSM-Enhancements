@@ -1,0 +1,34 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="ysm_enhancements"
+version="1.0.0"
+displayName="YSM 体验优化（YSM Enhancements）"
+authors="YSM Enhancements contributors"
+description='''Client input and UI fixes for YSM 2.6.5, with a model-driven button panel. Features are independently configurable in the Mods configuration screen. Not affiliated with YSM.'''
+
+[[mixins]]
+config="ysm_enhancements.mixins.json"
+
+[[dependencies.ysm_enhancements]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,21.2)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.ysm_enhancements]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.21.2)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.ysm_enhancements]]
+modId="yes_steve_model"
+type="required"
+versionRange="[2.6.5,2.6.6)"
+ordering="AFTER"
+side="CLIENT"

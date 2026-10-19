@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.local.ysmenhancements.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "dev.local.ysmenhancements.transform.ClientPatchPlugin",
+  "client": ["MinecraftInputMixin", "KeyboardInputMixin", "MouseInputMixin", "YsmClientMixin"],
+  "injectors": {"defaultRequire": 1}
+}

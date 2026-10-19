@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="ysm_enhancements"
+version="1.0.0"
+displayName="YSM 体验优化（YSM Enhancements）"
+authors="YSM Enhancements contributors"
+displayTest="IGNORE_ALL_VERSION"
+description='''Client input and UI fixes for YSM 2.6.5, with a model-driven button panel. Open Mods > YSM Enhancements > Config to choose features. Forge 1.20.1 metadata for the combined jar. Not affiliated with YSM.'''
+
+[[dependencies.ysm_enhancements]]
+modId="forge"
+mandatory=true
+versionRange="[47,48)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.ysm_enhancements]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.20.2)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.ysm_enhancements]]
+modId="yes_steve_model"
+mandatory=true
+versionRange="[2.6.5,2.6.6)"
+ordering="AFTER"
+side="CLIENT"

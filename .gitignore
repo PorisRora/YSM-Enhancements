@@ -1,0 +1,22 @@
+# Gradle caches, build output, and release downloads
+/.gradle/
+/build/
+/release/
+*.log
+*.tmp
+
+# Keep third-party binaries out of the source repository
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+*.zip
+
+# Local reference images; publish selected screenshots under docs/ instead
+/*.png
+/*.jpg
+/*.jpeg
+
+# Editor and operating-system files
+/.idea/
+*.iml
+.DS_Store
+Thumbs.db
