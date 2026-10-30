@@ -4,7 +4,7 @@ license="MIT"
 
 [[mods]]
 modId="ysm_enhancements"
-version="1.0.0"
+version="1.1.0"
 displayName="YSM 体验优化（YSM Enhancements）"
 authors="YSM Enhancements contributors"
 displayTest="IGNORE_ALL_VERSION"

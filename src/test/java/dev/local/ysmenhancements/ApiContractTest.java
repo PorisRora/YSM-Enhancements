@@ -80,6 +80,10 @@ public final class ApiContractTest {
         method(graphics,"fill|m_280509_","(IIIII)");method(graphics,"drawString|m_280056_","("+font+"Ljava/lang/String;IIIZ)");
         method(graphics,"enableScissor|m_280588_","(IIII)");method(graphics,"disableScissor|m_280618_","()");
         method(graphics,"flush|m_280262_","()");
+        method("net/minecraft/client/Minecraft","getSoundManager|m_91106_","()");method("net/minecraft/client/sounds/SoundManager","play|m_120367_","(Lnet/minecraft/client/resources/sounds/SoundInstance;)");
+        method("net/minecraft/client/resources/sounds/SimpleSoundInstance","forUI|m_263171_","(Lnet/minecraft/core/Holder;F)");field("net/minecraft/sounds/SoundEvents","UI_BUTTON_CLICK|f_12490_");
+        String pair="org/apache/commons/lang3/tuple/MutablePair";method(pair,"getLeft","()");method(pair,"getRight","()");method(pair,"setValue","(Ljava/lang/Object;)");
+        RegressionTest.check(node(wheel).fields.stream().filter(f->(f.access&Opcodes.ACC_STATIC)!=0&&f.desc.equals("Ljava/util/LinkedList;")).count()==1,"wheel keeps one static folder trail");
         method("com/mojang/blaze3d/systems/RenderSystem","depthMask","(Z)");
         method("com/mojang/blaze3d/systems/RenderSystem","clearDepth","(D)");
         method("com/mojang/blaze3d/systems/RenderSystem","clear","(IZ)");

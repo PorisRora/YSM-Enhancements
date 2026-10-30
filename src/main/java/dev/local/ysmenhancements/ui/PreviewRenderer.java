@@ -35,6 +35,12 @@ public final class PreviewRenderer {
             }else Reflect.call(inventory,"m_280432_",graphics,rect.x()+rect.w()/2,rect.y()+rect.h()-4,scale,pose,camera,entity);
         }));
     }
+    /** Screen y of the model's feet: both renderer paths pivot the model there. */
+    public static int feet(Object entity,ButtonPanel.Rect rect,int scale,boolean neo) {
+        if(!neo)return rect.y()+rect.h()-4;
+        float height=((Number)Reflect.call(entity,"getBbHeight")).floatValue(),entityScale=((Number)Reflect.call(entity,"getScale")).floatValue();
+        return Math.round(rect.y()+rect.h()/2f+height/2*scale/Math.max(.001f,entityScale));
+    }
     interface DepthAccess {
         void flush();boolean mask();double clearValue();void mask(boolean value);void clearValue(double value);void clear();
     }

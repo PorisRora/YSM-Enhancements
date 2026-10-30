@@ -15,5 +15,6 @@ final class ControlView {
         waiting=false;displayed=List.copyOf(current);return displayed;
     }
     boolean waiting(){return waiting;}
+    long started(){return started;}
     void clear(){displayed=List.of();waiting=false;}
 }

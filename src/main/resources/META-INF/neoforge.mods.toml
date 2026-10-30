@@ -4,7 +4,7 @@ license="MIT"
 
 [[mods]]
 modId="ysm_enhancements"
-version="1.0.0"
+version="1.1.0"
 displayName="YSM 体验优化（YSM Enhancements）"
 authors="YSM Enhancements contributors"
 description='''Client input and UI fixes for YSM 2.6.5, with a model-driven button panel. Features are independently configurable in the Mods configuration screen. Not affiliated with YSM.'''

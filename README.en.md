@@ -1,4 +1,4 @@
-# YSM Enhancements 1.0.0
+# YSM Enhancements 1.1.0
 
 [中文](README.md)
 
@@ -8,8 +8,8 @@ An independent third-party client patch for official YSM 2.6.5. It adds a model-
 
 - **Z button panel:** An optional replacement for the official radial menu, using the model author's menus, categories, parameters, and actions. Supports menu pagination and parameter scrolling.
 - **Model preview controls:** Drag to rotate the entire model, zoom with the mouse wheel or ± buttons, and click the percentage button to reset the preview view and zoom.
-- **Parameter entry and keyboard controls:** Enter slider values directly, press Enter to confirm or Esc to cancel, navigate with Tab, and adjust sliders with the arrow keys. These actions preserve the model author's callbacks.
-- **Panel navigation and status indicators:** A translucent dark-gray panel with submenu and return indicators. Independent toggles show their checked state, while option groups use selected and unselected dots.
+- **Parameter entry and keyboard controls:** Enter slider values directly, press Enter to confirm or Esc to cancel, navigate with Tab and the arrow keys, and adjust sliders with Left and Right. These actions preserve the model author's callbacks.
+- **Panel navigation and status indicators:** A translucent dark panel that marks selected, enabled, and focused states with a blue accent, with a full folder path in its title row and submenu and return indicators. Independent toggles are drawn as switches, while option groups mark the selected option with an accent border and dot.
 - **Loader-native configuration:** Control the button panel and each fix independently through the Mods configuration screen. All options are enabled by default. Disable the button panel to use the official radial menu.
 
 ## Fixes to official YSM 2.6.5
@@ -27,9 +27,9 @@ An independent third-party client patch for official YSM 2.6.5. It adds a model-
 
 ## Release information
 
-- Release type: stable; tag: `v1.0.0`.
-- Mod ID: `ysm_enhancements`; version: `1.0.0`.
-- Download: `ysm-enhancements-1.0.0-forge-neoforge.jar`.
+- Release type: stable; tag: `v1.1.0`.
+- Mod ID: `ysm_enhancements`; version: `1.1.0`.
+- Download: `ysm-enhancements-1.1.0-forge-neoforge.jar`.
 - Configuration: `config/ysm_enhancements-client.toml`.
 
 ## Supported environments
@@ -38,8 +38,8 @@ The same JAR supports these two combinations:
 
 | Minecraft | Loader | YSM | Loader used for local verification |
 |---|---|---|---|
-| 1.21.1 | NeoForge 21.1.x | 2.6.5 NeoForge | 21.1.249 |
-| 1.20.1 | Forge 47.x | 2.6.5 Forge | 47.4.16 |
+| 1.21.1 | NeoForge 21.1.x | 2.6.5 NeoForge | 21.1.264 (1.0.0: 21.1.249) |
+| 1.20.1 | Forge 47.x | 2.6.5 Forge | 47.4.16 (verified for 1.0.0; not rerun for 1.1.0) |
 
 Fabric, other Minecraft versions, NeoForge for Minecraft 1.20.1, and other YSM versions are not supported. Use the Java version required by your Minecraft version. The patch targets Java 17 bytecode and requires JDK 21 to build.
 
@@ -71,13 +71,14 @@ Settings are saved through the loader's CLIENT configuration system. Reopen the 
 
 ## Using the button panel
 
-- The panel adapts to the GUI resolution and keeps its outer dimensions when changing categories, pages, or configurations.
-- The model preview occupies approximately half of the panel. Drag horizontally to rotate and vertically to adjust pitch within ±45°. The mouse wheel and ± buttons zoom; the percentage button resets the preview.
-- Menu labels come from the model. Menus are paginated and parameter lists scroll. Cards marked with `›` open a configuration or submenu; `‹` indicates a return action. A configuration card's play button triggers the author's associated action.
-- Click a slider value to type, press Enter to confirm or Esc to cancel, and use Tab and the arrow keys for keyboard operation.
-- Independent toggles and option groups reflect YSM's actual control state. The model author determines what a checked option does; it does not necessarily mean that a part is visible. Some controls appear only after their variables finish loading.
-- Rebuilding the same parameter page preserves its list and scroll position while temporarily blocking stale controls. A different page starts at the top.
-- Mouse clicks do not leave a focus outline; Tab navigation displays a focus indicator. Preview rendering restores the player's original pose, including on failure.
+- The panel adapts to the GUI resolution, up to about 820×480 as a centered dialog at small GUI scales, and keeps its outer dimensions when changing categories, pages, or configurations.
+- A soft shadow frames the translucent dark panel, whose toolbar, content, and bottom controls form three aligned rows. Hover and state changes fade briefly. The model preview occupies approximately half of the panel and stands on a lighter backdrop with a contact shadow, so dark models keep their outline. The animation-lock control in the top left is a switch. Drag horizontally to rotate and vertically to adjust pitch within ±45°. The mouse wheel and ± buttons zoom; the percentage button resets the preview. Hovering over empty preview space shows a short controls hint.
+- Menu labels come from the model. Menus fill the available height, using up to three columns on wide screens, and paginate only when entries do not fit; the pager shares the zoom buttons' row. Parameter lists scroll, and their scrollbar can be clicked or dragged.
+- The title row shows the full folder path (for example, “根目录 › 动态动作”), dropping leading folders when it is too long. Cards marked with `›` open a configuration or submenu; `‹` indicates a return action. A configuration card's play button triggers the author's associated action. The back button returns one level and is disabled at the root; use × to close the panel. Returning from a submenu reopens the page that led to it.
+- Click a slider value to type: the value starts selected, so typing replaces it. Press Enter to confirm or Esc to cancel; unparseable values are tinted red. Tab and Shift+Tab move through targets in order, and the arrow keys move to the nearest target in that direction. On a slider, Left and Right adjust the value and Enter starts value entry. Page Up and Page Down change menu pages or scroll the parameter list. Keyboard focus scrolls clipped parameters into view.
+- Independent toggles (switches, blue when on) and option groups reflect YSM's actual control state. The model author determines what a checked option does; it does not necessarily mean that a part is visible. While variables load, the list shows a loading message.
+- Rebuilding the same parameter page preserves its list, scroll position, and keyboard focus while temporarily blocking stale controls. A different page starts at the top.
+- Mouse clicks do not leave a focus outline; keyboard navigation displays a focus indicator. Panel buttons and sliders play the vanilla click sound. The panel handles the arrow keys, Enter, and Space itself, so they never reach the hidden original wheel controls. If the panel fails while drawing or handling input, it logs the error and falls back to the original wheel for that screen. Preview rendering restores the player's original pose, including on failure.
 
 The preview uses the game's entity renderer and estimates its initial scale from the entity's bounding box. Large accessories or exaggerated animations may require manual zoom adjustment. Fixed panel labels are currently in Chinese; model labels use the model's own translations.
 
@@ -89,7 +90,7 @@ There is no universal “reset all author defaults” action: the model format d
 
 ## Verification
 
-Recorded checks cover compilation, actual class transformations and Mixin injection, reflection contracts, native configuration reads and writes, slider behavior, model expressions, and OpenGL preview depth handling. See [the verification record](VERIFICATION.txt) for environments and details.
+For 1.1.0, compilation, actual class transformations and Mixin injection, reflection contracts, slider behavior, model expressions, panel interaction, and OpenGL preview depth handling were checked on NeoForge 21.1.264. The Forge 1.20.1 tests and the native configuration read/write test were not rerun for this version; they passed for 1.0.0. See [the verification record](VERIFICATION.txt) for environments and details.
 
 This release has not yet been launched in a complete Minecraft modpack for in-game visual verification.
 
