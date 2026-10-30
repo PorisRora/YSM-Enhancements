@@ -1,6 +1,7 @@
 package dev.local.ysmenhancements.transform;
 
 import dev.local.ysmenhancements.compat.YsmProfile;
+import dev.local.ysmenhancements.ui.ButtonPanel;
 import java.util.*;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
@@ -99,7 +100,8 @@ public final class ClientPatchPlugin implements IMixinConfigPlugin, Opcodes {
         panel(node,p,init,render);
     }
     private static void panel(ClassNode node,YsmProfile p,MethodNode init,MethodNode render) {
-        node.fields.add(new FieldNode(ACC_PRIVATE,"ysm$buttonPanelState","Ljava/lang/Object;",null,null));
+        // A compile-time constant: inlined, so the transformer never loads the panel class.
+        node.fields.add(new FieldNode(ACC_PRIVATE,ButtonPanel.STATE_FIELD,"Ljava/lang/Object;",null,null));
         InsnList rebuilt=new InsnList();rebuilt.add(new VarInsnNode(ALOAD,0));rebuilt.add(call(PANEL,"rebuilt","(Ljava/lang/Object;)V"));init.instructions.insert(rebuilt);
         MethodNode oldRender=rename(node,render);LabelNode originalRender=new LabelNode();
         render.instructions.add(new VarInsnNode(ALOAD,0));render.instructions.add(new VarInsnNode(ALOAD,1));render.instructions.add(new VarInsnNode(ILOAD,2));render.instructions.add(new VarInsnNode(ILOAD,3));render.instructions.add(new VarInsnNode(FLOAD,4));

@@ -70,6 +70,5 @@ public final class Reflect {
         return true;
     }
     public static Object minecraft() { return call(type("net.minecraft.client.Minecraft"), "getInstance|m_91087_"); }
-    public static Object literal(String text) { return call(type("net.minecraft.network.chat.Component"), "literal|m_237113_", text); }
     public static String text(Object component) { return (String)call(component, "getString"); }
 }

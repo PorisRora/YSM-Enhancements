@@ -76,6 +76,17 @@ public final class PreviewInteractionTest {
         grid.clear();grid.add(hit.newInstance("cell2",cells[2],cells[2],(Runnable)()->{},null,false,true));grid.add(hit.newInstance("cell3",cells[0],cells[0],(Runnable)()->{},null,false,true));
         var resolve=ButtonPanel.class.getDeclaredMethod("resolveFocus",Class.forName("dev.local.ysmenhancements.ui.ButtonPanel$State"));resolve.setAccessible(true);resolve.invoke(null,ks);
         RegressionTest.check(Reflect.integer(ks,"focus")==1,"focus follows its target when the hit list is rebuilt");
+        var ease=ButtonPanel.class.getDeclaredMethod("ease",Class.forName("dev.local.ysmenhancements.ui.ButtonPanel$State"),Object.class,boolean.class);ease.setAccessible(true);
+        Reflect.set(ks,"frame",1L);ease.invoke(null,ks,"card",true);
+        Reflect.set(ks,"frame",2L);Reflect.set(ks,"dt",.05f);float fading=(Float)ease.invoke(null,ks,"card",false);
+        Reflect.set(ks,"frame",5L);float returning=(Float)ease.invoke(null,ks,"card",false);
+        RegressionTest.check(fading>0&&fading<1&&returning==0,"hover fades between frames, but a target shown again after a page change does not flash");
+        ButtonPanel.Rect main=new ButtonPanel.Rect(0,0,123,44),play=new ButtonPanel.Rect(123,6,21,32),below=new ButtonPanel.Rect(0,50,150,44);
+        grid.clear();for(Object[] cell:new Object[][]{{"main",main},{"play",play},{"below",below}})grid.add(hit.newInstance(cell[0],cell[1],cell[1],(Runnable)()->{},null,false,true));
+        Reflect.set(ks,"focus",0);Reflect.set(ks,"focusId","main");ButtonPanel.key(keys,262,0,0);
+        RegressionTest.check("play".equals(Reflect.get(ks,"focusId")),"Right from a card reaches its play button, not the card below");
+        ButtonPanel.key(keys,263,0,0);ButtonPanel.key(keys,264,0,0);
+        RegressionTest.check("below".equals(Reflect.get(ks,"focusId")),"Left returns to the card and Down reaches the card below");
         Screen form=new Screen();ButtonPanel.active(form);Object fs=form.ysm$buttonPanelState;Object slider=new Slider();ButtonPanel.Rect bar=new ButtonPanel.Rect(0,0,100,16);
         ((List<Object>)Reflect.get(fs,"hits")).add(hit.newInstance("slider",bar,bar,null,slider,true,true));
         ButtonPanel.key(form,258,0,0);ButtonPanel.key(form,257,0,0);

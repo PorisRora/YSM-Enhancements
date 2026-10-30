@@ -34,12 +34,13 @@ public final class ButtonPanel {
         final List<Hit> hits=new ArrayList<>();
         final ControlView controls=new ControlView();
         final Map<String,Fitted> fitted=new HashMap<>();
-        final Map<Object,Float> ease=new HashMap<>();
+        final Map<Object,Glow> glow=new HashMap<>();
         final List<Entry> entries=new ArrayList<>();
-        Rect outer,preview,viewport,track; int page=-1,pages=1,per=1,scroll,maxScroll,thumb,focus=-1,contentStart;
+        Rect preview,viewport,track; int page=-1,pages=1,per=1,scroll,maxScroll,thumb,focus=-1,contentStart;
         double zoom=1,turn,pitch,wheel; boolean rotating,failed,keyboardFocus,scrolling,selectAll; Hit dragging;
-        Object selected,editing,focusId,menu,crumbFor=this; String edit="",crumb; long last; float dt;
+        Object selected,editing,focusId,menu,crumbFor=this; String edit="",crumb; long last,frame; float dt;
     }
+    private static final class Glow { float t; long frame; }
     private static State state(Object screen) {
         Object value=Reflect.get(screen,STATE_FIELD);
         if(value==null){value=new State();Reflect.set(screen,STATE_FIELD,value);}return (State)value;
@@ -59,17 +60,17 @@ public final class ButtonPanel {
     }
     private static void draw(Object screen,Object graphics,int mx,int my,State s) {
         YsmProfile p=YsmProfile.of(screen);Draw d=new Draw(graphics,s);
-        long now=System.nanoTime();s.dt=s.last==0?0:Math.min(.1f,(now-s.last)/1e9f);s.last=now;
+        long now=System.nanoTime();s.dt=s.last==0?0:Math.min(.1f,(now-s.last)/1e9f);s.last=now;s.frame++;
         int sw=Reflect.integer(screen,"width|f_96543_"),sh=Reflect.integer(screen,"height|f_96544_");
         // A dialog rather than a full-screen sheet on small GUI scales.
         int w=Math.min(820,Math.max(230,sw-28)),h=Math.min(480,Math.max(160,sh-24)),x=(sw-w)/2,y=(sh-h)/2;
-        s.outer=new Rect(x,y,w,h);int split=x+(int)(w*.48);
+        Rect outer=new Rect(x,y,w,h);int split=x+(int)(w*.48);
         // Three aligned rows: toolbar, content (preview well | list) and bottom controls (zoom | pager).
         s.preview=new Rect(x+10,y+64,split-x-20,h-99);
         s.viewport=new Rect(split+12,y+64,x+w-split-26,h-74);
         s.hits.clear();s.track=null;
         for(int i=3;i>0;i--)d.shape(new Rect(x-i,y-i+1,w+2*i,h+2*i),6+i,(4-i)*0x0E000000);
-        d.shape(s.outer,6,PANEL);d.ring(s.outer,6,LINE);d.fill(x+1,y+32,x+w-1,y+33,LINE);
+        d.shape(outer,6,PANEL);d.ring(outer,6,LINE);d.fill(x+1,y+32,x+w-1,y+33,LINE);
         d.shape(new Rect(x+13,y+12,3,10),1,ACCENT);d.label("模型配置",new Rect(x+21,y+7,w-60,20),TEXT);
         ghost(d,s,"close",new Rect(x+w-29,y+7,20,19),"×",mx,my,()->Reflect.call(screen,"onClose|m_7379_"),0xE0B8473F);
         Object entity=Reflect.call(Reflect.get(screen,p.animatable),p.entityMethod);int scale=previewScale(entity,s);
@@ -371,12 +372,14 @@ public final class ButtonPanel {
         d.shape(rect,4,mix(0x30000000,ACCENT,over));d.center(glyph,rect,mix(ACCENT,ON_ACCENT,over));
         s.hits.add(new Hit(id,rect,rect,action,null,false,true));
     }
-    /** Eases toward a hover or on state over about 0.12 s and returns 0..1 for colour blending; new ids start settled. */
+    /** Eases toward a hover or on state over about 0.12 s and returns 0..1 for colour blending. */
     private static float ease(State s,Object id,boolean on){
-        Float old=s.ease.get(id);float target=on?1:0,t=old==null?target:old;
-        if(t!=target)t=on?Math.min(1,t+s.dt*8):Math.max(0,t-s.dt*8);
-        if(old==null||t!=old){if(s.ease.size()>512)s.ease.clear();s.ease.put(id,t);}
-        return t*t*(3-2*t);
+        Glow g=s.glow.get(id);float target=on?1:0;
+        if(g==null){if(s.glow.size()>512)s.glow.clear();s.glow.put(id,g=new Glow());g.t=target;}
+        // A target missing from the previous frame (another page, or disabled) starts settled instead of resuming.
+        else if(g.frame<s.frame-1)g.t=target;
+        else if(g.frame==s.frame-1&&g.t!=target)g.t=on?Math.min(1,g.t+s.dt*8):Math.max(0,g.t-s.dt*8);
+        g.frame=s.frame;return g.t*g.t*(3-2*g.t);
     }
     private static int mix(int from,int to,float t){
         if(t<=0)return from;if(t>=1)return to;int out=0;
@@ -395,7 +398,7 @@ public final class ButtonPanel {
             s.editing=null;s.rotating=false;s.dragging=null;s.scrolling=false;
             if(s.track!=null&&s.track.contains(x,y)){s.scrolling=true;scrollTo(s,y);return true;}
             Hit hit=hitAt(s,x,y);
-            if(hit!=null){s.focusId=hit.id;s.focus=s.hits.indexOf(hit);if(hit.slider){s.dragging=hit;sliderMouse(s,hit,x);}else{if(hit.widget==null)clickSound();hit.click.run();}return true;}
+            if(hit!=null){s.focusId=hit.id;s.focus=s.hits.indexOf(hit);if(hit.slider){s.dragging=hit;sliderMouse(s,hit,x);}else run(hit);return true;}
             if(s.preview!=null&&s.preview.contains(x,y)){s.rotating=true;return true;}return false;
         } catch(RuntimeException|LinkageError error){fail(s,error);return true;}
     }
@@ -458,20 +461,22 @@ public final class ButtonPanel {
         else if(key>=262&&key<=269)s.selectAll=false;
         return true;
     }
-    private static void press(State s,Hit hit){s.keyboardFocus=true;if(hit.slider)edit(s,hit.widget);else{if(hit.widget==null)clickSound();hit.click.run();}}
+    private static void press(State s,Hit hit){s.keyboardFocus=true;if(hit.slider)edit(s,hit.widget);else run(hit);}
+    /** Panel-drawn targets click like vanilla buttons; author widgets play their own sound. */
+    private static void run(Hit hit){if(hit.widget==null)clickSound();hit.click.run();}
     private static void move(State s,int direction){
         int n=s.hits.size();if(n==0)return;
         focusOn(s,s.focus>=0&&s.focus<n?Math.floorMod(s.focus+direction,n):direction>0?Math.min(s.contentStart,n-1):n-1);
     }
-    /** Arrow keys pick the nearest target in that direction, as vanilla screen navigation does. */
+    /** Arrow keys pick the nearest target past the focused edge in that direction, preferring targets in line with it. */
     private static void step(State s,int dx,int dy){
-        if(s.focus<0||s.focus>=s.hits.size()){move(s,dx+dy);return;}
-        Rect a=s.hits.get(s.focus).rect;int best=-1;double score=Double.MAX_VALUE;
+        if(s.focus<0||s.focus>=s.hits.size()){move(s,1);return;}
+        Rect a=s.hits.get(s.focus).rect;int best=-1,score=Integer.MAX_VALUE;
         for(int i=0;i<s.hits.size();i++){
-            Rect b=s.hits.get(i).rect;
-            double along=dx!=0?(b.x+b.w/2.0-a.x-a.w/2.0)*dx:(b.y+b.h/2.0-a.y-a.h/2.0)*dy;
-            int across=dx!=0?gap(a.y,a.y+a.h,b.y,b.y+b.h):gap(a.x,a.x+a.w,b.x,b.x+b.w);
-            if(i!=s.focus&&along>0&&along+across*2<score){score=along+across*2;best=i;}
+            // Centres alone are not enough: a full-width card below a card with a play button has its centre further right.
+            Rect b=s.hits.get(i).rect;int along=dx>0?b.x-a.x-a.w:dx<0?a.x-b.x-b.w:dy>0?b.y-a.y-a.h:a.y-b.y-b.h;
+            int across=dx!=0?gap(a.y,a.y+a.h,b.y,b.y+b.h):gap(a.x,a.x+a.w,b.x,b.x+b.w),cost=Math.max(0,along)+across*4;
+            if(i!=s.focus&&along>=-2&&cost<score){score=cost;best=i;}
         }
         if(best>=0)focusOn(s,best);else s.keyboardFocus=true;
     }
