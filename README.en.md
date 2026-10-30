@@ -4,6 +4,18 @@
 
 An independent third-party client patch for official YSM 2.6.5. It adds a model-driven Z button panel and loader-native configuration, and fixes input, shortcut, numeric parsing, and control handling issues. It does not bundle, overwrite, or modify the original YSM JAR, models, or saves. This project is not affiliated with YSM.
 
+## What's new in 1.1.0 (since 1.0.0)
+
+- **Redesigned interface:** A translucent dark panel, blue accents, toggle switches, a model contact shadow, and hover transitions.
+- **Adaptive menu layout:** Up to three columns on wide screens, with pagination only when entries do not fit.
+- **Improved folder navigation:** The title shows the full folder path, returning from a submenu restores the previous page, and the root back button no longer closes the panel unexpectedly.
+- **Keyboard and scrolling controls:** Arrow-key navigation, Page Up and Page Down, and a draggable scrollbar. Keyboard focus scrolls off-screen parameters into view.
+- **Improved value entry:** Existing values start selected, floating-point display artifacts are trimmed, and invalid input is highlighted in red.
+- **Hidden-control input fix:** The panel handles arrow keys, Enter, and Space so they do not operate the hidden original wheel controls.
+- **Hover and directional navigation fixes:** Returning to a page no longer resumes stale hover transitions, and Right correctly reaches a card's adjacent play button.
+- **Error fallback:** Errors during panel rendering or input handling are logged, and the screen falls back to the original wheel.
+- **Lower per-frame overhead:** Repeated reflection lookups, menu labels, and truncated text are cached.
+
 ## Features added to official YSM 2.6.5
 
 - **Z button panel:** An optional replacement for the official radial menu, using the model author's menus, categories, parameters, and actions. Supports menu pagination and parameter scrolling.
