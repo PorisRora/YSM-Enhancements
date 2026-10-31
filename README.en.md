@@ -1,6 +1,13 @@
-# YSM Enhancements 1.1.0
+# YSM Enhancements
 
 [中文](README.md)
+
+| Loader | Current release | Downloads and documentation |
+|---|---|---|
+| Fabric 1.20.1 / 1.21.1 | 1.2.0 | [Download](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.2.0) · [Fabric guide](fabric/README.en.md) |
+| Forge 1.20.1 / NeoForge 1.21.1 | 1.1.0 | [Download](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0) |
+
+The following release notes describe Forge / NeoForge 1.1.0. See the Fabric guide for its minimum loaders, configuration and verification scope.
 
 An independent third-party client patch for official YSM 2.6.5. It adds a model-driven Z button panel and loader-native configuration, and fixes input, shortcut, numeric parsing, and control handling issues. It does not bundle, overwrite, or modify the original YSM JAR, models, or saves. This project is not affiliated with YSM.
 
@@ -53,7 +60,7 @@ The same JAR supports these two combinations:
 | 1.21.1 | NeoForge 21.1.x | 2.6.5 NeoForge | 21.1.264 (1.0.0: 21.1.249) |
 | 1.20.1 | Forge 47.x | 2.6.5 Forge | 47.4.16 (verified for 1.0.0; not rerun for 1.1.0) |
 
-Fabric, other Minecraft versions, NeoForge for Minecraft 1.20.1, and other YSM versions are not supported. Use the Java version required by your Minecraft version. The patch targets Java 17 bytecode and requires JDK 21 to build.
+This combined JAR does not support Fabric; use the [separate Fabric builds](fabric/README.en.md). Other Minecraft versions, NeoForge for Minecraft 1.20.1, and other YSM versions are not supported. Use the Java version required by your Minecraft version. The Forge / NeoForge patch targets Java 17 bytecode and requires JDK 21 to build.
 
 ## Installation and configuration
 

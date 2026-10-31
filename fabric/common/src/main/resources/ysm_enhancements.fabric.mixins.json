@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.local.ysmenhancements.fabric.mixin",
+  "plugin": "dev.local.ysmenhancements.fabric.FabricPatchPlugin",
+  "compatibilityLevel": "JAVA_${java}",
+  "client": ["MinecraftMixin", "KeyboardMixin", "MouseMixin", "YsmFabricMixin"],
+  "injectors": {"defaultRequire": 1}
+}

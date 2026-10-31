@@ -8,7 +8,9 @@ import java.nio.file.*;
 /** Loads real loader specs and checks actual TOML persistence in build/, without a game. */
 public final class NativeConfigTest {
     public static void main(String[] args) throws Exception {
-        boolean neo=args[0].equals("neo");Object spec=NativeConfig.prepare(neo);
+        boolean fabric=args[0].startsWith("fabric"),neo=args[0].equals("neo")||args[0].equals("fabric_1211");
+        if(fabric)Reflect.set(NativeConfig.class,"fabric",true);
+        Object spec=NativeConfig.prepare(neo);
         Path path=Path.of("build/native-config-"+args[0]+".toml").toAbsolutePath();Files.createDirectories(path.getParent());Files.deleteIfExists(path);
         Object builder=Reflect.call(Reflect.type("com.electronwill.nightconfig.core.file.CommentedFileConfig"),"builder",path);
         Reflect.call(builder,"sync");Object file=Reflect.call(builder,"build");Reflect.call(file,"load");
@@ -20,11 +22,12 @@ public final class NativeConfigTest {
             Reflect.call(spec,"acceptConfig",ctor.newInstance(file,null,null));
         }else Reflect.call(spec,"setConfig",file);
         Field current=NativeConfig.class.getDeclaredField("spec");current.setAccessible(true);current.set(null,spec);
-        for(Feature f:Feature.values())RegressionTest.check(f.enabled(),"default enabled "+f.key);
+        for(Feature f:Feature.values())RegressionTest.check(f.enabled()==!(fabric&&f==Feature.MOUSE_SHORTCUTS),"default enabled "+f.key);
         NativeConfig.set(Feature.BUTTON_PANEL,false);NativeConfig.set(Feature.INPUT_RESET,false);
         if(neo)Reflect.call(file,"save");else NativeConfig.save();
         String toml=Files.readString(path);
         RegressionTest.check(toml.contains("buttonPanel = false")&&toml.contains("inputReset = false"),"real loader TOML persisted disabled switches");
+        if(fabric)RegressionTest.check(!toml.contains("mouseShortcuts"),"no redundant Fabric mouse-forwarding setting");
         RegressionTest.check(!Feature.BUTTON_PANEL.enabled()&&!Feature.INPUT_RESET.enabled(),"live values use loader config");
         RegressionTest.check(Feature.STALE_CALLBACKS.enabled()&&Feature.NUMERIC_VALUES.enabled(),"other fixes remain enabled independently");
         RegressionTest.Fixture.keys[341]=true;RegressionTest.install(new dev.local.ysmenhancements.CacheBinding(RegressionTest.Fixture.class.getField("keys"),RegressionTest.Fixture.class.getField("mouse")));

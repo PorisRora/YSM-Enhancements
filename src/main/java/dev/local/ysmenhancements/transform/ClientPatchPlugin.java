@@ -1,6 +1,7 @@
 package dev.local.ysmenhancements.transform;
 
 import dev.local.ysmenhancements.compat.YsmProfile;
+import dev.local.ysmenhancements.compat.RuntimeNames;
 import dev.local.ysmenhancements.ui.ButtonPanel;
 import java.util.*;
 import org.objectweb.asm.*;
@@ -25,7 +26,7 @@ public final class ClientPatchPlugin implements IMixinConfigPlugin, Opcodes {
         YsmProfile p=YsmProfile.ofName(node.name.replace('/','.'));
         if (node.name.endsWith("/"+p.wheel)) wheel(node,p);
         else if (node.name.endsWith("/"+p.models)) {
-            MethodNode init=find(node,p==YsmProfile.NEO?"init":"m_7856_","()V");
+            MethodNode init=find(node,mc(p,"init","m_7856_","()V"),"()V");
             init.instructions.insert(objectHook("captureCaret"));
             returns(init,()->objectHook("restoreCaret"));
         } else if (node.name.endsWith("/"+p.keys)) {
@@ -47,7 +48,7 @@ public final class ClientPatchPlugin implements IMixinConfigPlugin, Opcodes {
         for (MethodNode m : node.methods) m.maxStack += 8;
     }
     private static void wheel(ClassNode node,YsmProfile p) {
-        MethodNode init=find(node,p==YsmProfile.NEO?"init":"m_7856_","()V");
+        MethodNode init=find(node,mc(p,"init","m_7856_","()V"),"()V");
         init.instructions.insert(objectHook("begin"));
         MethodNode parser=find(node,p.b,"(Ljava/lang/String;)F");
         MethodNode original=rename(node,parser);
@@ -76,17 +77,17 @@ public final class ClientPatchPlugin implements IMixinConfigPlugin, Opcodes {
                     // The only f > 0 test in either supported wheel class is checkbox initialization.
                     m.instructions.remove(previous(insn));m.instructions.set(insn,call(FIX,"truth","(F)Z"));jump.setOpcode(IFEQ);truth++;
                 }
-                if(insn instanceof MethodInsnNode c && c.owner.equals("net/minecraft/client/gui/components/events/GuiEventListener") && c.desc.equals("(DDI)Z") && (c.name.equals("mouseClicked")||c.name.equals("m_6375_"))) {
+                if(insn instanceof MethodInsnNode c && c.owner.equals(RuntimeNames.internal("net/minecraft/client/gui/components/events/GuiEventListener")) && c.desc.equals("(DDI)Z") && (c.name.equals(mc(p,"mouseClicked","m_6375_","(DDI)Z")))) {
                     InsnList l=new InsnList();l.add(new VarInsnNode(ALOAD,0));l.add(new VarInsnNode(DLOAD,3));m.instructions.insertBefore(c,l);
                     m.instructions.set(c,call(FIX,"clippedClick","(Ljava/lang/Object;DDILjava/lang/Object;D)Z"));clip++;
                 }
             }
             if(writes && !m.name.equals("<init>")) returns(m,()->objectHook("arrows"));
         }
-        MethodNode render=find(node,p==YsmProfile.NEO?"render":"m_88315_","(Lnet/minecraft/client/gui/GuiGraphics;IIF)V");
+        MethodNode render=find(node,mc(p,"render","m_88315_","(Lnet/minecraft/client/gui/GuiGraphics;IIF)V"),RuntimeNames.descriptor("(Lnet/minecraft/client/gui/GuiGraphics;IIF)V"));
         render.instructions.insert(objectHook("arrows"));
         require(truth==1,"boolean comparison",truth);require(track==1,"callback token",track);require(guards>=5,"callback guards",guards);require(clip==1,"clipped click",clip);
-        String slider=YsmProfile.ROOT.replace('.','/')+(p==YsmProfile.NEO?"o0OO0ooOOo0Ooo00OO0Oo0O0":"oo0ooOoOOOO0OOoO0OOoOOo0");
+        String slider=YsmProfile.ROOT.replace('.','/')+p.slider();
         int defaults=0;
         for(MethodNode m:node.methods)if(Type.getReturnType(m.desc).getDescriptor().equals("L"+slider+";")) {
             Type[] args=Type.getArgumentTypes(m.desc);
@@ -106,13 +107,21 @@ public final class ClientPatchPlugin implements IMixinConfigPlugin, Opcodes {
         MethodNode oldRender=rename(node,render);LabelNode originalRender=new LabelNode();
         render.instructions.add(new VarInsnNode(ALOAD,0));render.instructions.add(new VarInsnNode(ALOAD,1));render.instructions.add(new VarInsnNode(ILOAD,2));render.instructions.add(new VarInsnNode(ILOAD,3));render.instructions.add(new VarInsnNode(FLOAD,4));
         render.instructions.add(call(PANEL,"render","(Ljava/lang/Object;Ljava/lang/Object;IIF)Z"));render.instructions.add(new JumpInsnNode(IFEQ,originalRender));render.instructions.add(new InsnNode(RETURN));render.instructions.add(originalRender);render.instructions.add(new FrameNode(F_SAME,0,null,0,null));delegate(node,render,oldRender);
-        boolean neo=p==YsmProfile.NEO;
-        panelInput(node,neo?"mouseClicked":"m_6375_","(DDI)Z","clicked",false);
-        panelInput(node,neo?"mouseDragged":"m_7979_","(DDIDD)Z","dragged",false);
-        panelInput(node,neo?"mouseReleased":"m_6348_","(DDI)Z","released",false);
-        panelInput(node,neo?"mouseScrolled":"m_6050_",neo?"(DDDD)Z":"(DDD)Z","scrolled",false);
-        panelInput(node,neo?"charTyped":"m_5534_","(CI)Z","character",false);
-        panelInput(node,neo?"keyPressed":"m_7933_","(III)Z","key",true);
+        boolean neo=p.modern();
+        panelInput(node,mc(p,"mouseClicked","m_6375_","(DDI)Z"),"(DDI)Z","clicked",false);
+        panelInput(node,mc(p,"mouseDragged","m_7979_","(DDIDD)Z"),"(DDIDD)Z","dragged",false);
+        panelInput(node,mc(p,"mouseReleased","m_6348_","(DDI)Z"),"(DDI)Z","released",false);
+        panelInput(node,mc(p,"mouseScrolled","m_6050_",neo?"(DDDD)Z":"(DDD)Z"),neo?"(DDDD)Z":"(DDD)Z","scrolled",false);
+        panelInput(node,mc(p,"charTyped","m_5534_","(CI)Z"),"(CI)Z","character",false);
+        panelInput(node,mc(p,"keyPressed","m_7933_","(III)Z"),"(III)Z","key",true);
+    }
+    private static String mc(YsmProfile p,String named,String srg,String desc) {
+        if (!p.fabric()) return p==YsmProfile.NEO ? named : srg;
+        String owner = switch(named) {
+            case "init", "render" -> "net/minecraft/client/gui/screens/Screen";
+            default -> "net/minecraft/client/gui/components/events/GuiEventListener";
+        };
+        return RuntimeNames.method(owner,named,desc);
     }
     private static void panelInput(ClassNode node,String name,String desc,String hook,boolean fallThrough) {
         MethodNode method=node.methods.stream().filter(m->m.name.equals(name)&&m.desc.equals(desc)).findFirst().orElse(null),old=null;

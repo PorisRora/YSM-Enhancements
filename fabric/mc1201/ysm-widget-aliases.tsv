@@ -1,0 +1,9 @@
+f	com/elfmcys/yesstevemodel/O00OO0Oo0OoOO0OOOooo00o0	prefix	OoooO000OO0OoO0o0o0ooooO	Lnet/minecraft/class_2561;
+f	com/elfmcys/yesstevemodel/O00OO0Oo0OoOO0OOOooo00o0	suffix	o0OOoooO000O0O0oo0O0o00o	Lnet/minecraft/class_2561;
+f	com/elfmcys/yesstevemodel/O00OO0Oo0OoOO0OOOooo00o0	minValue	Ooo0OOoO0oooOoO0OoOo0Oo0	D
+f	com/elfmcys/yesstevemodel/O00OO0Oo0OoOO0OOOooo00o0	maxValue	o00O00o0Oo0O0oOO00oOOOO0	D
+f	com/elfmcys/yesstevemodel/O00OO0Oo0OoOO0OOOooo00o0	stepSize	OOO0OOOoO0oOooO00Oo00oOO	D
+m	com/elfmcys/yesstevemodel/O00OO0Oo0OoOO0OOOooo00o0	getValue	OoooO000OO0OoO0o0o0ooooO	()D
+m	com/elfmcys/yesstevemodel/O00OO0Oo0OoOO0OOOooo00o0	getValueString	OoOo0OooO0OOO0Oo00000o00	()Ljava/lang/String;
+m	com/elfmcys/yesstevemodel/O00OO0Oo0OoOO0OOOooo00o0	setValue	OoOo0OooO0OOO0Oo00000o00	(D)V
+m	com/elfmcys/yesstevemodel/O00OO0Oo0OoOO0OOOooo00o0	snapToNearest	Ooo0OOoO0oooOoO0OoOo0Oo0	(D)D

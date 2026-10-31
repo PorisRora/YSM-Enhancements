@@ -2,8 +2,13 @@
 /.gradle/
 /build/
 /release/
+/fabric/.gradle/
+/fabric/build/
+/fabric/*/build/
 *.log
 *.tmp
+__pycache__/
+*.pyc
 
 # Keep third-party binaries out of the source repository
 *.jar

@@ -12,7 +12,27 @@ public final class NativeConfig {
     private static volatile Object spec;
     private static final Map<Feature, Object> VALUES = new EnumMap<>(Feature.class);
     private static Method loaded, get, set, save;
+    private static boolean fabric;
     private NativeConfig() {}
+
+    /** Fabric YSM already depends on Forge Config API Port; use its native registry. */
+    public static synchronized void registerFabric(boolean modern) {
+        if (spec != null) throw new IllegalStateException("YSM patch config registered twice");
+        try {
+            fabric = true;
+            String root = modern ? "net.neoforged" : "net.minecraftforge";
+            Class<?> api = Class.forName(modern
+                ? "fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry"
+                : "fuzs.forgeconfigapiport.api.config.v2.ForgeConfigRegistry");
+            Class<?> type = Class.forName(root+".fml.config.ModConfig$Type");
+            Object built = prepare(modern);
+            api.getMethod("register",String.class,type,Class.forName(root+".fml.config.IConfigSpec"),String.class)
+                .invoke(api.getField("INSTANCE").get(null),"ysm_enhancements",type.getField("CLIENT").get(null),built,FILE);
+            spec = built;
+        } catch (ReflectiveOperationException error) {
+            throw new IllegalStateException("Could not register Fabric YSM patch configuration",unwrap(error));
+        }
+    }
 
     public static synchronized void register(boolean neo, Object container) {
         if (spec != null) throw new IllegalStateException("YSM patch config registered twice");
@@ -38,6 +58,7 @@ public final class NativeConfig {
         Class<?> builderClass = Class.forName(specName + "$Builder");
         Object builder = builderClass.getConstructor().newInstance();
         for (Feature feature : Feature.values()) {
+            if (fabric && feature == Feature.MOUSE_SHORTCUTS) continue; // Already supported by Fabric YSM.
             builderClass.getMethod("comment", String.class).invoke(builder, feature.description);
             builderClass.getMethod("translation", String.class).invoke(builder, feature.translationKey());
             Object value = builderClass.getMethod("define", String.class, boolean.class)
@@ -81,6 +102,7 @@ public final class NativeConfig {
     }
 
     public static boolean enabled(Feature feature) {
+        if (fabric && feature == Feature.MOUSE_SHORTCUTS) return false;
         Object current = spec;
         if (current == null) return true; // Before the loader loads CLIENT configuration.
         try { return !((Boolean) loaded.invoke(current)) || (Boolean) get.invoke(VALUES.get(feature)); }

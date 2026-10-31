@@ -1,0 +1,146 @@
+// This addon uses reflection and Mixin targets in Fabric's production namespace.
+// No game/YSM classes are compiled into, or redistributed with, either artifact.
+subprojects {
+    apply plugin: 'java'
+    group = 'dev.local.ysmenhancements'
+    version = '1.2.0'
+    def mc = name == 'mc1201' ? '1.20.1' : '1.21.1'
+    def releaseJava = name == 'mc1201' ? 17 : 21
+    def minimumLoader = name == 'mc1201' ? '0.15.0' : '0.16.0'
+    def minimumMixin = name == 'mc1201' ? '0.12.5+mixin.0.8.5' : '0.15.0+mixin.0.8.7'
+    configurations { minimumMixinRuntime }
+    repositories {
+        mavenCentral()
+        maven { url = 'https://maven.fabricmc.net/' }
+    }
+    dependencies {
+        compileOnly "net.fabricmc:fabric-loader:${minimumLoader}"
+        compileOnly 'net.fabricmc:sponge-mixin:0.15.2+mixin.0.8.7'
+        compileOnly 'org.ow2.asm:asm-tree:9.7.1'
+        compileOnly 'org.joml:joml:1.10.5'
+        testImplementation "net.fabricmc:fabric-loader:${minimumLoader}"
+        testImplementation 'net.fabricmc:sponge-mixin:0.15.2+mixin.0.8.7'
+        testImplementation 'org.ow2.asm:asm-util:9.7.1'
+        testImplementation 'org.ow2.asm:asm-commons:9.7.1'
+        testImplementation 'org.joml:joml:1.10.5'
+        testImplementation 'org.apache.commons:commons-lang3:3.14.0'
+        testImplementation 'it.unimi.dsi:fastutil:8.5.12'
+        testImplementation 'com.google.code.gson:gson:2.10.1'
+        testImplementation 'com.google.guava:guava:32.1.2-jre'
+        testImplementation 'org.lwjgl:lwjgl-opengl:3.3.3'
+        testImplementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+        testRuntimeOnly 'org.slf4j:slf4j-simple:2.0.9'
+        testImplementation "com.electronwill.night-config:toml:${project.name == 'mc1201' ? '3.6.6' : '3.8.0'}"
+        minimumMixinRuntime "net.fabricmc:sponge-mixin:${minimumMixin}"
+        minimumMixinRuntime 'org.ow2.asm:asm-util:9.6'
+        minimumMixinRuntime 'org.ow2.asm:asm-commons:9.6'
+    }
+    sourceSets {
+        main {
+            java {
+                setSrcDirs(['../../src/main/java', 'src/main/java', '../common/src/main/java'])
+                exclude 'dev/local/ysmenhancements/loader/**', 'dev/local/ysmenhancements/mixin/**', '**/config/ForgeConfigScreen.java', '**/fixes/ShortcutFixes.java'
+            }
+            resources.setSrcDirs(['src/main/resources', '../common/src/main/resources'])
+        }
+        test {
+            java {
+                setSrcDirs(['../common/src/test/java', '../../src/test/java'])
+                include 'dev/local/ysmenhancements/fabric/**', 'net/minecraft/**',
+                    'dev/local/ysmenhancements/RegressionTest.java',
+                    'dev/local/ysmenhancements/ApiContractTest.java',
+                    'dev/local/ysmenhancements/config/NativeConfigTest.java',
+                    'dev/local/ysmenhancements/fixes/ScaleDefaultsTest.java',
+                    'dev/local/ysmenhancements/testservice/TestMixinService.java',
+                    'dev/local/ysmenhancements/testservice/TestProperties.java',
+                    'dev/local/ysmenhancements/ui/PreviewInteractionTest.java'
+            }
+            resources.srcDir '../../src/test/resources'
+        }
+    }
+    java { withSourcesJar() }
+    tasks.withType(JavaCompile).configureEach {
+        options.release = releaseJava
+        options.encoding = 'UTF-8'
+        options.compilerArgs += ['-proc:none']
+    }
+    processResources {
+        inputs.property 'version', project.version
+        inputs.property 'minimumLoader', minimumLoader
+        filesMatching('fabric.mod.json') { expand version: project.version, minecraft: mc, java: releaseJava, loader: minimumLoader }
+        filesMatching('ysm_enhancements.fabric.mixins.json') { expand java: releaseJava }
+        from('../../src/main/resources/assets') { into 'assets' }
+    }
+    tasks.withType(Jar).configureEach {
+        preserveFileTimestamps = false
+        reproducibleFileOrder = true
+        from('../../LICENSE')
+    }
+    jar { archiveFileName = "ysm-enhancements-${version}-fabric-mc${mc}.jar" }
+    test.enabled = false
+    def fixture = providers.gradleProperty(name+'Ysm').orElse("../../build/fabric-fixtures/ysm-2.6.5-fabric+mc${mc}-release.jar")
+    tasks.register('regressionTest', JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'dev.local.ysmenhancements.fabric.FabricRegressionTest'
+        args "FABRIC_${project.name.substring(2)}", file(fixture.get()).absolutePath
+    }
+    tasks.register('scaleDefaultsTest', JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath + files(file(fixture.get()))
+        mainClass = 'dev.local.ysmenhancements.fixes.ScaleDefaultsTest'
+        args "FABRIC_${project.name.substring(2)}"
+    }
+    tasks.register('previewInteractionTest', JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'dev.local.ysmenhancements.ui.PreviewInteractionTest'
+    }
+    def vanilla = file("../../build/fabric-fixtures/${mc}-client.jar")
+    def intermediary = file("../../build/fabric-fixtures/${mc}-intermediary.jar")
+    def mcFixture = layout.buildDirectory.file('fixtures/minecraft-intermediary.jar')
+    tasks.register('minecraftFixture', JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'dev.local.ysmenhancements.fabric.MinecraftFixture'
+        inputs.files vanilla, intermediary
+        outputs.file mcFixture
+        args vanilla.absolutePath, intermediary.absolutePath, mcFixture.get().asFile.absolutePath
+    }
+    tasks.register('mixinSmokeTest', JavaExec) {
+        dependsOn minecraftFixture
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'dev.local.ysmenhancements.fabric.FabricMixinTest'
+        systemProperty 'mixin.service', 'dev.local.ysmenhancements.testservice.TestMixinService'
+        args "FABRIC_${project.name.substring(2)}", mcFixture.get().asFile.absolutePath, file(fixture.get()).absolutePath
+    }
+    tasks.register('apiContractTest', JavaExec) {
+        dependsOn minecraftFixture
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'dev.local.ysmenhancements.ApiContractTest'
+        args file(fixture.get()).absolutePath, mcFixture.get().asFile.absolutePath
+    }
+    tasks.register('minimumLoaderMixinTest', JavaExec) {
+        dependsOn minecraftFixture
+        classpath = configurations.minimumMixinRuntime + sourceSets.test.runtimeClasspath.filter {
+            !it.name.startsWith('sponge-mixin-') && !it.name.startsWith('asm-')
+        }
+        mainClass = 'dev.local.ysmenhancements.fabric.FabricMixinTest'
+        systemProperty 'mixin.service', 'dev.local.ysmenhancements.testservice.TestMixinService'
+        args "FABRIC_${project.name.substring(2)}", mcFixture.get().asFile.absolutePath, file(fixture.get()).absolutePath
+    }
+    tasks.register('sliderContractTest', JavaExec) {
+        dependsOn minecraftFixture
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = 'dev.local.ysmenhancements.fabric.FabricSliderTest'
+        args "FABRIC_${project.name.substring(2)}", file(fixture.get()).absolutePath, mcFixture.get().asFile.absolutePath
+    }
+    tasks.register('nativeConfigTest', JavaExec) {
+        dependsOn testClasses
+        def api = file("../../build/fabric-fixtures/forge-config-api-port-v${project.name == 'mc1201' ? '8.0.0-1.20.1' : '21.1.3-1.21.1'}-Fabric.jar")
+        classpath = sourceSets.test.runtimeClasspath + files(api)
+        mainClass = 'dev.local.ysmenhancements.fabric.FabricConfigTest'
+        args "fabric_${project.name.substring(2)}"
+    }
+    check.dependsOn regressionTest, scaleDefaultsTest, previewInteractionTest, mixinSmokeTest, minimumLoaderMixinTest, apiContractTest, sliderContractTest, nativeConfigTest
+}

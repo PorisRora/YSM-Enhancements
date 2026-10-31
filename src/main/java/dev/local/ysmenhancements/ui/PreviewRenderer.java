@@ -32,7 +32,7 @@ public final class PreviewRenderer {
                 float entityScale=((Number)Reflect.call(entity,"getScale")).floatValue();
                 Reflect.call(inventory,"renderEntityInInventory",graphics,rect.x()+rect.w()/2f,rect.y()+rect.h()/2f,
                         scale/Math.max(.001f,entityScale),new Vector3f(0,height/2,0),pose,camera,entity);
-            }else Reflect.call(inventory,"m_280432_",graphics,rect.x()+rect.w()/2,rect.y()+rect.h()-4,scale,pose,camera,entity);
+            }else Reflect.call(inventory,"renderEntityInInventory|m_280432_",graphics,rect.x()+rect.w()/2,rect.y()+rect.h()-4,scale,pose,camera,entity);
         }));
     }
     /** Screen y of the model's feet: both renderer paths pivot the model there. */

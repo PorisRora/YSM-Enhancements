@@ -13,14 +13,14 @@ public final class Reflect {
     public static Class<?> type(String name) {
         Class<?> type = TYPES.get(name);
         if (type != null) return type;
-        try { type = Class.forName(name); } catch (ClassNotFoundException e) { throw new IllegalStateException(name, e); }
+        try { type = Class.forName(RuntimeNames.type(name)); } catch (ClassNotFoundException e) { throw new IllegalStateException(name, e); }
         TYPES.put(name, type);
         return type;
     }
     public static Field field(Class<?> type, String names) {
         return FIELDS.computeIfAbsent(type.getName() + ":" + names, key -> {
             for (String name : names.split("\\|")) for (Class<?> c = type; c != null; c = c.getSuperclass()) {
-                try { Field f = c.getDeclaredField(name); f.setAccessible(true); return f; }
+                try { Field f = c.getDeclaredField(RuntimeNames.field(c,name)); f.setAccessible(true); return f; }
                 catch (NoSuchFieldException ignored) { }
             }
             throw new IllegalStateException("Missing field " + key);
@@ -44,12 +44,12 @@ public final class Reflect {
         return METHODS.computeIfAbsent(key.toString(), k -> {
             for (String name : names.split("\\|")) for (Class<?> c = owner; c != null; c = c.getSuperclass()) {
                 for (Method m : c.getDeclaredMethods()) {
-                    if (m.getName().equals(name) && !m.isBridge() && compatible(m.getParameterTypes(), args)) {
+                    if (RuntimeNames.methodMatches(m,name) && !m.isBridge() && compatible(m.getParameterTypes(), args)) {
                         m.setAccessible(true); return m;
                     }
                 }
             }
-            for (Method m : owner.getMethods()) if (Arrays.asList(names.split("\\|")).contains(m.getName()) && compatible(m.getParameterTypes(), args)) return m;
+            for (Method m : owner.getMethods()) if (Arrays.stream(names.split("\\|")).anyMatch(n -> RuntimeNames.methodMatches(m,n)) && compatible(m.getParameterTypes(), args)) return m;
             throw new IllegalStateException("Missing method " + k);
         });
     }

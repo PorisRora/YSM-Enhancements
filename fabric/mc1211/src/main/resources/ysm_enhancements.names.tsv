@@ -1,0 +1,1853 @@
+# Mojang official names -> Fabric intermediary; Minecraft 1.21.1
+c	com/mojang/blaze3d/Blaze3D	net/minecraft/class_3673
+c	com/mojang/blaze3d/audio/Channel	net/minecraft/class_4224
+c	com/mojang/blaze3d/audio/Library	net/minecraft/class_4225
+c	com/mojang/blaze3d/audio/ListenerTransform	net/minecraft/class_9054
+c	com/mojang/blaze3d/font/GlyphProvider	net/minecraft/class_390
+c	com/mojang/blaze3d/font/GlyphProvider$Conditional	net/minecraft/class_390$class_9241
+c	com/mojang/blaze3d/font/SheetGlyphInfo	net/minecraft/class_383
+c	com/mojang/blaze3d/font/SpaceProvider$Definition	net/minecraft/class_7166$class_8554
+c	com/mojang/blaze3d/font/TrueTypeGlyphProvider	net/minecraft/class_395
+c	com/mojang/blaze3d/font/TrueTypeGlyphProvider$Glyph	net/minecraft/class_395$class_397
+c	com/mojang/blaze3d/pipeline/MainTarget$Dimension	net/minecraft/class_6364$class_6366
+c	com/mojang/blaze3d/pipeline/RenderPipeline	net/minecraft/class_4491
+c	com/mojang/blaze3d/pipeline/RenderTarget	net/minecraft/class_276
+c	com/mojang/blaze3d/platform/DisplayData	net/minecraft/class_543
+c	com/mojang/blaze3d/platform/GlDebug$LogEntry	net/minecraft/class_1008$class_6359
+c	com/mojang/blaze3d/platform/GlStateManager$BooleanState	com/mojang/blaze3d/platform/GlStateManager$class_1018
+c	com/mojang/blaze3d/platform/GlStateManager$DestFactor	com/mojang/blaze3d/platform/GlStateManager$class_4534
+c	com/mojang/blaze3d/platform/GlStateManager$LogicOp	com/mojang/blaze3d/platform/GlStateManager$class_1030
+c	com/mojang/blaze3d/platform/GlStateManager$PolygonOffsetState	com/mojang/blaze3d/platform/GlStateManager$class_1031
+c	com/mojang/blaze3d/platform/GlStateManager$SourceFactor	com/mojang/blaze3d/platform/GlStateManager$class_4535
+c	com/mojang/blaze3d/platform/GlStateManager$Viewport	com/mojang/blaze3d/platform/GlStateManager$class_1040
+c	com/mojang/blaze3d/platform/IconSet	net/minecraft/class_8518
+c	com/mojang/blaze3d/platform/InputConstants	net/minecraft/class_3675
+c	com/mojang/blaze3d/platform/InputConstants$Key	net/minecraft/class_3675$class_306
+c	com/mojang/blaze3d/platform/Monitor	net/minecraft/class_313
+c	com/mojang/blaze3d/platform/NativeImage	net/minecraft/class_1011
+c	com/mojang/blaze3d/platform/VideoMode	net/minecraft/class_319
+c	com/mojang/blaze3d/platform/Window	net/minecraft/class_1041
+c	com/mojang/blaze3d/shaders/AbstractUniform	net/minecraft/class_278
+c	com/mojang/blaze3d/shaders/BlendMode	net/minecraft/class_277
+c	com/mojang/blaze3d/shaders/EffectProgram	net/minecraft/class_5937
+c	com/mojang/blaze3d/shaders/Program	net/minecraft/class_281
+c	com/mojang/blaze3d/shaders/Uniform	net/minecraft/class_284
+c	com/mojang/blaze3d/systems/RenderSystem	com/mojang/blaze3d/systems/RenderSystem
+c	com/mojang/blaze3d/systems/TimerQuery	net/minecraft/class_7168
+c	com/mojang/blaze3d/systems/TimerQuery$FrameProfile	net/minecraft/class_7168$class_7169
+c	com/mojang/blaze3d/systems/TimerQuery$TimerQueryLazyLoader	net/minecraft/class_7168$class_7170
+c	com/mojang/blaze3d/vertex/BufferBuilder	net/minecraft/class_287
+c	com/mojang/blaze3d/vertex/ByteBufferBuilder	net/minecraft/class_9799
+c	com/mojang/blaze3d/vertex/ByteBufferBuilder$Result	net/minecraft/class_9799$class_9800
+c	com/mojang/blaze3d/vertex/MeshData	net/minecraft/class_9801
+c	com/mojang/blaze3d/vertex/MeshData$DrawState	net/minecraft/class_9801$class_4574
+c	com/mojang/blaze3d/vertex/MeshData$SortState	net/minecraft/class_9801$class_9802
+c	com/mojang/blaze3d/vertex/PoseStack	net/minecraft/class_4587
+c	com/mojang/blaze3d/vertex/SheetedDecalTextureGenerator	net/minecraft/class_4583
+c	com/mojang/blaze3d/vertex/Tesselator	net/minecraft/class_289
+c	com/mojang/blaze3d/vertex/VertexBuffer	net/minecraft/class_291
+c	com/mojang/blaze3d/vertex/VertexConsumer	net/minecraft/class_4588
+c	com/mojang/blaze3d/vertex/VertexFormat	net/minecraft/class_293
+c	com/mojang/blaze3d/vertex/VertexFormat$Builder	net/minecraft/class_293$class_9803
+c	com/mojang/blaze3d/vertex/VertexFormat$Mode	net/minecraft/class_293$class_5596
+c	com/mojang/blaze3d/vertex/VertexFormatElement	net/minecraft/class_296
+c	com/mojang/blaze3d/vertex/VertexFormatElement$Type	net/minecraft/class_296$class_297
+c	com/mojang/blaze3d/vertex/VertexFormatElement$Usage	net/minecraft/class_296$class_298
+c	com/mojang/blaze3d/vertex/VertexMultiConsumer	net/minecraft/class_4720
+c	com/mojang/blaze3d/vertex/VertexMultiConsumer$Multiple	net/minecraft/class_4720$class_6189
+c	net/minecraft/advancements/AdvancementNode	net/minecraft/class_8781
+c	net/minecraft/client/DeltaTracker	net/minecraft/class_9779
+c	net/minecraft/client/KeyMapping	net/minecraft/class_304
+c	net/minecraft/client/KeyboardHandler	net/minecraft/class_309
+c	net/minecraft/client/Minecraft	net/minecraft/class_310
+c	net/minecraft/client/Minecraft$ChatStatus	net/minecraft/class_310$class_5859
+c	net/minecraft/client/Minecraft$GameLoadCookie	net/minecraft/class_310$class_8764
+c	net/minecraft/client/MouseHandler	net/minecraft/class_312
+c	net/minecraft/client/Options	net/minecraft/class_315
+c	net/minecraft/client/StringSplitter$LineBreakFinder	net/minecraft/class_5225$class_5227
+c	net/minecraft/client/StringSplitter$WidthProvider	net/minecraft/class_5225$class_5231
+c	net/minecraft/client/gui/ComponentPath$Leaf	net/minecraft/class_8016$class_8017
+c	net/minecraft/client/gui/ComponentPath$Path	net/minecraft/class_8016$class_8018
+c	net/minecraft/client/gui/Font	net/minecraft/class_327
+c	net/minecraft/client/gui/Font$StringRenderOutput	net/minecraft/class_327$class_5232
+c	net/minecraft/client/gui/Gui	net/minecraft/class_329
+c	net/minecraft/client/gui/Gui$1DisplayEntry	net/minecraft/class_329$class_9016
+c	net/minecraft/client/gui/GuiGraphics	net/minecraft/class_332
+c	net/minecraft/client/gui/LayeredDraw	net/minecraft/class_9080
+c	net/minecraft/client/gui/LayeredDraw$Layer	net/minecraft/class_9080$class_9081
+c	net/minecraft/client/gui/MapRenderer	net/minecraft/class_330
+c	net/minecraft/client/gui/MapRenderer$MapInstance	net/minecraft/class_330$class_331
+c	net/minecraft/client/gui/components/AbstractButton	net/minecraft/class_4264
+c	net/minecraft/client/gui/components/AbstractContainerWidget	net/minecraft/class_9017
+c	net/minecraft/client/gui/components/AbstractScrollWidget	net/minecraft/class_7528
+c	net/minecraft/client/gui/components/AbstractSelectionList	net/minecraft/class_350
+c	net/minecraft/client/gui/components/AbstractSelectionList$Entry	net/minecraft/class_350$class_351
+c	net/minecraft/client/gui/components/AbstractSelectionList$TrackedList	net/minecraft/class_350$class_352
+c	net/minecraft/client/gui/components/AbstractSliderButton	net/minecraft/class_357
+c	net/minecraft/client/gui/components/AbstractStringWidget	net/minecraft/class_8130
+c	net/minecraft/client/gui/components/AbstractWidget	net/minecraft/class_339
+c	net/minecraft/client/gui/components/BossHealthOverlay	net/minecraft/class_337
+c	net/minecraft/client/gui/components/Button	net/minecraft/class_4185
+c	net/minecraft/client/gui/components/Button$Builder	net/minecraft/class_4185$class_7840
+c	net/minecraft/client/gui/components/Button$OnPress	net/minecraft/class_4185$class_4241
+c	net/minecraft/client/gui/components/ChatComponent	net/minecraft/class_338
+c	net/minecraft/client/gui/components/ChatComponent$DelayedMessageDeletion	net/minecraft/class_338$class_7731
+c	net/minecraft/client/gui/components/Checkbox	net/minecraft/class_4286
+c	net/minecraft/client/gui/components/Checkbox$Builder	net/minecraft/class_4286$class_8929
+c	net/minecraft/client/gui/components/CommandSuggestions	net/minecraft/class_4717
+c	net/minecraft/client/gui/components/CommandSuggestions$SuggestionsList	net/minecraft/class_4717$class_464
+c	net/minecraft/client/gui/components/ContainerObjectSelectionList$Entry	net/minecraft/class_4265$class_4266
+c	net/minecraft/client/gui/components/CycleButton	net/minecraft/class_5676
+c	net/minecraft/client/gui/components/CycleButton$Builder	net/minecraft/class_5676$class_5677
+c	net/minecraft/client/gui/components/CycleButton$OnValueChange	net/minecraft/class_5676$class_5678
+c	net/minecraft/client/gui/components/CycleButton$ValueListSupplier	net/minecraft/class_5676$class_5680
+c	net/minecraft/client/gui/components/DebugScreenOverlay	net/minecraft/class_340
+c	net/minecraft/client/gui/components/EditBox	net/minecraft/class_342
+c	net/minecraft/client/gui/components/FittingMultiLineTextWidget	net/minecraft/class_8577
+c	net/minecraft/client/gui/components/ImageWidget	net/minecraft/class_8208
+c	net/minecraft/client/gui/components/LoadingDotsWidget	net/minecraft/class_8661
+c	net/minecraft/client/gui/components/MultiLineEditBox	net/minecraft/class_7529
+c	net/minecraft/client/gui/components/MultiLineLabel	net/minecraft/class_5489
+c	net/minecraft/client/gui/components/MultiLineLabel$1	net/minecraft/class_5489$1
+c	net/minecraft/client/gui/components/MultiLineLabel$2	net/minecraft/class_5489$2
+c	net/minecraft/client/gui/components/MultiLineLabel$TextAndWidth	net/minecraft/class_5489$class_5490
+c	net/minecraft/client/gui/components/MultiLineTextWidget	net/minecraft/class_7940
+c	net/minecraft/client/gui/components/MultiLineTextWidget$CacheKey	net/minecraft/class_7940$class_8131
+c	net/minecraft/client/gui/components/MultilineTextField	net/minecraft/class_7530
+c	net/minecraft/client/gui/components/MultilineTextField$StringView	net/minecraft/class_7530$class_7531
+c	net/minecraft/client/gui/components/ObjectSelectionList$Entry	net/minecraft/class_4280$class_4281
+c	net/minecraft/client/gui/components/OptionsList	net/minecraft/class_353
+c	net/minecraft/client/gui/components/OptionsList$Entry	net/minecraft/class_353$class_354
+c	net/minecraft/client/gui/components/PlainTextButton	net/minecraft/class_7077
+c	net/minecraft/client/gui/components/PlayerSkinWidget	net/minecraft/class_8765
+c	net/minecraft/client/gui/components/PlayerSkinWidget$Model	net/minecraft/class_8765$class_8766
+c	net/minecraft/client/gui/components/PlayerTabOverlay	net/minecraft/class_355
+c	net/minecraft/client/gui/components/PlayerTabOverlay$ScoreDisplayEntry	net/minecraft/class_355$class_9018
+c	net/minecraft/client/gui/components/PopupScreen	net/minecraft/class_8816
+c	net/minecraft/client/gui/components/PopupScreen$Builder	net/minecraft/class_8816$class_8817
+c	net/minecraft/client/gui/components/PopupScreen$ButtonOption	net/minecraft/class_8816$class_8818
+c	net/minecraft/client/gui/components/Renderable	net/minecraft/class_4068
+c	net/minecraft/client/gui/components/SplashRenderer	net/minecraft/class_8519
+c	net/minecraft/client/gui/components/SpriteIconButton	net/minecraft/class_8662
+c	net/minecraft/client/gui/components/SpriteIconButton$Builder	net/minecraft/class_8662$class_8663
+c	net/minecraft/client/gui/components/StateSwitchingButton	net/minecraft/class_361
+c	net/minecraft/client/gui/components/SubtitleOverlay	net/minecraft/class_359
+c	net/minecraft/client/gui/components/SubtitleOverlay$SoundPlayedAt	net/minecraft/class_359$class_9772
+c	net/minecraft/client/gui/components/Tooltip	net/minecraft/class_7919
+c	net/minecraft/client/gui/components/WidgetSprites	net/minecraft/class_8666
+c	net/minecraft/client/gui/components/WidgetTooltipHolder	net/minecraft/class_9110
+c	net/minecraft/client/gui/components/debugchart/AbstractDebugChart	net/minecraft/class_8755
+c	net/minecraft/client/gui/components/events/ContainerEventHandler	net/minecraft/class_4069
+c	net/minecraft/client/gui/components/events/GuiEventListener	net/minecraft/class_364
+c	net/minecraft/client/gui/components/spectator/SpectatorGui	net/minecraft/class_365
+c	net/minecraft/client/gui/components/tabs/TabNavigationBar	net/minecraft/class_8089
+c	net/minecraft/client/gui/components/tabs/TabNavigationBar$Builder	net/minecraft/class_8089$class_8090
+c	net/minecraft/client/gui/components/toasts/AdvancementToast	net/minecraft/class_367
+c	net/minecraft/client/gui/components/toasts/RecipeToast	net/minecraft/class_366
+c	net/minecraft/client/gui/components/toasts/SystemToast	net/minecraft/class_370
+c	net/minecraft/client/gui/components/toasts/Toast	net/minecraft/class_368
+c	net/minecraft/client/gui/components/toasts/Toast$Visibility	net/minecraft/class_368$class_369
+c	net/minecraft/client/gui/components/toasts/ToastComponent	net/minecraft/class_374
+c	net/minecraft/client/gui/components/toasts/ToastComponent$ToastInstance	net/minecraft/class_374$class_375
+c	net/minecraft/client/gui/components/toasts/TutorialToast	net/minecraft/class_372
+c	net/minecraft/client/gui/components/toasts/TutorialToast$Icons	net/minecraft/class_372$class_373
+c	net/minecraft/client/gui/font/CodepointMap	net/minecraft/class_8532
+c	net/minecraft/client/gui/font/FontManager	net/minecraft/class_378
+c	net/minecraft/client/gui/font/FontManager$BuilderId	net/minecraft/class_378$class_8534
+c	net/minecraft/client/gui/font/FontManager$BuilderResult	net/minecraft/class_378$class_8535
+c	net/minecraft/client/gui/font/FontManager$FontDefinitionFile	net/minecraft/class_378$class_8556
+c	net/minecraft/client/gui/font/FontManager$Preparation	net/minecraft/class_378$class_8536
+c	net/minecraft/client/gui/font/FontManager$UnresolvedBuilderBundle	net/minecraft/class_378$class_8537
+c	net/minecraft/client/gui/font/FontSet	net/minecraft/class_377
+c	net/minecraft/client/gui/font/FontSet$GlyphInfoFilter	net/minecraft/class_377$class_7647
+c	net/minecraft/client/gui/font/FontTexture	net/minecraft/class_380
+c	net/minecraft/client/gui/font/FontTexture$Node	net/minecraft/class_380$class_381
+c	net/minecraft/client/gui/font/GlyphRenderTypes	net/minecraft/class_8538
+c	net/minecraft/client/gui/font/TextFieldHelper	net/minecraft/class_3728
+c	net/minecraft/client/gui/font/glyphs/BakedGlyph	net/minecraft/class_382
+c	net/minecraft/client/gui/font/glyphs/EmptyGlyph	net/minecraft/class_384
+c	net/minecraft/client/gui/font/providers/BitmapProvider	net/minecraft/class_386
+c	net/minecraft/client/gui/font/providers/BitmapProvider$Definition	net/minecraft/class_386$class_387
+c	net/minecraft/client/gui/font/providers/BitmapProvider$Glyph	net/minecraft/class_386$class_388
+c	net/minecraft/client/gui/font/providers/GlyphProviderDefinition$Conditional	net/minecraft/class_389$class_9245
+c	net/minecraft/client/gui/font/providers/GlyphProviderDefinition$Reference	net/minecraft/class_389$class_8540
+c	net/minecraft/client/gui/font/providers/ProviderReferenceDefinition	net/minecraft/class_8541
+c	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition	net/minecraft/class_8557
+c	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition$Shift	net/minecraft/class_8557$class_8558
+c	net/minecraft/client/gui/font/providers/UnihexProvider$ByteContents	net/minecraft/class_391$class_7736
+c	net/minecraft/client/gui/font/providers/UnihexProvider$Dimensions	net/minecraft/class_391$class_8542
+c	net/minecraft/client/gui/font/providers/UnihexProvider$Glyph	net/minecraft/class_391$class_393
+c	net/minecraft/client/gui/font/providers/UnihexProvider$IntContents	net/minecraft/class_391$class_8543
+c	net/minecraft/client/gui/font/providers/UnihexProvider$OverrideRange	net/minecraft/class_391$class_8545
+c	net/minecraft/client/gui/font/providers/UnihexProvider$ShortContents	net/minecraft/class_391$class_8547
+c	net/minecraft/client/gui/layouts/AbstractLayout	net/minecraft/class_7838
+c	net/minecraft/client/gui/layouts/AbstractLayout$AbstractChildWrapper	net/minecraft/class_7838$class_7839
+c	net/minecraft/client/gui/layouts/EqualSpacingLayout	net/minecraft/class_7849
+c	net/minecraft/client/gui/layouts/FrameLayout	net/minecraft/class_7843
+c	net/minecraft/client/gui/layouts/GridLayout	net/minecraft/class_7845
+c	net/minecraft/client/gui/layouts/HeaderAndFooterLayout	net/minecraft/class_8132
+c	net/minecraft/client/gui/layouts/LayoutElement	net/minecraft/class_8021
+c	net/minecraft/client/gui/layouts/LinearLayout	net/minecraft/class_8667
+c	net/minecraft/client/gui/layouts/SpacerElement	net/minecraft/class_7852
+c	net/minecraft/client/gui/narration/NarratableEntry	net/minecraft/class_6379
+c	net/minecraft/client/gui/narration/NarrationThunk	net/minecraft/class_6384
+c	net/minecraft/client/gui/navigation/FocusNavigationEvent$ArrowNavigation	net/minecraft/class_8023$class_8024
+c	net/minecraft/client/gui/navigation/FocusNavigationEvent$TabNavigation	net/minecraft/class_8023$class_8026
+c	net/minecraft/client/gui/navigation/ScreenPosition	net/minecraft/class_8029
+c	net/minecraft/client/gui/navigation/ScreenRectangle	net/minecraft/class_8030
+c	net/minecraft/client/gui/screens/AccessibilityOnboardingScreen	net/minecraft/class_8032
+c	net/minecraft/client/gui/screens/AlertScreen	net/minecraft/class_403
+c	net/minecraft/client/gui/screens/BackupConfirmScreen	net/minecraft/class_405
+c	net/minecraft/client/gui/screens/BanNoticeScreens	net/minecraft/class_7588
+c	net/minecraft/client/gui/screens/ChatScreen	net/minecraft/class_408
+c	net/minecraft/client/gui/screens/ConfirmLinkScreen	net/minecraft/class_407
+c	net/minecraft/client/gui/screens/ConfirmScreen	net/minecraft/class_410
+c	net/minecraft/client/gui/screens/ConnectScreen	net/minecraft/class_412
+c	net/minecraft/client/gui/screens/CreateBuffetWorldScreen	net/minecraft/class_415
+c	net/minecraft/client/gui/screens/CreateBuffetWorldScreen$BiomeList$Entry	net/minecraft/class_415$class_4190$class_4191
+c	net/minecraft/client/gui/screens/CreateFlatWorldScreen	net/minecraft/class_413
+c	net/minecraft/client/gui/screens/CreateFlatWorldScreen$DetailsList$Entry	net/minecraft/class_413$class_4192$class_4193
+c	net/minecraft/client/gui/screens/CreditsAndAttributionScreen	net/minecraft/class_8219
+c	net/minecraft/client/gui/screens/DatapackLoadFailureScreen	net/minecraft/class_5346
+c	net/minecraft/client/gui/screens/DeathScreen	net/minecraft/class_418
+c	net/minecraft/client/gui/screens/DemoIntroScreen	net/minecraft/class_417
+c	net/minecraft/client/gui/screens/DirectJoinServerScreen	net/minecraft/class_420
+c	net/minecraft/client/gui/screens/DisconnectedScreen	net/minecraft/class_419
+c	net/minecraft/client/gui/screens/EditServerScreen	net/minecraft/class_422
+c	net/minecraft/client/gui/screens/ErrorScreen	net/minecraft/class_421
+c	net/minecraft/client/gui/screens/FaviconTexture	net/minecraft/class_8573
+c	net/minecraft/client/gui/screens/GenericMessageScreen	net/minecraft/class_424
+c	net/minecraft/client/gui/screens/GenericWaitingScreen	net/minecraft/class_7534
+c	net/minecraft/client/gui/screens/InBedChatScreen	net/minecraft/class_423
+c	net/minecraft/client/gui/screens/LevelLoadingScreen	net/minecraft/class_3928
+c	net/minecraft/client/gui/screens/LoadingDotsText	net/minecraft/class_7413
+c	net/minecraft/client/gui/screens/LoadingOverlay	net/minecraft/class_425
+c	net/minecraft/client/gui/screens/MenuScreens	net/minecraft/class_3929
+c	net/minecraft/client/gui/screens/MenuScreens$ScreenConstructor	net/minecraft/class_3929$class_3930
+c	net/minecraft/client/gui/screens/NoticeWithLinkScreen	net/minecraft/class_8669
+c	net/minecraft/client/gui/screens/OutOfMemoryScreen	net/minecraft/class_428
+c	net/minecraft/client/gui/screens/Overlay	net/minecraft/class_4071
+c	net/minecraft/client/gui/screens/PauseScreen	net/minecraft/class_433
+c	net/minecraft/client/gui/screens/PauseScreen$FeedbackSubScreen	net/minecraft/class_433$class_9804
+c	net/minecraft/client/gui/screens/PresetFlatWorldScreen	net/minecraft/class_430
+c	net/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList	net/minecraft/class_430$class_4196
+c	net/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList$Entry	net/minecraft/class_430$class_4196$class_432
+c	net/minecraft/client/gui/screens/ProgressScreen	net/minecraft/class_435
+c	net/minecraft/client/gui/screens/ReceivingLevelScreen	net/minecraft/class_434
+c	net/minecraft/client/gui/screens/RecoverWorldDataScreen	net/minecraft/class_8897
+c	net/minecraft/client/gui/screens/Screen	net/minecraft/class_437
+c	net/minecraft/client/gui/screens/Screen$DeferredTooltipRendering	net/minecraft/class_437$class_7998
+c	net/minecraft/client/gui/screens/ShareToLanScreen	net/minecraft/class_436
+c	net/minecraft/client/gui/screens/TitleScreen	net/minecraft/class_442
+c	net/minecraft/client/gui/screens/WinScreen	net/minecraft/class_445
+c	net/minecraft/client/gui/screens/achievement/StatsScreen	net/minecraft/class_447
+c	net/minecraft/client/gui/screens/achievement/StatsScreen$GeneralStatisticsList$Entry	net/minecraft/class_447$class_4198$class_4197
+c	net/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRow	net/minecraft/class_447$class_4200$class_4199
+c	net/minecraft/client/gui/screens/achievement/StatsScreen$MobsStatisticsList$MobRow	net/minecraft/class_447$class_4202$class_4201
+c	net/minecraft/client/gui/screens/advancements/AdvancementTab	net/minecraft/class_454
+c	net/minecraft/client/gui/screens/advancements/AdvancementTabType	net/minecraft/class_453
+c	net/minecraft/client/gui/screens/advancements/AdvancementTabType$Sprites	net/minecraft/class_453$class_8670
+c	net/minecraft/client/gui/screens/advancements/AdvancementWidget	net/minecraft/class_456
+c	net/minecraft/client/gui/screens/advancements/AdvancementsScreen	net/minecraft/class_457
+c	net/minecraft/client/gui/screens/debug/GameModeSwitcherScreen	net/minecraft/class_5289
+c	net/minecraft/client/gui/screens/inventory/AbstractCommandBlockEditScreen	net/minecraft/class_463
+c	net/minecraft/client/gui/screens/inventory/AbstractContainerScreen	net/minecraft/class_465
+c	net/minecraft/client/gui/screens/inventory/AbstractFurnaceScreen	net/minecraft/class_489
+c	net/minecraft/client/gui/screens/inventory/AbstractSignEditScreen	net/minecraft/class_7743
+c	net/minecraft/client/gui/screens/inventory/AnvilScreen	net/minecraft/class_471
+c	net/minecraft/client/gui/screens/inventory/BeaconScreen	net/minecraft/class_466
+c	net/minecraft/client/gui/screens/inventory/BeaconScreen$BeaconCancelButton	net/minecraft/class_466$class_467
+c	net/minecraft/client/gui/screens/inventory/BeaconScreen$BeaconConfirmButton	net/minecraft/class_466$class_468
+c	net/minecraft/client/gui/screens/inventory/BeaconScreen$BeaconPowerButton	net/minecraft/class_466$class_469
+c	net/minecraft/client/gui/screens/inventory/BookEditScreen	net/minecraft/class_473
+c	net/minecraft/client/gui/screens/inventory/BookEditScreen$LineInfo	net/minecraft/class_473$class_475
+c	net/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i	net/minecraft/class_473$class_5234
+c	net/minecraft/client/gui/screens/inventory/BookViewScreen	net/minecraft/class_3872
+c	net/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess	net/minecraft/class_3872$class_3931
+c	net/minecraft/client/gui/screens/inventory/BrewingStandScreen	net/minecraft/class_472
+c	net/minecraft/client/gui/screens/inventory/CartographyTableScreen	net/minecraft/class_3934
+c	net/minecraft/client/gui/screens/inventory/CommandBlockEditScreen	net/minecraft/class_477
+c	net/minecraft/client/gui/screens/inventory/ContainerScreen	net/minecraft/class_476
+c	net/minecraft/client/gui/screens/inventory/CrafterScreen	net/minecraft/class_8898
+c	net/minecraft/client/gui/screens/inventory/CraftingScreen	net/minecraft/class_479
+c	net/minecraft/client/gui/screens/inventory/CreativeInventoryListener	net/minecraft/class_478
+c	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen	net/minecraft/class_481
+c	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen$SlotWrapper	net/minecraft/class_481$class_484
+c	net/minecraft/client/gui/screens/inventory/CyclingSlotBackground	net/minecraft/class_8064
+c	net/minecraft/client/gui/screens/inventory/DispenserScreen	net/minecraft/class_480
+c	net/minecraft/client/gui/screens/inventory/EffectRenderingInventoryScreen	net/minecraft/class_485
+c	net/minecraft/client/gui/screens/inventory/EnchantmentNames	net/minecraft/class_487
+c	net/minecraft/client/gui/screens/inventory/EnchantmentScreen	net/minecraft/class_486
+c	net/minecraft/client/gui/screens/inventory/GrindstoneScreen	net/minecraft/class_3802
+c	net/minecraft/client/gui/screens/inventory/HopperScreen	net/minecraft/class_488
+c	net/minecraft/client/gui/screens/inventory/HorseInventoryScreen	net/minecraft/class_491
+c	net/minecraft/client/gui/screens/inventory/InventoryScreen	net/minecraft/class_490
+c	net/minecraft/client/gui/screens/inventory/ItemCombinerScreen	net/minecraft/class_4894
+c	net/minecraft/client/gui/screens/inventory/JigsawBlockEditScreen	net/minecraft/class_3742
+c	net/minecraft/client/gui/screens/inventory/JigsawBlockEditScreen$1	net/minecraft/class_3742$1
+c	net/minecraft/client/gui/screens/inventory/LecternScreen	net/minecraft/class_3935
+c	net/minecraft/client/gui/screens/inventory/LoomScreen	net/minecraft/class_494
+c	net/minecraft/client/gui/screens/inventory/MerchantScreen	net/minecraft/class_492
+c	net/minecraft/client/gui/screens/inventory/MinecartCommandBlockEditScreen	net/minecraft/class_496
+c	net/minecraft/client/gui/screens/inventory/ShulkerBoxScreen	net/minecraft/class_495
+c	net/minecraft/client/gui/screens/inventory/SignEditScreen	net/minecraft/class_498
+c	net/minecraft/client/gui/screens/inventory/SmithingScreen	net/minecraft/class_4895
+c	net/minecraft/client/gui/screens/inventory/StonecutterScreen	net/minecraft/class_3979
+c	net/minecraft/client/gui/screens/inventory/StructureBlockEditScreen	net/minecraft/class_497
+c	net/minecraft/client/gui/screens/inventory/StructureBlockEditScreen$1	net/minecraft/class_497$1
+c	net/minecraft/client/gui/screens/inventory/tooltip/ClientActivePlayersTooltip	net/minecraft/class_9805
+c	net/minecraft/client/gui/screens/inventory/tooltip/ClientActivePlayersTooltip$ActivePlayersTooltip	net/minecraft/class_9805$class_9806
+c	net/minecraft/client/gui/screens/inventory/tooltip/ClientBundleTooltip	net/minecraft/class_5682
+c	net/minecraft/client/gui/screens/inventory/tooltip/ClientTextTooltip	net/minecraft/class_5683
+c	net/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent	net/minecraft/class_5684
+c	net/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipPositioner	net/minecraft/class_8000
+c	net/minecraft/client/gui/screens/inventory/tooltip/DefaultTooltipPositioner	net/minecraft/class_8001
+c	net/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen	net/minecraft/class_500
+c	net/minecraft/client/gui/screens/multiplayer/SafetyScreen	net/minecraft/class_4749
+c	net/minecraft/client/gui/screens/multiplayer/ServerLinksScreen	net/minecraft/class_9807
+c	net/minecraft/client/gui/screens/multiplayer/ServerLinksScreen$LinkListEntry	net/minecraft/class_9807$class_9809
+c	net/minecraft/client/gui/screens/multiplayer/ServerReconfigScreen	net/minecraft/class_8671
+c	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList	net/minecraft/class_4267
+c	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$Entry	net/minecraft/class_4267$class_504
+c	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$LANHeader	net/minecraft/class_4267$class_4268
+c	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$NetworkServerEntry	net/minecraft/class_4267$class_4269
+c	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$OnlineServerEntry	net/minecraft/class_4267$class_4270
+c	net/minecraft/client/gui/screens/multiplayer/WarningScreen	net/minecraft/class_7065
+c	net/minecraft/client/gui/screens/options/AccessibilityOptionsScreen	net/minecraft/class_4189
+c	net/minecraft/client/gui/screens/options/LanguageSelectScreen$LanguageSelectionList$Entry	net/minecraft/class_426$class_4195$class_4194
+c	net/minecraft/client/gui/screens/options/OnlineOptionsScreen	net/minecraft/class_6777
+c	net/minecraft/client/gui/screens/options/OptionsScreen	net/minecraft/class_429
+c	net/minecraft/client/gui/screens/options/OptionsSubScreen	net/minecraft/class_4667
+c	net/minecraft/client/gui/screens/options/UnsupportedGraphicsWarningScreen	net/minecraft/class_5405
+c	net/minecraft/client/gui/screens/options/UnsupportedGraphicsWarningScreen$ButtonOption	net/minecraft/class_5405$class_5406
+c	net/minecraft/client/gui/screens/options/VideoSettingsScreen	net/minecraft/class_446
+c	net/minecraft/client/gui/screens/options/controls/KeyBindsList$CategoryEntry	net/minecraft/class_459$class_460
+c	net/minecraft/client/gui/screens/options/controls/KeyBindsList$KeyEntry	net/minecraft/class_459$class_462
+c	net/minecraft/client/gui/screens/options/controls/KeyBindsScreen	net/minecraft/class_6599
+c	net/minecraft/client/gui/screens/packs/PackSelectionScreen	net/minecraft/class_5375
+c	net/minecraft/client/gui/screens/packs/PackSelectionScreen$Watcher	net/minecraft/class_5375$class_5426
+c	net/minecraft/client/gui/screens/packs/TransferableSelectionList	net/minecraft/class_521
+c	net/minecraft/client/gui/screens/packs/TransferableSelectionList$PackEntry	net/minecraft/class_521$class_4271
+c	net/minecraft/client/gui/screens/recipebook/GhostRecipe	net/minecraft/class_505
+c	net/minecraft/client/gui/screens/recipebook/GhostRecipe$GhostIngredient	net/minecraft/class_505$class_506
+c	net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent	net/minecraft/class_508
+c	net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent$OverlayRecipeButton$Pos	net/minecraft/class_508$class_509$class_510
+c	net/minecraft/client/gui/screens/recipebook/RecipeBookComponent	net/minecraft/class_507
+c	net/minecraft/client/gui/screens/recipebook/RecipeBookPage	net/minecraft/class_513
+c	net/minecraft/client/gui/screens/recipebook/RecipeButton	net/minecraft/class_514
+c	net/minecraft/client/gui/screens/recipebook/RecipeCollection	net/minecraft/class_516
+c	net/minecraft/client/gui/screens/reporting/AbstractReportScreen	net/minecraft/class_8768
+c	net/minecraft/client/gui/screens/reporting/AbstractReportScreen$DiscardReportWarningScreen	net/minecraft/class_8768$class_7539
+c	net/minecraft/client/gui/screens/reporting/ChatReportScreen	net/minecraft/class_7538
+c	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen	net/minecraft/class_7543
+c	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList	net/minecraft/class_7543$class_7544
+c	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$DividerEntry	net/minecraft/class_7543$class_7544$class_7545
+c	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$Heading	net/minecraft/class_7543$class_7544$class_7547
+c	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$MessageEntry	net/minecraft/class_7543$class_7544$class_7548
+c	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$MessageHeadingEntry	net/minecraft/class_7543$class_7544$class_7549
+c	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$PaddingEntry	net/minecraft/class_7543$class_7544$class_7550
+c	net/minecraft/client/gui/screens/reporting/NameReportScreen	net/minecraft/class_8769
+c	net/minecraft/client/gui/screens/reporting/ReportPlayerScreen	net/minecraft/class_8770
+c	net/minecraft/client/gui/screens/reporting/ReportReasonSelectionScreen	net/minecraft/class_7551
+c	net/minecraft/client/gui/screens/reporting/ReportReasonSelectionScreen$ReasonSelectionList$Entry	net/minecraft/class_7551$class_7552$class_7553
+c	net/minecraft/client/gui/screens/reporting/SkinReportScreen	net/minecraft/class_8771
+c	net/minecraft/client/gui/screens/social/PlayerEntry	net/minecraft/class_5519
+c	net/minecraft/client/gui/screens/social/PlayerSocialManager	net/minecraft/class_5520
+c	net/minecraft/client/gui/screens/social/SocialInteractionsPlayerList	net/minecraft/class_5521
+c	net/minecraft/client/gui/screens/social/SocialInteractionsScreen	net/minecraft/class_5522
+c	net/minecraft/client/gui/screens/telemetry/TelemetryEventWidget	net/minecraft/class_7941
+c	net/minecraft/client/gui/screens/telemetry/TelemetryEventWidget$Content	net/minecraft/class_7941$class_7942
+c	net/minecraft/client/gui/screens/telemetry/TelemetryEventWidget$ContentBuilder	net/minecraft/class_7941$class_7943
+c	net/minecraft/client/gui/screens/telemetry/TelemetryInfoScreen	net/minecraft/class_7944
+c	net/minecraft/client/gui/screens/worldselection/ConfirmExperimentalFeaturesScreen	net/minecraft/class_7745
+c	net/minecraft/client/gui/screens/worldselection/ConfirmExperimentalFeaturesScreen$DetailsScreen	net/minecraft/class_7745$class_7746
+c	net/minecraft/client/gui/screens/worldselection/ConfirmExperimentalFeaturesScreen$DetailsScreen$PackListEntry	net/minecraft/class_7745$class_7746$class_7748
+c	net/minecraft/client/gui/screens/worldselection/CreateWorldScreen	net/minecraft/class_525
+c	net/minecraft/client/gui/screens/worldselection/CreateWorldScreen$DataPackReloadCookie	net/minecraft/class_525$class_7749
+c	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen	net/minecraft/class_5235
+c	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$BooleanRuleEntry	net/minecraft/class_5235$class_5236
+c	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$CategoryRuleEntry	net/minecraft/class_5235$class_5237
+c	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$EntryFactory	net/minecraft/class_5235$class_5238
+c	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$GameRuleEntry	net/minecraft/class_5235$class_5400
+c	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$IntegerRuleEntry	net/minecraft/class_5235$class_5239
+c	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$RuleEntry	net/minecraft/class_5235$class_5240
+c	net/minecraft/client/gui/screens/worldselection/EditWorldScreen	net/minecraft/class_524
+c	net/minecraft/client/gui/screens/worldselection/ExperimentsScreen	net/minecraft/class_8134
+c	net/minecraft/client/gui/screens/worldselection/OptimizeWorldScreen	net/minecraft/class_527
+c	net/minecraft/client/gui/screens/worldselection/SelectWorldScreen	net/minecraft/class_526
+c	net/minecraft/client/gui/screens/worldselection/SwitchGrid	net/minecraft/class_8096
+c	net/minecraft/client/gui/screens/worldselection/SwitchGrid$Builder	net/minecraft/class_8096$class_8097
+c	net/minecraft/client/gui/screens/worldselection/SwitchGrid$InfoUnderneathSettings	net/minecraft/class_8096$class_8135
+c	net/minecraft/client/gui/screens/worldselection/SwitchGrid$LabeledSwitch	net/minecraft/class_8096$class_8098
+c	net/minecraft/client/gui/screens/worldselection/SwitchGrid$SwitchBuilder	net/minecraft/class_8096$class_8099
+c	net/minecraft/client/gui/screens/worldselection/WorldCreationContext	net/minecraft/class_7193
+c	net/minecraft/client/gui/screens/worldselection/WorldCreationUiState$WorldTypeEntry	net/minecraft/class_8100$class_8101
+c	net/minecraft/client/gui/screens/worldselection/WorldOpenFlows	net/minecraft/class_7196
+c	net/minecraft/client/gui/screens/worldselection/WorldOpenFlows$1Data	net/minecraft/class_7196$class_7750
+c	net/minecraft/client/gui/screens/worldselection/WorldSelectionList	net/minecraft/class_528
+c	net/minecraft/client/gui/screens/worldselection/WorldSelectionList$Entry	net/minecraft/class_528$class_7414
+c	net/minecraft/client/gui/screens/worldselection/WorldSelectionList$LoadingHeader	net/minecraft/class_528$class_7415
+c	net/minecraft/client/gui/screens/worldselection/WorldSelectionList$WorldListEntry	net/minecraft/class_528$class_4272
+c	net/minecraft/client/gui/spectator/SpectatorMenu$ScrollMenuItem	net/minecraft/class_531$class_533
+c	net/minecraft/client/gui/spectator/categories/TeleportToTeamMenuCategory$TeamSelectionItem	net/minecraft/class_540$class_541
+c	net/minecraft/client/player/LocalPlayer	net/minecraft/class_746
+c	net/minecraft/client/renderer/MultiBufferSource	net/minecraft/class_4597
+c	net/minecraft/client/renderer/RenderType	net/minecraft/class_1921
+c	net/minecraft/client/resources/PlayerSkin	net/minecraft/class_8685
+c	net/minecraft/client/resources/sounds/AbstractSoundInstance	net/minecraft/class_1102
+c	net/minecraft/client/resources/sounds/AbstractTickableSoundInstance	net/minecraft/class_1101
+c	net/minecraft/client/resources/sounds/BiomeAmbientSoundsHandler	net/minecraft/class_4897
+c	net/minecraft/client/resources/sounds/BubbleColumnAmbientSoundHandler	net/minecraft/class_4277
+c	net/minecraft/client/resources/sounds/ElytraOnPlayerSoundInstance	net/minecraft/class_1103
+c	net/minecraft/client/resources/sounds/RidingMinecartSoundInstance	net/minecraft/class_1107
+c	net/minecraft/client/resources/sounds/SimpleSoundInstance	net/minecraft/class_1109
+c	net/minecraft/client/resources/sounds/Sound	net/minecraft/class_1111
+c	net/minecraft/client/resources/sounds/SoundInstance	net/minecraft/class_1113
+c	net/minecraft/client/resources/sounds/UnderwaterAmbientSoundHandler	net/minecraft/class_1116
+c	net/minecraft/client/resources/sounds/UnderwaterAmbientSoundInstances$SubSound	net/minecraft/class_1118$class_1119
+c	net/minecraft/client/resources/sounds/UnderwaterAmbientSoundInstances$UnderwaterAmbientSoundInstance	net/minecraft/class_1118$class_1120
+c	net/minecraft/client/sounds/AudioStream	net/minecraft/class_4234
+c	net/minecraft/client/sounds/ChannelAccess	net/minecraft/class_4235
+c	net/minecraft/client/sounds/ChunkedSampleByteBuf	net/minecraft/class_4229
+c	net/minecraft/client/sounds/JOrbisAudioStream	net/minecraft/class_4228
+c	net/minecraft/client/sounds/LoopingAudioStream	net/minecraft/class_4856
+c	net/minecraft/client/sounds/LoopingAudioStream$AudioStreamProvider	net/minecraft/class_4856$class_4857
+c	net/minecraft/client/sounds/LoopingAudioStream$NoCloseBuffer	net/minecraft/class_4856$class_4858
+c	net/minecraft/client/sounds/MusicManager	net/minecraft/class_1142
+c	net/minecraft/client/sounds/SoundBufferLibrary	net/minecraft/class_4237
+c	net/minecraft/client/sounds/SoundEngine	net/minecraft/class_1140
+c	net/minecraft/client/sounds/SoundEngineExecutor	net/minecraft/class_4238
+c	net/minecraft/client/sounds/SoundManager	net/minecraft/class_1144
+c	net/minecraft/core/BlockPos	net/minecraft/class_2338
+c	net/minecraft/core/Holder	net/minecraft/class_6880
+c	net/minecraft/core/Holder$Reference	net/minecraft/class_6880$class_6883
+c	net/minecraft/nbt/CompoundTag	net/minecraft/class_2487
+c	net/minecraft/network/chat/ChatType	net/minecraft/class_2556
+c	net/minecraft/network/chat/ChatType$Bound	net/minecraft/class_2556$class_7602
+c	net/minecraft/network/chat/ChatTypeDecoration	net/minecraft/class_7463
+c	net/minecraft/network/chat/ClickEvent	net/minecraft/class_2558
+c	net/minecraft/network/chat/ClickEvent$Action	net/minecraft/class_2558$class_2559
+c	net/minecraft/network/chat/Component	net/minecraft/class_2561
+c	net/minecraft/network/chat/ComponentContents	net/minecraft/class_7417
+c	net/minecraft/network/chat/ComponentContents$Type	net/minecraft/class_7417$class_8823
+c	net/minecraft/network/chat/ComponentSerialization$FuzzyCodec	net/minecraft/class_8824$class_8825
+c	net/minecraft/network/chat/FilterMask	net/minecraft/class_7649
+c	net/minecraft/network/chat/FormattedText	net/minecraft/class_5348
+c	net/minecraft/network/chat/HoverEvent	net/minecraft/class_2568
+c	net/minecraft/network/chat/HoverEvent$Action	net/minecraft/class_2568$class_5247
+c	net/minecraft/network/chat/HoverEvent$EntityTooltipInfo	net/minecraft/class_2568$class_5248
+c	net/minecraft/network/chat/HoverEvent$ItemStackInfo	net/minecraft/class_2568$class_5249
+c	net/minecraft/network/chat/HoverEvent$TypedHoverEvent	net/minecraft/class_2568$class_8826
+c	net/minecraft/network/chat/LastSeenMessages	net/minecraft/class_7635
+c	net/minecraft/network/chat/LastSeenMessages$Packed	net/minecraft/class_7635$class_7815
+c	net/minecraft/network/chat/LastSeenMessages$Update	net/minecraft/class_7635$class_7636
+c	net/minecraft/network/chat/LastSeenMessagesTracker$Update	net/minecraft/class_7637$class_7816
+c	net/minecraft/network/chat/LastSeenTrackedEntry	net/minecraft/class_7817
+c	net/minecraft/network/chat/LocalChatSession	net/minecraft/class_7818
+c	net/minecraft/network/chat/MessageSignature	net/minecraft/class_7469
+c	net/minecraft/network/chat/MessageSignature$Packed	net/minecraft/class_7469$class_7819
+c	net/minecraft/network/chat/MutableComponent	net/minecraft/class_5250
+c	net/minecraft/network/chat/OutgoingChatMessage	net/minecraft/class_7604
+c	net/minecraft/network/chat/OutgoingChatMessage$Disguised	net/minecraft/class_7604$class_7606
+c	net/minecraft/network/chat/OutgoingChatMessage$Player	net/minecraft/class_7604$class_7607
+c	net/minecraft/network/chat/PlayerChatMessage	net/minecraft/class_7471
+c	net/minecraft/network/chat/RemoteChatSession	net/minecraft/class_7822
+c	net/minecraft/network/chat/RemoteChatSession$Data	net/minecraft/class_7822$class_7823
+c	net/minecraft/network/chat/SignableCommand	net/minecraft/class_7644
+c	net/minecraft/network/chat/SignableCommand$Argument	net/minecraft/class_7644$class_7645
+c	net/minecraft/network/chat/SignedMessageBody	net/minecraft/class_7608
+c	net/minecraft/network/chat/SignedMessageBody$Packed	net/minecraft/class_7608$class_7824
+c	net/minecraft/network/chat/SignedMessageLink	net/minecraft/class_7826
+c	net/minecraft/network/chat/Style	net/minecraft/class_2583
+c	net/minecraft/network/chat/SubStringSource	net/minecraft/class_5492
+c	net/minecraft/network/chat/TextColor	net/minecraft/class_5251
+c	net/minecraft/network/chat/contents/BlockDataSource	net/minecraft/class_2575
+c	net/minecraft/network/chat/contents/DataSource$Type	net/minecraft/class_7419$class_8827
+c	net/minecraft/network/chat/contents/EntityDataSource	net/minecraft/class_2576
+c	net/minecraft/network/chat/contents/KeybindContents	net/minecraft/class_2572
+c	net/minecraft/network/chat/contents/NbtContents	net/minecraft/class_2574
+c	net/minecraft/network/chat/contents/PlainTextContents	net/minecraft/class_8828
+c	net/minecraft/network/chat/contents/PlainTextContents$1	net/minecraft/class_8828$1
+c	net/minecraft/network/chat/contents/PlainTextContents$LiteralContents	net/minecraft/class_8828$class_2585
+c	net/minecraft/network/chat/contents/ScoreContents	net/minecraft/class_2578
+c	net/minecraft/network/chat/contents/SelectorContents	net/minecraft/class_2579
+c	net/minecraft/network/chat/contents/StorageDataSource	net/minecraft/class_4616
+c	net/minecraft/network/chat/contents/TranslatableContents	net/minecraft/class_2588
+c	net/minecraft/network/chat/numbers/BlankFormat	net/minecraft/class_9020
+c	net/minecraft/network/chat/numbers/FixedFormat	net/minecraft/class_9021
+c	net/minecraft/resources/ResourceKey	net/minecraft/class_5321
+c	net/minecraft/resources/ResourceLocation	net/minecraft/class_2960
+c	net/minecraft/server/level/ServerLevel	net/minecraft/class_3218
+c	net/minecraft/server/packs/PackResources	net/minecraft/class_3262
+c	net/minecraft/server/packs/resources/IoSupplier	net/minecraft/class_7367
+c	net/minecraft/sounds/SoundEvent	net/minecraft/class_3414
+c	net/minecraft/sounds/SoundEvents	net/minecraft/class_3417
+c	net/minecraft/sounds/SoundSource	net/minecraft/class_3419
+c	net/minecraft/util/FormattedCharSequence	net/minecraft/class_5481
+c	net/minecraft/world/entity/Entity	net/minecraft/class_1297
+c	net/minecraft/world/entity/Entity$RemovalReason	net/minecraft/class_1297$class_5529
+c	net/minecraft/world/entity/EntityAttachment	net/minecraft/class_9064
+c	net/minecraft/world/entity/EntityAttachment$Fallback	net/minecraft/class_9064$class_9065
+c	net/minecraft/world/entity/EntityAttachments	net/minecraft/class_9066
+c	net/minecraft/world/entity/EntityAttachments$Builder	net/minecraft/class_9066$class_9067
+c	net/minecraft/world/entity/EntityDimensions	net/minecraft/class_4048
+c	net/minecraft/world/entity/EntityType	net/minecraft/class_1299
+c	net/minecraft/world/entity/EntityType$Builder	net/minecraft/class_1299$class_1300
+c	net/minecraft/world/entity/EntityType$EntityFactory	net/minecraft/class_1299$class_4049
+c	net/minecraft/world/entity/LivingEntity	net/minecraft/class_1309
+c	net/minecraft/world/entity/LivingEntity$Fallsounds	net/minecraft/class_1309$class_6823
+c	net/minecraft/world/entity/MobSpawnType	net/minecraft/class_3730
+c	net/minecraft/world/entity/player/Inventory	net/minecraft/class_1661
+c	net/minecraft/world/entity/player/Player	net/minecraft/class_1657
+c	net/minecraft/world/entity/player/Player$1	net/minecraft/class_1657$1
+c	net/minecraft/world/entity/player/Player$2	net/minecraft/class_1657$2
+c	net/minecraft/world/entity/player/Player$BedSleepingProblem	net/minecraft/class_1657$class_1658
+c	net/minecraft/world/entity/player/ProfileKeyPair	net/minecraft/class_7427
+c	net/minecraft/world/inventory/AbstractContainerMenu	net/minecraft/class_1703
+c	net/minecraft/world/inventory/MenuType	net/minecraft/class_3917
+c	net/minecraft/world/inventory/RecipeBookMenu	net/minecraft/class_1729
+c	net/minecraft/world/inventory/tooltip/TooltipComponent	net/minecraft/class_5632
+c	net/minecraft/world/item/ItemStack	net/minecraft/class_1799
+c	net/minecraft/world/level/GameRules$Value	net/minecraft/class_1928$class_4315
+c	net/minecraft/world/level/Level	net/minecraft/class_1937
+c	net/minecraft/world/level/levelgen/flat/FlatLevelGeneratorSettings	net/minecraft/class_3232
+c	net/minecraft/world/level/saveddata/maps/MapId	net/minecraft/class_9209
+c	net/minecraft/world/level/saveddata/maps/MapItemSavedData	net/minecraft/class_22
+c	net/minecraft/world/level/storage/LevelStorageSource$LevelStorageAccess	net/minecraft/class_32$class_5143
+c	net/minecraft/world/phys/Vec3	net/minecraft/class_243
+c	net/minecraft/world/scores/Objective	net/minecraft/class_266
+c	net/minecraft/world/scores/PlayerTeam	net/minecraft/class_268
+c	net/minecraft/world/scores/Scoreboard	net/minecraft/class_269
+m	com/mojang/blaze3d/Blaze3D	render	method_35597	(Lnet/minecraft/class_4491;F)V
+m	com/mojang/blaze3d/audio/Channel	create	method_19638	()Lnet/minecraft/class_4224;
+m	com/mojang/blaze3d/audio/Channel	play	method_19650	()V
+m	com/mojang/blaze3d/audio/Channel	stop	method_19655	()V
+m	com/mojang/blaze3d/audio/Library	init	method_19661	(Ljava/lang/String;Z)V
+m	com/mojang/blaze3d/audio/ListenerTransform	toString	toString	()Ljava/lang/String;
+m	com/mojang/blaze3d/audio/ListenerTransform	hashCode	hashCode	()I
+m	com/mojang/blaze3d/audio/ListenerTransform	equals	equals	(Ljava/lang/Object;)Z
+m	com/mojang/blaze3d/font/GlyphProvider	close	close	()V
+m	com/mojang/blaze3d/font/GlyphProvider$Conditional	close	close	()V
+m	com/mojang/blaze3d/font/GlyphProvider$Conditional	toString	toString	()Ljava/lang/String;
+m	com/mojang/blaze3d/font/GlyphProvider$Conditional	hashCode	hashCode	()I
+m	com/mojang/blaze3d/font/GlyphProvider$Conditional	equals	equals	(Ljava/lang/Object;)Z
+m	com/mojang/blaze3d/font/SheetGlyphInfo	getLeft	method_2034	()F
+m	com/mojang/blaze3d/font/SheetGlyphInfo	getRight	method_2027	()F
+m	com/mojang/blaze3d/font/SpaceProvider$Definition	toString	toString	()Ljava/lang/String;
+m	com/mojang/blaze3d/font/SpaceProvider$Definition	hashCode	hashCode	()I
+m	com/mojang/blaze3d/font/SpaceProvider$Definition	equals	equals	(Ljava/lang/Object;)Z
+m	com/mojang/blaze3d/font/TrueTypeGlyphProvider	close	close	()V
+f	com/mojang/blaze3d/font/TrueTypeGlyphProvider$Glyph	width	field_2338	I
+f	com/mojang/blaze3d/font/TrueTypeGlyphProvider$Glyph	height	field_2337	I
+f	com/mojang/blaze3d/pipeline/MainTarget$Dimension	width	field_33733	I
+f	com/mojang/blaze3d/pipeline/MainTarget$Dimension	height	field_33734	I
+m	com/mojang/blaze3d/pipeline/MainTarget$Dimension	equals	equals	(Ljava/lang/Object;)Z
+m	com/mojang/blaze3d/pipeline/MainTarget$Dimension	hashCode	hashCode	()I
+m	com/mojang/blaze3d/pipeline/MainTarget$Dimension	toString	toString	()Ljava/lang/String;
+f	com/mojang/blaze3d/pipeline/RenderTarget	width	field_1482	I
+f	com/mojang/blaze3d/pipeline/RenderTarget	height	field_1481	I
+m	com/mojang/blaze3d/pipeline/RenderTarget	clear	method_1230	(Z)V
+f	com/mojang/blaze3d/platform/DisplayData	width	field_3285	I
+f	com/mojang/blaze3d/platform/DisplayData	height	field_3284	I
+m	com/mojang/blaze3d/platform/GlDebug$LogEntry	toString	toString	()Ljava/lang/String;
+f	com/mojang/blaze3d/platform/GlStateManager$BooleanState	enabled	field_5051	Z
+f	com/mojang/blaze3d/platform/GlStateManager$DestFactor	value	value	I
+f	com/mojang/blaze3d/platform/GlStateManager$LogicOp	value	field_5108	I
+f	com/mojang/blaze3d/platform/GlStateManager$PolygonOffsetState	fill	field_5123	Lcom/mojang/blaze3d/platform/GlStateManager$class_1018;
+f	com/mojang/blaze3d/platform/GlStateManager$SourceFactor	value	value	I
+f	com/mojang/blaze3d/platform/GlStateManager$Viewport	INSTANCE	field_5169	Lcom/mojang/blaze3d/platform/GlStateManager$class_1040;
+f	com/mojang/blaze3d/platform/GlStateManager$Viewport	y	field_5171	I
+f	com/mojang/blaze3d/platform/GlStateManager$Viewport	width	field_5170	I
+f	com/mojang/blaze3d/platform/GlStateManager$Viewport	height	field_5168	I
+m	com/mojang/blaze3d/platform/GlStateManager$Viewport	y	method_35331	()I
+m	com/mojang/blaze3d/platform/GlStateManager$Viewport	width	method_35332	()I
+m	com/mojang/blaze3d/platform/GlStateManager$Viewport	height	method_35333	()I
+m	com/mojang/blaze3d/platform/IconSet	getFile	method_51419	(Lnet/minecraft/class_3262;Ljava/lang/String;)Lnet/minecraft/class_7367;
+m	com/mojang/blaze3d/platform/InputConstants	getKey	method_15985	(II)Lnet/minecraft/class_3675$class_306;
+m	com/mojang/blaze3d/platform/InputConstants	getKey	method_15981	(Ljava/lang/String;)Lnet/minecraft/class_3675$class_306;
+f	com/mojang/blaze3d/platform/InputConstants$Key	value	field_1665	I
+m	com/mojang/blaze3d/platform/InputConstants$Key	getValue	method_1444	()I
+m	com/mojang/blaze3d/platform/InputConstants$Key	equals	equals	(Ljava/lang/Object;)Z
+m	com/mojang/blaze3d/platform/InputConstants$Key	hashCode	hashCode	()I
+m	com/mojang/blaze3d/platform/InputConstants$Key	toString	toString	()Ljava/lang/String;
+f	com/mojang/blaze3d/platform/Monitor	y	field_1798	I
+m	com/mojang/blaze3d/platform/Monitor	getX	method_1616	()I
+m	com/mojang/blaze3d/platform/Monitor	getY	method_1618	()I
+m	com/mojang/blaze3d/platform/Monitor	toString	toString	()Ljava/lang/String;
+f	com/mojang/blaze3d/platform/NativeImage	width	field_4991	I
+f	com/mojang/blaze3d/platform/NativeImage	height	field_4989	I
+f	com/mojang/blaze3d/platform/NativeImage	size	field_4987	J
+m	com/mojang/blaze3d/platform/NativeImage	toString	toString	()Ljava/lang/String;
+m	com/mojang/blaze3d/platform/NativeImage	close	close	()V
+m	com/mojang/blaze3d/platform/NativeImage	getWidth	method_4307	()I
+m	com/mojang/blaze3d/platform/NativeImage	getHeight	method_4323	()I
+f	com/mojang/blaze3d/platform/VideoMode	width	field_1980	I
+f	com/mojang/blaze3d/platform/VideoMode	height	field_1979	I
+m	com/mojang/blaze3d/platform/VideoMode	getWidth	method_1668	()I
+m	com/mojang/blaze3d/platform/VideoMode	getHeight	method_1669	()I
+m	com/mojang/blaze3d/platform/VideoMode	equals	equals	(Ljava/lang/Object;)Z
+m	com/mojang/blaze3d/platform/VideoMode	hashCode	hashCode	()I
+m	com/mojang/blaze3d/platform/VideoMode	toString	toString	()Ljava/lang/String;
+f	com/mojang/blaze3d/platform/Window	y	field_5198	I
+f	com/mojang/blaze3d/platform/Window	width	field_5182	I
+f	com/mojang/blaze3d/platform/Window	height	field_5197	I
+m	com/mojang/blaze3d/platform/Window	close	close	()V
+m	com/mojang/blaze3d/platform/Window	getWidth	method_4489	()I
+m	com/mojang/blaze3d/platform/Window	getHeight	method_4506	()I
+m	com/mojang/blaze3d/platform/Window	getX	method_4499	()I
+m	com/mojang/blaze3d/platform/Window	getY	method_4477	()I
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_1251	(F)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_1255	(FF)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_1249	(FFF)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_1254	(FFFF)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_35649	(I)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_35650	(II)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_35651	(III)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_35656	(IIII)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_1253	([F)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_34413	(Lorg/joml/Vector3f;)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_35652	(Lorg/joml/Vector4f;)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_1250	(Lorg/joml/Matrix4f;)V
+m	com/mojang/blaze3d/shaders/AbstractUniform	set	method_39978	(Lorg/joml/Matrix3f;)V
+m	com/mojang/blaze3d/shaders/BlendMode	equals	equals	(Ljava/lang/Object;)Z
+m	com/mojang/blaze3d/shaders/BlendMode	hashCode	hashCode	()I
+m	com/mojang/blaze3d/shaders/EffectProgram	close	method_1282	()V
+m	com/mojang/blaze3d/shaders/Program	close	method_1282	()V
+m	com/mojang/blaze3d/shaders/Uniform	close	close	()V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_1251	(F)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_1255	(FF)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_35659	(IF)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_1249	(FFF)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_34413	(Lorg/joml/Vector3f;)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_1254	(FFFF)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_35652	(Lorg/joml/Vector4f;)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_35649	(I)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_35650	(II)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_35651	(III)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_35656	(IIII)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_1253	([F)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_1250	(Lorg/joml/Matrix4f;)V
+m	com/mojang/blaze3d/shaders/Uniform	set	method_39978	(Lorg/joml/Matrix3f;)V
+m	com/mojang/blaze3d/systems/RenderSystem	enableScissor	enableScissor	(IIII)V
+m	com/mojang/blaze3d/systems/RenderSystem	disableScissor	disableScissor	()V
+m	com/mojang/blaze3d/systems/RenderSystem	depthMask	depthMask	(Z)V
+m	com/mojang/blaze3d/systems/RenderSystem	clearDepth	clearDepth	(D)V
+m	com/mojang/blaze3d/systems/RenderSystem	clear	clear	(IZ)V
+m	com/mojang/blaze3d/systems/RenderSystem	getString	getString	(ILjava/util/function/Consumer;)V
+m	com/mojang/blaze3d/systems/TimerQuery	getInstance	method_41719	()Ljava/util/Optional;
+m	com/mojang/blaze3d/systems/TimerQuery$FrameProfile	get	method_41724	()J
+f	com/mojang/blaze3d/systems/TimerQuery$TimerQueryLazyLoader	INSTANCE	field_37849	Ljava/util/Optional;
+m	com/mojang/blaze3d/vertex/BufferBuilder	build	method_60794	()Lnet/minecraft/class_9801;
+m	com/mojang/blaze3d/vertex/ByteBufferBuilder	build	method_60807	()Lnet/minecraft/class_9799$class_9800;
+m	com/mojang/blaze3d/vertex/ByteBufferBuilder	clear	method_60809	()V
+m	com/mojang/blaze3d/vertex/ByteBufferBuilder	close	close	()V
+m	com/mojang/blaze3d/vertex/ByteBufferBuilder$Result	close	close	()V
+m	com/mojang/blaze3d/vertex/MeshData	close	close	()V
+m	com/mojang/blaze3d/vertex/MeshData$DrawState	toString	toString	()Ljava/lang/String;
+m	com/mojang/blaze3d/vertex/MeshData$DrawState	hashCode	hashCode	()I
+m	com/mojang/blaze3d/vertex/MeshData$DrawState	equals	equals	(Ljava/lang/Object;)Z
+m	com/mojang/blaze3d/vertex/MeshData$SortState	toString	toString	()Ljava/lang/String;
+m	com/mojang/blaze3d/vertex/MeshData$SortState	hashCode	hashCode	()I
+m	com/mojang/blaze3d/vertex/MeshData$SortState	equals	equals	(Ljava/lang/Object;)Z
+m	com/mojang/blaze3d/vertex/PoseStack	clear	method_22911	()Z
+f	com/mojang/blaze3d/vertex/SheetedDecalTextureGenerator	y	field_20871	F
+m	com/mojang/blaze3d/vertex/Tesselator	init	method_54560	()V
+m	com/mojang/blaze3d/vertex/Tesselator	getInstance	method_1348	()Lnet/minecraft/class_289;
+m	com/mojang/blaze3d/vertex/Tesselator	begin	method_60827	(Lnet/minecraft/class_293$class_5596;Lnet/minecraft/class_293;)Lnet/minecraft/class_287;
+m	com/mojang/blaze3d/vertex/Tesselator	clear	method_60828	()V
+m	com/mojang/blaze3d/vertex/VertexBuffer	close	close	()V
+m	com/mojang/blaze3d/vertex/VertexFormat	toString	toString	()Ljava/lang/String;
+m	com/mojang/blaze3d/vertex/VertexFormat	equals	equals	(Ljava/lang/Object;)Z
+m	com/mojang/blaze3d/vertex/VertexFormat	hashCode	hashCode	()I
+m	com/mojang/blaze3d/vertex/VertexFormat$Builder	build	method_60840	()Lnet/minecraft/class_293;
+m	com/mojang/blaze3d/vertex/VertexFormatElement	register	method_60845	(IILnet/minecraft/class_296$class_297;Lnet/minecraft/class_296$class_298;I)Lnet/minecraft/class_296;
+m	com/mojang/blaze3d/vertex/VertexFormatElement	toString	toString	()Ljava/lang/String;
+m	com/mojang/blaze3d/vertex/VertexFormatElement	hashCode	hashCode	()I
+m	com/mojang/blaze3d/vertex/VertexFormatElement	equals	equals	(Ljava/lang/Object;)Z
+f	com/mojang/blaze3d/vertex/VertexFormatElement$Type	size	field_1618	I
+m	com/mojang/blaze3d/vertex/VertexFormatElement$Type	size	method_1391	()I
+m	com/mojang/blaze3d/vertex/VertexFormatElement$Type	toString	toString	()Ljava/lang/String;
+m	com/mojang/blaze3d/vertex/VertexFormatElement$Usage	toString	toString	()Ljava/lang/String;
+m	com/mojang/blaze3d/vertex/VertexMultiConsumer	create	method_35668	()Lnet/minecraft/class_4588;
+m	com/mojang/blaze3d/vertex/VertexMultiConsumer	create	method_35669	(Lnet/minecraft/class_4588;)Lnet/minecraft/class_4588;
+m	com/mojang/blaze3d/vertex/VertexMultiConsumer	create	method_24037	(Lnet/minecraft/class_4588;Lnet/minecraft/class_4588;)Lnet/minecraft/class_4588;
+m	com/mojang/blaze3d/vertex/VertexMultiConsumer	create	method_35670	([Lnet/minecraft/class_4588;)Lnet/minecraft/class_4588;
+m	com/mojang/blaze3d/vertex/VertexMultiConsumer$Multiple	toString	toString	()Ljava/lang/String;
+m	com/mojang/blaze3d/vertex/VertexMultiConsumer$Multiple	hashCode	hashCode	()I
+m	com/mojang/blaze3d/vertex/VertexMultiConsumer$Multiple	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/KeyMapping	key	field_1655	Lnet/minecraft/class_3675$class_306;
+f	net/minecraft/client/KeyMapping	isDown	field_1653	Z
+m	net/minecraft/client/KeyMapping	set	method_1416	(Lnet/minecraft/class_3675$class_306;Z)V
+m	net/minecraft/client/KeyMapping	isDown	method_1434	()Z
+m	net/minecraft/client/KeyMapping	matches	method_1417	(II)Z
+m	net/minecraft/client/KeyMapping	matchesMouse	method_1433	(I)Z
+f	net/minecraft/client/KeyboardHandler	minecraft	field_1678	Lnet/minecraft/class_310;
+m	net/minecraft/client/KeyboardHandler	charTyped	method_1457	(JII)V
+f	net/minecraft/client/Minecraft	font	field_1772	Lnet/minecraft/class_327;
+f	net/minecraft/client/Minecraft	player	field_1724	Lnet/minecraft/class_746;
+f	net/minecraft/client/Minecraft	screen	field_1755	Lnet/minecraft/class_437;
+f	net/minecraft/client/Minecraft	overlay	field_18175	Lnet/minecraft/class_4071;
+m	net/minecraft/client/Minecraft	close	close	()V
+m	net/minecraft/client/Minecraft	stop	method_1592	()V
+m	net/minecraft/client/Minecraft	getInstance	method_1551	()Lnet/minecraft/class_310;
+m	net/minecraft/client/Minecraft	getSoundManager	method_1483	()Lnet/minecraft/class_1144;
+m	net/minecraft/client/Minecraft	isWindowActive	method_1569	()Z
+m	net/minecraft/client/Minecraft$ChatStatus	getMessage	method_33885	()Lnet/minecraft/class_2561;
+m	net/minecraft/client/Minecraft$GameLoadCookie	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/Minecraft$GameLoadCookie	hashCode	hashCode	()I
+m	net/minecraft/client/Minecraft$GameLoadCookie	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/MouseHandler	minecraft	field_1779	Lnet/minecraft/class_310;
+m	net/minecraft/client/MouseHandler	onPress	method_1601	(JIII)V
+f	net/minecraft/client/Options	minecraft	field_1863	Lnet/minecraft/class_310;
+m	net/minecraft/client/Options	save	method_1640	()V
+m	net/minecraft/client/Options	getFile	method_37294	()Ljava/io/File;
+f	net/minecraft/client/StringSplitter$LineBreakFinder	width	field_24227	F
+m	net/minecraft/client/StringSplitter$WidthProvider	getWidth	getWidth	(ILnet/minecraft/class_2583;)F
+m	net/minecraft/client/gui/ComponentPath$Leaf	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/ComponentPath$Leaf	hashCode	hashCode	()I
+m	net/minecraft/client/gui/ComponentPath$Leaf	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/ComponentPath$Path	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/ComponentPath$Path	hashCode	hashCode	()I
+m	net/minecraft/client/gui/ComponentPath$Path	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/Font	lineHeight	field_2000	I
+m	net/minecraft/client/gui/Font	width	method_1727	(Ljava/lang/String;)I
+m	net/minecraft/client/gui/Font	width	method_27525	(Lnet/minecraft/class_5348;)I
+m	net/minecraft/client/gui/Font	width	method_30880	(Lnet/minecraft/class_5481;)I
+f	net/minecraft/client/gui/Font$StringRenderOutput	y	field_24251	F
+f	net/minecraft/client/gui/Gui	minecraft	field_2035	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/Gui	render	method_1753	(Lnet/minecraft/class_332;Lnet/minecraft/class_9779;)V
+m	net/minecraft/client/gui/Gui	clear	method_34003	()V
+m	net/minecraft/client/gui/Gui$1DisplayEntry	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/Gui$1DisplayEntry	hashCode	hashCode	()I
+m	net/minecraft/client/gui/Gui$1DisplayEntry	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/GuiGraphics	minecraft	field_44656	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/GuiGraphics	flush	method_51452	()V
+m	net/minecraft/client/gui/GuiGraphics	enableScissor	method_44379	(IIII)V
+m	net/minecraft/client/gui/GuiGraphics	disableScissor	method_44380	()V
+m	net/minecraft/client/gui/GuiGraphics	fill	method_25294	(IIIII)V
+m	net/minecraft/client/gui/GuiGraphics	fill	method_51737	(IIIIII)V
+m	net/minecraft/client/gui/GuiGraphics	fill	method_51739	(Lnet/minecraft/class_1921;IIIII)V
+m	net/minecraft/client/gui/GuiGraphics	fill	method_48196	(Lnet/minecraft/class_1921;IIIIII)V
+m	net/minecraft/client/gui/GuiGraphics	drawString	method_25303	(Lnet/minecraft/class_327;Ljava/lang/String;III)I
+m	net/minecraft/client/gui/GuiGraphics	drawString	method_51433	(Lnet/minecraft/class_327;Ljava/lang/String;IIIZ)I
+m	net/minecraft/client/gui/GuiGraphics	drawString	method_35720	(Lnet/minecraft/class_327;Lnet/minecraft/class_5481;III)I
+m	net/minecraft/client/gui/GuiGraphics	drawString	method_51430	(Lnet/minecraft/class_327;Lnet/minecraft/class_5481;IIIZ)I
+m	net/minecraft/client/gui/GuiGraphics	drawString	method_27535	(Lnet/minecraft/class_327;Lnet/minecraft/class_2561;III)I
+m	net/minecraft/client/gui/GuiGraphics	drawString	method_51439	(Lnet/minecraft/class_327;Lnet/minecraft/class_2561;IIIZ)I
+m	net/minecraft/client/gui/LayeredDraw	render	method_55809	(Lnet/minecraft/class_332;Lnet/minecraft/class_9779;)V
+m	net/minecraft/client/gui/LayeredDraw$Layer	render	render	(Lnet/minecraft/class_332;Lnet/minecraft/class_9779;)V
+m	net/minecraft/client/gui/MapRenderer	render	method_1773	(Lnet/minecraft/class_4587;Lnet/minecraft/class_4597;Lnet/minecraft/class_9209;Lnet/minecraft/class_22;ZI)V
+m	net/minecraft/client/gui/MapRenderer	close	close	()V
+m	net/minecraft/client/gui/MapRenderer$MapInstance	close	close	()V
+m	net/minecraft/client/gui/components/AbstractButton	onPress	method_25306	()V
+m	net/minecraft/client/gui/components/AbstractButton	onClick	method_25348	(DD)V
+m	net/minecraft/client/gui/components/AbstractButton	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/components/AbstractContainerWidget	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/components/AbstractContainerWidget	mouseReleased	method_25406	(DDI)Z
+m	net/minecraft/client/gui/components/AbstractContainerWidget	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/components/AbstractScrollWidget	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/components/AbstractScrollWidget	mouseReleased	method_25406	(DDI)Z
+m	net/minecraft/client/gui/components/AbstractScrollWidget	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/components/AbstractScrollWidget	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/components/AbstractScrollWidget	keyPressed	method_25404	(III)Z
+f	net/minecraft/client/gui/components/AbstractSelectionList	minecraft	field_22740	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/components/AbstractSelectionList	children	field_22739	Ljava/util/List;
+m	net/minecraft/client/gui/components/AbstractSelectionList	children	method_25396	()Ljava/util/List;
+m	net/minecraft/client/gui/components/AbstractSelectionList	enableScissor	method_49603	(Lnet/minecraft/class_332;)V
+m	net/minecraft/client/gui/components/AbstractSelectionList	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/components/AbstractSelectionList	mouseReleased	method_25406	(DDI)Z
+m	net/minecraft/client/gui/components/AbstractSelectionList	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/components/AbstractSelectionList	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/components/AbstractSelectionList$Entry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/components/AbstractSelectionList$TrackedList	get	method_1912	(I)Lnet/minecraft/class_350$class_351;
+m	net/minecraft/client/gui/components/AbstractSelectionList$TrackedList	size	size	()I
+m	net/minecraft/client/gui/components/AbstractSelectionList$TrackedList	set	method_1909	(ILnet/minecraft/class_350$class_351;)Lnet/minecraft/class_350$class_351;
+m	net/minecraft/client/gui/components/AbstractSelectionList$TrackedList	set	set	(ILjava/lang/Object;)Ljava/lang/Object;
+m	net/minecraft/client/gui/components/AbstractSelectionList$TrackedList	get	get	(I)Ljava/lang/Object;
+f	net/minecraft/client/gui/components/AbstractSliderButton	value	field_22753	D
+m	net/minecraft/client/gui/components/AbstractSliderButton	onClick	method_25348	(DD)V
+m	net/minecraft/client/gui/components/AbstractSliderButton	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/components/AbstractSliderButton	setValue	method_25347	(D)V
+m	net/minecraft/client/gui/components/AbstractSliderButton	updateMessage	method_25346	()V
+m	net/minecraft/client/gui/components/AbstractSliderButton	applyValue	method_25344	()V
+f	net/minecraft/client/gui/components/AbstractStringWidget	font	field_42483	Lnet/minecraft/class_327;
+f	net/minecraft/client/gui/components/AbstractWidget	width	field_22758	I
+f	net/minecraft/client/gui/components/AbstractWidget	height	field_22759	I
+f	net/minecraft/client/gui/components/AbstractWidget	y	field_22761	I
+f	net/minecraft/client/gui/components/AbstractWidget	active	field_22763	Z
+f	net/minecraft/client/gui/components/AbstractWidget	visible	field_22764	Z
+m	net/minecraft/client/gui/components/AbstractWidget	getHeight	method_25364	()I
+m	net/minecraft/client/gui/components/AbstractWidget	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/components/AbstractWidget	onClick	method_25348	(DD)V
+m	net/minecraft/client/gui/components/AbstractWidget	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/components/AbstractWidget	mouseReleased	method_25406	(DDI)Z
+m	net/minecraft/client/gui/components/AbstractWidget	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/components/AbstractWidget	clicked	method_25361	(DD)Z
+m	net/minecraft/client/gui/components/AbstractWidget	getWidth	method_25368	()I
+m	net/minecraft/client/gui/components/AbstractWidget	getMessage	method_25369	()Lnet/minecraft/class_2561;
+m	net/minecraft/client/gui/components/AbstractWidget	isActive	method_37303	()Z
+m	net/minecraft/client/gui/components/AbstractWidget	getX	method_46426	()I
+m	net/minecraft/client/gui/components/AbstractWidget	getY	method_46427	()I
+m	net/minecraft/client/gui/components/AbstractWidget	getRight	method_55442	()I
+f	net/minecraft/client/gui/components/BossHealthOverlay	minecraft	field_2058	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/components/BossHealthOverlay	render	method_1796	(Lnet/minecraft/class_332;)V
+f	net/minecraft/client/gui/components/Button	onPress	field_22767	Lnet/minecraft/class_4185$class_4241;
+m	net/minecraft/client/gui/components/Button	onPress	method_25306	()V
+f	net/minecraft/client/gui/components/Button$Builder	onPress	field_40757	Lnet/minecraft/class_4185$class_4241;
+f	net/minecraft/client/gui/components/Button$Builder	y	field_40760	I
+f	net/minecraft/client/gui/components/Button$Builder	width	field_40761	I
+f	net/minecraft/client/gui/components/Button$Builder	height	field_40762	I
+m	net/minecraft/client/gui/components/Button$Builder	width	method_46432	(I)Lnet/minecraft/class_4185$class_7840;
+m	net/minecraft/client/gui/components/Button$Builder	size	method_46437	(II)Lnet/minecraft/class_4185$class_7840;
+m	net/minecraft/client/gui/components/Button$Builder	build	method_46431	()Lnet/minecraft/class_4185;
+m	net/minecraft/client/gui/components/Button$OnPress	onPress	onPress	(Lnet/minecraft/class_4185;)V
+f	net/minecraft/client/gui/components/ChatComponent	minecraft	field_2062	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/components/ChatComponent	render	method_1805	(Lnet/minecraft/class_332;IIIZ)V
+m	net/minecraft/client/gui/components/ChatComponent	getWidth	method_1811	()I
+m	net/minecraft/client/gui/components/ChatComponent	getHeight	method_1810	()I
+m	net/minecraft/client/gui/components/ChatComponent	getScale	method_1814	()D
+m	net/minecraft/client/gui/components/ChatComponent	getWidth	method_1806	(D)I
+m	net/minecraft/client/gui/components/ChatComponent	getHeight	method_1818	(D)I
+m	net/minecraft/client/gui/components/ChatComponent$DelayedMessageDeletion	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/ChatComponent$DelayedMessageDeletion	hashCode	hashCode	()I
+m	net/minecraft/client/gui/components/ChatComponent$DelayedMessageDeletion	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/components/Checkbox	onPress	method_25306	()V
+f	net/minecraft/client/gui/components/Checkbox$Builder	font	field_47109	Lnet/minecraft/class_327;
+f	net/minecraft/client/gui/components/Checkbox$Builder	y	field_47111	I
+m	net/minecraft/client/gui/components/Checkbox$Builder	build	method_54788	()Lnet/minecraft/class_4286;
+f	net/minecraft/client/gui/components/CommandSuggestions	minecraft	field_21597	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/components/CommandSuggestions	screen	field_21598	Lnet/minecraft/class_437;
+f	net/minecraft/client/gui/components/CommandSuggestions	font	field_21600	Lnet/minecraft/class_327;
+m	net/minecraft/client/gui/components/CommandSuggestions	keyPressed	method_23924	(III)Z
+m	net/minecraft/client/gui/components/CommandSuggestions	mouseScrolled	method_23921	(D)Z
+m	net/minecraft/client/gui/components/CommandSuggestions	mouseClicked	method_23922	(DDI)Z
+m	net/minecraft/client/gui/components/CommandSuggestions	render	method_23923	(Lnet/minecraft/class_332;II)V
+f	net/minecraft/client/gui/components/CommandSuggestions$SuggestionsList	current	field_2766	I
+m	net/minecraft/client/gui/components/CommandSuggestions$SuggestionsList	render	method_2373	(Lnet/minecraft/class_332;II)V
+m	net/minecraft/client/gui/components/CommandSuggestions$SuggestionsList	mouseClicked	method_2372	(III)Z
+m	net/minecraft/client/gui/components/CommandSuggestions$SuggestionsList	mouseScrolled	method_2370	(D)Z
+m	net/minecraft/client/gui/components/CommandSuggestions$SuggestionsList	keyPressed	method_2377	(III)Z
+m	net/minecraft/client/gui/components/ContainerObjectSelectionList$Entry	mouseClicked	method_25402	(DDI)Z
+f	net/minecraft/client/gui/components/CycleButton	value	field_27965	Ljava/lang/Object;
+m	net/minecraft/client/gui/components/CycleButton	onPress	method_25306	()V
+m	net/minecraft/client/gui/components/CycleButton	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/components/CycleButton	setValue	method_32605	(Ljava/lang/Object;)V
+m	net/minecraft/client/gui/components/CycleButton	getValue	method_32603	()Ljava/lang/Object;
+m	net/minecraft/client/gui/components/CycleButton$Builder	create	method_57720	(Lnet/minecraft/class_2561;Lnet/minecraft/class_5676$class_5678;)Lnet/minecraft/class_5676;
+m	net/minecraft/client/gui/components/CycleButton$Builder	create	method_35723	(IIIILnet/minecraft/class_2561;)Lnet/minecraft/class_5676;
+m	net/minecraft/client/gui/components/CycleButton$Builder	create	method_32617	(IIIILnet/minecraft/class_2561;Lnet/minecraft/class_5676$class_5678;)Lnet/minecraft/class_5676;
+m	net/minecraft/client/gui/components/CycleButton$ValueListSupplier	create	method_32627	(Ljava/util/Collection;)Lnet/minecraft/class_5676$class_5680;
+m	net/minecraft/client/gui/components/CycleButton$ValueListSupplier	create	method_32628	(Ljava/util/function/BooleanSupplier;Ljava/util/List;Ljava/util/List;)Lnet/minecraft/class_5676$class_5680;
+f	net/minecraft/client/gui/components/DebugScreenOverlay	minecraft	field_2079	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/components/DebugScreenOverlay	font	field_2081	Lnet/minecraft/class_327;
+m	net/minecraft/client/gui/components/DebugScreenOverlay	render	method_1846	(Lnet/minecraft/class_332;)V
+f	net/minecraft/client/gui/components/EditBox	font	field_2105	Lnet/minecraft/class_327;
+f	net/minecraft/client/gui/components/EditBox	value	field_2092	Ljava/lang/String;
+f	net/minecraft/client/gui/components/EditBox	displayPos	field_2103	I
+f	net/minecraft/client/gui/components/EditBox	cursorPos	field_2102	I
+f	net/minecraft/client/gui/components/EditBox	highlightPos	field_2101	I
+m	net/minecraft/client/gui/components/EditBox	setValue	method_1852	(Ljava/lang/String;)V
+m	net/minecraft/client/gui/components/EditBox	getValue	method_1882	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/EditBox	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/components/EditBox	charTyped	method_25400	(CI)Z
+m	net/minecraft/client/gui/components/EditBox	onClick	method_25348	(DD)V
+f	net/minecraft/client/gui/components/FittingMultiLineTextWidget	font	field_44947	Lnet/minecraft/class_327;
+m	net/minecraft/client/gui/components/ImageWidget	isActive	method_37303	()Z
+f	net/minecraft/client/gui/components/LoadingDotsWidget	font	field_45361	Lnet/minecraft/class_327;
+m	net/minecraft/client/gui/components/LoadingDotsWidget	isActive	method_37303	()Z
+f	net/minecraft/client/gui/components/MultiLineEditBox	font	field_39507	Lnet/minecraft/class_327;
+m	net/minecraft/client/gui/components/MultiLineEditBox	setValue	method_44400	(Ljava/lang/String;)V
+m	net/minecraft/client/gui/components/MultiLineEditBox	getValue	method_44405	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/MultiLineEditBox	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/components/MultiLineEditBox	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/components/MultiLineEditBox	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/components/MultiLineEditBox	charTyped	method_25400	(CI)Z
+m	net/minecraft/client/gui/components/MultiLineLabel	create	method_30892	(Lnet/minecraft/class_327;[Lnet/minecraft/class_2561;)Lnet/minecraft/class_5489;
+m	net/minecraft/client/gui/components/MultiLineLabel	create	method_61133	(Lnet/minecraft/class_327;I[Lnet/minecraft/class_2561;)Lnet/minecraft/class_5489;
+m	net/minecraft/client/gui/components/MultiLineLabel	create	method_30890	(Lnet/minecraft/class_327;Lnet/minecraft/class_2561;I)Lnet/minecraft/class_5489;
+m	net/minecraft/client/gui/components/MultiLineLabel	create	method_61132	(Lnet/minecraft/class_327;II[Lnet/minecraft/class_2561;)Lnet/minecraft/class_5489;
+m	net/minecraft/client/gui/components/MultiLineLabel	getWidth	method_44048	()I
+m	net/minecraft/client/gui/components/MultiLineLabel$1	getWidth	method_44048	()I
+m	net/minecraft/client/gui/components/MultiLineLabel$2	getWidth	method_44048	()I
+f	net/minecraft/client/gui/components/MultiLineLabel$TextAndWidth	width	comp_2878	I
+m	net/minecraft/client/gui/components/MultiLineLabel$TextAndWidth	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/MultiLineLabel$TextAndWidth	hashCode	hashCode	()I
+m	net/minecraft/client/gui/components/MultiLineLabel$TextAndWidth	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/components/MultiLineLabel$TextAndWidth	width	comp_2878	()I
+m	net/minecraft/client/gui/components/MultiLineTextWidget	getWidth	method_25368	()I
+m	net/minecraft/client/gui/components/MultiLineTextWidget	getHeight	method_25364	()I
+m	net/minecraft/client/gui/components/MultiLineTextWidget$CacheKey	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/MultiLineTextWidget$CacheKey	hashCode	hashCode	()I
+m	net/minecraft/client/gui/components/MultiLineTextWidget$CacheKey	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/components/MultilineTextField	font	field_39513	Lnet/minecraft/class_327;
+f	net/minecraft/client/gui/components/MultilineTextField	value	field_39515	Ljava/lang/String;
+f	net/minecraft/client/gui/components/MultilineTextField	width	field_39520	I
+m	net/minecraft/client/gui/components/MultilineTextField	setValue	method_44414	(Ljava/lang/String;)V
+m	net/minecraft/client/gui/components/MultilineTextField	value	method_44421	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/MultilineTextField	keyPressed	method_44428	(I)Z
+m	net/minecraft/client/gui/components/MultilineTextField$StringView	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/MultilineTextField$StringView	hashCode	hashCode	()I
+m	net/minecraft/client/gui/components/MultilineTextField$StringView	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/components/ObjectSelectionList$Entry	mouseClicked	method_25402	(DDI)Z
+f	net/minecraft/client/gui/components/OptionsList	screen	field_49483	Lnet/minecraft/class_4667;
+f	net/minecraft/client/gui/components/OptionsList$Entry	children	field_18214	Ljava/util/List;
+f	net/minecraft/client/gui/components/OptionsList$Entry	screen	field_49485	Lnet/minecraft/class_437;
+m	net/minecraft/client/gui/components/OptionsList$Entry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/components/OptionsList$Entry	children	method_25396	()Ljava/util/List;
+f	net/minecraft/client/gui/components/PlainTextButton	font	field_37257	Lnet/minecraft/class_327;
+m	net/minecraft/client/gui/components/PlayerSkinWidget	isActive	method_37303	()Z
+m	net/minecraft/client/gui/components/PlayerSkinWidget$Model	render	method_53547	(Lnet/minecraft/class_332;Lnet/minecraft/class_8685;)V
+m	net/minecraft/client/gui/components/PlayerSkinWidget$Model	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/PlayerSkinWidget$Model	hashCode	hashCode	()I
+m	net/minecraft/client/gui/components/PlayerSkinWidget$Model	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/components/PlayerTabOverlay	minecraft	field_2155	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/components/PlayerTabOverlay	visible	field_2158	Z
+m	net/minecraft/client/gui/components/PlayerTabOverlay	render	method_1919	(Lnet/minecraft/class_332;ILnet/minecraft/class_269;Lnet/minecraft/class_266;)V
+m	net/minecraft/client/gui/components/PlayerTabOverlay$ScoreDisplayEntry	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/PlayerTabOverlay$ScoreDisplayEntry	hashCode	hashCode	()I
+m	net/minecraft/client/gui/components/PlayerTabOverlay$ScoreDisplayEntry	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/components/PopupScreen	onClose	field_46565	Ljava/lang/Runnable;
+m	net/minecraft/client/gui/components/PopupScreen	init	method_25426	()V
+m	net/minecraft/client/gui/components/PopupScreen	onClose	method_25419	()V
+f	net/minecraft/client/gui/components/PopupScreen$Builder	width	field_46571	I
+f	net/minecraft/client/gui/components/PopupScreen$Builder	onClose	field_46574	Ljava/lang/Runnable;
+m	net/minecraft/client/gui/components/PopupScreen$Builder	onClose	method_54128	(Ljava/lang/Runnable;)Lnet/minecraft/class_8816$class_8817;
+m	net/minecraft/client/gui/components/PopupScreen$Builder	build	method_54125	()Lnet/minecraft/class_8816;
+m	net/minecraft/client/gui/components/PopupScreen$ButtonOption	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/PopupScreen$ButtonOption	hashCode	hashCode	()I
+m	net/minecraft/client/gui/components/PopupScreen$ButtonOption	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/components/Renderable	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/components/SplashRenderer	render	method_51453	(Lnet/minecraft/class_332;ILnet/minecraft/class_327;I)V
+f	net/minecraft/client/gui/components/SpriteIconButton$Builder	onPress	field_45383	Lnet/minecraft/class_4185$class_4241;
+f	net/minecraft/client/gui/components/SpriteIconButton$Builder	width	field_45385	I
+f	net/minecraft/client/gui/components/SpriteIconButton$Builder	height	field_45386	I
+m	net/minecraft/client/gui/components/SpriteIconButton$Builder	width	method_52725	(I)Lnet/minecraft/class_8662$class_8663;
+m	net/minecraft/client/gui/components/SpriteIconButton$Builder	size	method_52726	(II)Lnet/minecraft/class_8662$class_8663;
+m	net/minecraft/client/gui/components/SpriteIconButton$Builder	build	method_52724	()Lnet/minecraft/class_8662;
+f	net/minecraft/client/gui/components/StateSwitchingButton	isStateTriggered	field_2194	Z
+m	net/minecraft/client/gui/components/StateSwitchingButton	isStateTriggered	method_1965	()Z
+f	net/minecraft/client/gui/components/SubtitleOverlay	minecraft	field_2182	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/components/SubtitleOverlay	render	method_1957	(Lnet/minecraft/class_332;)V
+m	net/minecraft/client/gui/components/SubtitleOverlay$SoundPlayedAt	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/SubtitleOverlay$SoundPlayedAt	hashCode	hashCode	()I
+m	net/minecraft/client/gui/components/SubtitleOverlay$SoundPlayedAt	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/components/Tooltip	create	method_47408	(Lnet/minecraft/class_2561;Lnet/minecraft/class_2561;)Lnet/minecraft/class_7919;
+m	net/minecraft/client/gui/components/Tooltip	create	method_47407	(Lnet/minecraft/class_2561;)Lnet/minecraft/class_7919;
+f	net/minecraft/client/gui/components/WidgetSprites	enabled	comp_1604	Lnet/minecraft/class_2960;
+m	net/minecraft/client/gui/components/WidgetSprites	get	method_52729	(ZZ)Lnet/minecraft/class_2960;
+m	net/minecraft/client/gui/components/WidgetSprites	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/components/WidgetSprites	hashCode	hashCode	()I
+m	net/minecraft/client/gui/components/WidgetSprites	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/components/WidgetSprites	enabled	comp_1604	()Lnet/minecraft/class_2960;
+m	net/minecraft/client/gui/components/WidgetTooltipHolder	set	method_56138	(Lnet/minecraft/class_7919;)V
+m	net/minecraft/client/gui/components/WidgetTooltipHolder	get	method_56137	()Lnet/minecraft/class_7919;
+f	net/minecraft/client/gui/components/debugchart/AbstractDebugChart	font	field_45918	Lnet/minecraft/class_327;
+m	net/minecraft/client/gui/components/debugchart/AbstractDebugChart	getWidth	method_53470	(I)I
+m	net/minecraft/client/gui/components/events/ContainerEventHandler	children	method_25396	()Ljava/util/List;
+m	net/minecraft/client/gui/components/events/ContainerEventHandler	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/components/events/ContainerEventHandler	mouseReleased	method_25406	(DDI)Z
+m	net/minecraft/client/gui/components/events/ContainerEventHandler	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/components/events/ContainerEventHandler	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/components/events/ContainerEventHandler	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/components/events/ContainerEventHandler	charTyped	method_25400	(CI)Z
+m	net/minecraft/client/gui/components/events/GuiEventListener	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/components/events/GuiEventListener	mouseReleased	method_25406	(DDI)Z
+m	net/minecraft/client/gui/components/events/GuiEventListener	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/components/events/GuiEventListener	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/components/events/GuiEventListener	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/components/events/GuiEventListener	charTyped	method_25400	(CI)Z
+f	net/minecraft/client/gui/components/spectator/SpectatorGui	minecraft	field_2201	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/components/tabs/TabNavigationBar	width	field_42145	I
+m	net/minecraft/client/gui/components/tabs/TabNavigationBar	children	method_25396	()Ljava/util/List;
+m	net/minecraft/client/gui/components/tabs/TabNavigationBar	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/components/tabs/TabNavigationBar	keyPressed	method_48988	(I)Z
+f	net/minecraft/client/gui/components/tabs/TabNavigationBar$Builder	width	field_42151	I
+m	net/minecraft/client/gui/components/tabs/TabNavigationBar$Builder	build	method_48627	()Lnet/minecraft/class_8089;
+m	net/minecraft/client/gui/components/toasts/AdvancementToast	render	method_1986	(Lnet/minecraft/class_332;Lnet/minecraft/class_374;J)Lnet/minecraft/class_368$class_369;
+m	net/minecraft/client/gui/components/toasts/RecipeToast	render	method_1986	(Lnet/minecraft/class_332;Lnet/minecraft/class_374;J)Lnet/minecraft/class_368$class_369;
+f	net/minecraft/client/gui/components/toasts/SystemToast	width	field_25038	I
+m	net/minecraft/client/gui/components/toasts/SystemToast	width	method_29049	()I
+m	net/minecraft/client/gui/components/toasts/SystemToast	height	method_29050	()I
+m	net/minecraft/client/gui/components/toasts/SystemToast	render	method_1986	(Lnet/minecraft/class_332;Lnet/minecraft/class_374;J)Lnet/minecraft/class_368$class_369;
+m	net/minecraft/client/gui/components/toasts/Toast	render	method_1986	(Lnet/minecraft/class_332;Lnet/minecraft/class_374;J)Lnet/minecraft/class_368$class_369;
+m	net/minecraft/client/gui/components/toasts/Toast	width	method_29049	()I
+m	net/minecraft/client/gui/components/toasts/Toast	height	method_29050	()I
+f	net/minecraft/client/gui/components/toasts/ToastComponent	minecraft	field_2238	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/components/toasts/ToastComponent	visible	field_2239	Ljava/util/List;
+m	net/minecraft/client/gui/components/toasts/ToastComponent	render	method_1996	(Lnet/minecraft/class_332;)V
+m	net/minecraft/client/gui/components/toasts/ToastComponent	clear	method_2000	()V
+m	net/minecraft/client/gui/components/toasts/ToastComponent$ToastInstance	render	method_2002	(ILnet/minecraft/class_332;)Z
+m	net/minecraft/client/gui/components/toasts/TutorialToast	render	method_1986	(Lnet/minecraft/class_332;Lnet/minecraft/class_374;J)Lnet/minecraft/class_368$class_369;
+m	net/minecraft/client/gui/components/toasts/TutorialToast$Icons	render	method_1994	(Lnet/minecraft/class_332;II)V
+m	net/minecraft/client/gui/font/CodepointMap	clear	method_51597	()V
+m	net/minecraft/client/gui/font/CodepointMap	get	method_51598	(I)Ljava/lang/Object;
+m	net/minecraft/client/gui/font/FontManager	close	close	()V
+m	net/minecraft/client/gui/font/FontManager$BuilderId	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/FontManager$BuilderId	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/FontManager$BuilderId	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/FontManager$BuilderResult	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/FontManager$BuilderResult	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/FontManager$BuilderResult	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/FontManager$FontDefinitionFile	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/FontManager$FontDefinitionFile	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/FontManager$FontDefinitionFile	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/FontManager$Preparation	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/FontManager$Preparation	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/FontManager$Preparation	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/FontManager$UnresolvedBuilderBundle	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/FontManager$UnresolvedBuilderBundle	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/FontManager$UnresolvedBuilderBundle	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/FontSet	close	close	()V
+m	net/minecraft/client/gui/font/FontSet$GlyphInfoFilter	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/FontSet$GlyphInfoFilter	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/FontSet$GlyphInfoFilter	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/FontTexture	close	close	()V
+f	net/minecraft/client/gui/font/FontTexture$Node	y	field_2268	I
+f	net/minecraft/client/gui/font/FontTexture$Node	width	field_2267	I
+f	net/minecraft/client/gui/font/FontTexture$Node	height	field_2266	I
+m	net/minecraft/client/gui/font/GlyphRenderTypes	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/GlyphRenderTypes	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/GlyphRenderTypes	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/font/TextFieldHelper	cursorPos	field_16453	I
+m	net/minecraft/client/gui/font/TextFieldHelper	charTyped	method_16199	(C)Z
+m	net/minecraft/client/gui/font/TextFieldHelper	keyPressed	method_16202	(I)Z
+m	net/minecraft/client/gui/font/glyphs/BakedGlyph	render	method_2025	(ZFFLorg/joml/Matrix4f;Lnet/minecraft/class_4588;FFFFI)V
+f	net/minecraft/client/gui/font/glyphs/EmptyGlyph	INSTANCE	field_38311	Lnet/minecraft/class_384;
+m	net/minecraft/client/gui/font/glyphs/EmptyGlyph	render	method_2025	(ZFFLorg/joml/Matrix4f;Lnet/minecraft/class_4588;FFFFI)V
+m	net/minecraft/client/gui/font/providers/BitmapProvider	close	close	()V
+f	net/minecraft/client/gui/font/providers/BitmapProvider$Definition	height	comp_1520	I
+m	net/minecraft/client/gui/font/providers/BitmapProvider$Definition	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/BitmapProvider$Definition	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/BitmapProvider$Definition	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/providers/BitmapProvider$Definition	height	comp_1520	()I
+f	net/minecraft/client/gui/font/providers/BitmapProvider$Glyph	width	comp_607	I
+f	net/minecraft/client/gui/font/providers/BitmapProvider$Glyph	height	comp_608	I
+m	net/minecraft/client/gui/font/providers/BitmapProvider$Glyph	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/BitmapProvider$Glyph	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/BitmapProvider$Glyph	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/providers/BitmapProvider$Glyph	width	comp_607	()I
+m	net/minecraft/client/gui/font/providers/BitmapProvider$Glyph	height	comp_608	()I
+m	net/minecraft/client/gui/font/providers/GlyphProviderDefinition$Conditional	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/GlyphProviderDefinition$Conditional	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/GlyphProviderDefinition$Conditional	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/providers/GlyphProviderDefinition$Reference	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/GlyphProviderDefinition$Reference	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/GlyphProviderDefinition$Reference	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/providers/ProviderReferenceDefinition	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/ProviderReferenceDefinition	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/ProviderReferenceDefinition	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition	size	comp_1525	F
+m	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition	size	comp_1525	()F
+f	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition$Shift	y	comp_1530	F
+m	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition$Shift	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition$Shift	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition$Shift	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/providers/TrueTypeGlyphProviderDefinition$Shift	y	comp_1530	()F
+m	net/minecraft/client/gui/font/providers/UnihexProvider$ByteContents	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/UnihexProvider$ByteContents	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/UnihexProvider$ByteContents	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/providers/UnihexProvider$Dimensions	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/UnihexProvider$Dimensions	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/UnihexProvider$Dimensions	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/providers/UnihexProvider$Glyph	width	method_51675	()I
+m	net/minecraft/client/gui/font/providers/UnihexProvider$Glyph	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/UnihexProvider$Glyph	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/UnihexProvider$Glyph	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/providers/UnihexProvider$IntContents	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/UnihexProvider$IntContents	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/UnihexProvider$IntContents	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/providers/UnihexProvider$OverrideRange	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/UnihexProvider$OverrideRange	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/UnihexProvider$OverrideRange	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/font/providers/UnihexProvider$ShortContents	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/font/providers/UnihexProvider$ShortContents	hashCode	hashCode	()I
+m	net/minecraft/client/gui/font/providers/UnihexProvider$ShortContents	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/layouts/AbstractLayout	y	field_41816	I
+f	net/minecraft/client/gui/layouts/AbstractLayout	width	field_41813	I
+f	net/minecraft/client/gui/layouts/AbstractLayout	height	field_41814	I
+m	net/minecraft/client/gui/layouts/AbstractLayout	getX	method_46426	()I
+m	net/minecraft/client/gui/layouts/AbstractLayout	getY	method_46427	()I
+m	net/minecraft/client/gui/layouts/AbstractLayout	getWidth	method_25368	()I
+m	net/minecraft/client/gui/layouts/AbstractLayout	getHeight	method_25364	()I
+m	net/minecraft/client/gui/layouts/AbstractLayout$AbstractChildWrapper	getHeight	method_46422	()I
+m	net/minecraft/client/gui/layouts/AbstractLayout$AbstractChildWrapper	getWidth	method_46424	()I
+f	net/minecraft/client/gui/layouts/EqualSpacingLayout	children	field_40785	Ljava/util/List;
+f	net/minecraft/client/gui/layouts/FrameLayout	children	field_40766	Ljava/util/List;
+f	net/minecraft/client/gui/layouts/GridLayout	children	field_40771	Ljava/util/List;
+f	net/minecraft/client/gui/layouts/HeaderAndFooterLayout	screen	field_42494	Lnet/minecraft/class_437;
+m	net/minecraft/client/gui/layouts/HeaderAndFooterLayout	getX	method_46426	()I
+m	net/minecraft/client/gui/layouts/HeaderAndFooterLayout	getY	method_46427	()I
+m	net/minecraft/client/gui/layouts/HeaderAndFooterLayout	getWidth	method_25368	()I
+m	net/minecraft/client/gui/layouts/HeaderAndFooterLayout	getHeight	method_25364	()I
+m	net/minecraft/client/gui/layouts/LayoutElement	getX	method_46426	()I
+m	net/minecraft/client/gui/layouts/LayoutElement	getY	method_46427	()I
+m	net/minecraft/client/gui/layouts/LayoutElement	getWidth	method_25368	()I
+m	net/minecraft/client/gui/layouts/LayoutElement	getHeight	method_25364	()I
+m	net/minecraft/client/gui/layouts/LinearLayout	getWidth	method_25368	()I
+m	net/minecraft/client/gui/layouts/LinearLayout	getHeight	method_25364	()I
+m	net/minecraft/client/gui/layouts/LinearLayout	getX	method_46426	()I
+m	net/minecraft/client/gui/layouts/LinearLayout	getY	method_46427	()I
+f	net/minecraft/client/gui/layouts/SpacerElement	y	field_41819	I
+f	net/minecraft/client/gui/layouts/SpacerElement	width	field_41820	I
+f	net/minecraft/client/gui/layouts/SpacerElement	height	field_41821	I
+m	net/minecraft/client/gui/layouts/SpacerElement	width	method_46512	(I)Lnet/minecraft/class_7852;
+m	net/minecraft/client/gui/layouts/SpacerElement	height	method_46513	(I)Lnet/minecraft/class_7852;
+m	net/minecraft/client/gui/layouts/SpacerElement	getX	method_46426	()I
+m	net/minecraft/client/gui/layouts/SpacerElement	getY	method_46427	()I
+m	net/minecraft/client/gui/layouts/SpacerElement	getWidth	method_25368	()I
+m	net/minecraft/client/gui/layouts/SpacerElement	getHeight	method_25364	()I
+m	net/minecraft/client/gui/narration/NarratableEntry	isActive	method_37303	()Z
+m	net/minecraft/client/gui/narration/NarrationThunk	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/narration/NarrationThunk	hashCode	hashCode	()I
+m	net/minecraft/client/gui/navigation/FocusNavigationEvent$ArrowNavigation	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/navigation/FocusNavigationEvent$ArrowNavigation	hashCode	hashCode	()I
+m	net/minecraft/client/gui/navigation/FocusNavigationEvent$ArrowNavigation	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/navigation/FocusNavigationEvent$TabNavigation	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/navigation/FocusNavigationEvent$TabNavigation	hashCode	hashCode	()I
+m	net/minecraft/client/gui/navigation/FocusNavigationEvent$TabNavigation	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/navigation/ScreenPosition	y	comp_1194	I
+m	net/minecraft/client/gui/navigation/ScreenPosition	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/navigation/ScreenPosition	hashCode	hashCode	()I
+m	net/minecraft/client/gui/navigation/ScreenPosition	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/navigation/ScreenPosition	y	comp_1194	()I
+f	net/minecraft/client/gui/navigation/ScreenRectangle	width	comp_1196	I
+f	net/minecraft/client/gui/navigation/ScreenRectangle	height	comp_1197	I
+m	net/minecraft/client/gui/navigation/ScreenRectangle	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/navigation/ScreenRectangle	hashCode	hashCode	()I
+m	net/minecraft/client/gui/navigation/ScreenRectangle	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/navigation/ScreenRectangle	width	comp_1196	()I
+m	net/minecraft/client/gui/navigation/ScreenRectangle	height	comp_1197	()I
+f	net/minecraft/client/gui/screens/AccessibilityOnboardingScreen	onClose	field_46008	Ljava/lang/Runnable;
+m	net/minecraft/client/gui/screens/AccessibilityOnboardingScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/AccessibilityOnboardingScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/AccessibilityOnboardingScreen	close	method_53552	(ZLjava/lang/Runnable;)V
+m	net/minecraft/client/gui/screens/AccessibilityOnboardingScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/AlertScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/AlertScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/BackupConfirmScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/BackupConfirmScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/BackupConfirmScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/BanNoticeScreens	create	method_44652	(Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;Lcom/mojang/authlib/minecraft/BanDetails;)Lnet/minecraft/class_407;
+m	net/minecraft/client/gui/screens/ChatScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/ChatScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/ChatScreen	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/screens/ChatScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/ChatScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/ConfirmLinkScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/ConfirmScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/ConfirmScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/ConfirmScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/ConnectScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/ConnectScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/CreateBuffetWorldScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/CreateBuffetWorldScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/CreateBuffetWorldScreen$BiomeList$Entry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/CreateBuffetWorldScreen$BiomeList$Entry	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/CreateFlatWorldScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/CreateFlatWorldScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/CreateFlatWorldScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/CreateFlatWorldScreen$DetailsList$Entry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/CreateFlatWorldScreen$DetailsList$Entry	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/CreditsAndAttributionScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/CreditsAndAttributionScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/DatapackLoadFailureScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/DatapackLoadFailureScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/DeathScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/DeathScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/DeathScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/DemoIntroScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/DemoIntroScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/DirectJoinServerScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/DirectJoinServerScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/DirectJoinServerScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/DirectJoinServerScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/DisconnectedScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/EditServerScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/EditServerScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/EditServerScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/ErrorScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/ErrorScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/FaviconTexture	clear	method_52198	()V
+m	net/minecraft/client/gui/screens/FaviconTexture	close	close	()V
+m	net/minecraft/client/gui/screens/GenericMessageScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/GenericWaitingScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/GenericWaitingScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/GenericWaitingScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/InBedChatScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/InBedChatScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/InBedChatScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/InBedChatScreen	charTyped	method_25400	(CI)Z
+m	net/minecraft/client/gui/screens/InBedChatScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/LevelLoadingScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/LoadingDotsText	get	method_43449	(J)Ljava/lang/String;
+f	net/minecraft/client/gui/screens/LoadingOverlay	minecraft	field_18217	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/screens/LoadingOverlay	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/MenuScreens	create	method_17541	(Lnet/minecraft/class_3917;Lnet/minecraft/class_310;ILnet/minecraft/class_2561;)V
+m	net/minecraft/client/gui/screens/MenuScreens	register	method_17542	(Lnet/minecraft/class_3917;Lnet/minecraft/class_3929$class_3930;)V
+m	net/minecraft/client/gui/screens/MenuScreens$ScreenConstructor	create	create	(Lnet/minecraft/class_1703;Lnet/minecraft/class_1661;Lnet/minecraft/class_2561;)Lnet/minecraft/class_437;
+f	net/minecraft/client/gui/screens/NoticeWithLinkScreen	onClose	field_46861	Ljava/lang/Runnable;
+m	net/minecraft/client/gui/screens/NoticeWithLinkScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/NoticeWithLinkScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/OutOfMemoryScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/PauseScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/PauseScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/PauseScreen$FeedbackSubScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/PauseScreen$FeedbackSubScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/PresetFlatWorldScreen	save	method_29062	(Lnet/minecraft/class_3232;)Ljava/lang/String;
+m	net/minecraft/client/gui/screens/PresetFlatWorldScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/PresetFlatWorldScreen	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/screens/PresetFlatWorldScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/PresetFlatWorldScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList$Entry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/PresetFlatWorldScreen$PresetsList$Entry	mouseClicked	method_25402	(DDI)Z
+f	net/minecraft/client/gui/screens/ProgressScreen	stop	field_2543	Z
+m	net/minecraft/client/gui/screens/ProgressScreen	stop	method_15411	()V
+m	net/minecraft/client/gui/screens/ProgressScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/ReceivingLevelScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/ReceivingLevelScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/RecoverWorldDataScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/RecoverWorldDataScreen	onClose	method_25419	()V
+f	net/minecraft/client/gui/screens/Screen	children	field_22786	Ljava/util/List;
+f	net/minecraft/client/gui/screens/Screen	minecraft	field_22787	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/screens/Screen	width	field_22789	I
+f	net/minecraft/client/gui/screens/Screen	height	field_22790	I
+f	net/minecraft/client/gui/screens/Screen	renderables	field_33816	Ljava/util/List;
+f	net/minecraft/client/gui/screens/Screen	font	field_22793	Lnet/minecraft/class_327;
+m	net/minecraft/client/gui/screens/Screen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/Screen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/Screen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/Screen	init	method_25423	(Lnet/minecraft/class_310;II)V
+m	net/minecraft/client/gui/screens/Screen	children	method_25396	()Ljava/util/List;
+m	net/minecraft/client/gui/screens/Screen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/Screen$DeferredTooltipRendering	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/Screen$DeferredTooltipRendering	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/Screen$DeferredTooltipRendering	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/screens/ShareToLanScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/ShareToLanScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/ShareToLanScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/TitleScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/TitleScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/TitleScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/WinScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/WinScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/WinScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/WinScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/achievement/StatsScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/achievement/StatsScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/achievement/StatsScreen$GeneralStatisticsList$Entry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/achievement/StatsScreen$ItemStatisticsList$ItemRow	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/achievement/StatsScreen$MobsStatisticsList$MobRow	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+f	net/minecraft/client/gui/screens/advancements/AdvancementTab	minecraft	field_2680	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/screens/advancements/AdvancementTab	screen	field_2687	Lnet/minecraft/class_457;
+m	net/minecraft/client/gui/screens/advancements/AdvancementTab	create	method_2317	(Lnet/minecraft/class_310;Lnet/minecraft/class_457;ILnet/minecraft/class_8781;)Lnet/minecraft/class_454;
+f	net/minecraft/client/gui/screens/advancements/AdvancementTabType	width	field_2671	I
+f	net/minecraft/client/gui/screens/advancements/AdvancementTabType	height	field_2670	I
+m	net/minecraft/client/gui/screens/advancements/AdvancementTabType	getX	method_2302	(I)I
+m	net/minecraft/client/gui/screens/advancements/AdvancementTabType	getY	method_2305	(I)I
+m	net/minecraft/client/gui/screens/advancements/AdvancementTabType$Sprites	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/advancements/AdvancementTabType$Sprites	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/advancements/AdvancementTabType$Sprites	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/screens/advancements/AdvancementWidget	width	field_2715	I
+f	net/minecraft/client/gui/screens/advancements/AdvancementWidget	minecraft	field_2704	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/screens/advancements/AdvancementWidget	children	field_2707	Ljava/util/List;
+f	net/minecraft/client/gui/screens/advancements/AdvancementWidget	y	field_2710	I
+m	net/minecraft/client/gui/screens/advancements/AdvancementWidget	getWidth	method_35737	()I
+m	net/minecraft/client/gui/screens/advancements/AdvancementWidget	getY	method_2326	()I
+m	net/minecraft/client/gui/screens/advancements/AdvancementWidget	getX	method_2327	()I
+m	net/minecraft/client/gui/screens/advancements/AdvancementsScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/advancements/AdvancementsScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/advancements/AdvancementsScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/advancements/AdvancementsScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/advancements/AdvancementsScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/advancements/AdvancementsScreen	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/screens/advancements/AdvancementsScreen	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/screens/debug/GameModeSwitcherScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/debug/GameModeSwitcherScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/debug/GameModeSwitcherScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractCommandBlockEditScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/AbstractCommandBlockEditScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractCommandBlockEditScreen	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractCommandBlockEditScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractCommandBlockEditScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/AbstractContainerScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/AbstractContainerScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/AbstractContainerScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractContainerScreen	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractContainerScreen	mouseReleased	method_25406	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractContainerScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractContainerScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/inventory/AbstractFurnaceScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/AbstractFurnaceScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/AbstractFurnaceScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractFurnaceScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractFurnaceScreen	charTyped	method_25400	(CI)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractSignEditScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/AbstractSignEditScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractSignEditScreen	charTyped	method_25400	(CI)Z
+m	net/minecraft/client/gui/screens/inventory/AbstractSignEditScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/AbstractSignEditScreen	onClose	method_25419	()V
+f	net/minecraft/client/gui/screens/inventory/AnvilScreen	player	field_29348	Lnet/minecraft/class_1657;
+m	net/minecraft/client/gui/screens/inventory/AnvilScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/BeaconScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/BeaconScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/BeaconScreen$BeaconCancelButton	onPress	method_25306	()V
+m	net/minecraft/client/gui/screens/inventory/BeaconScreen$BeaconConfirmButton	onPress	method_25306	()V
+m	net/minecraft/client/gui/screens/inventory/BeaconScreen$BeaconPowerButton	onPress	method_25306	()V
+m	net/minecraft/client/gui/screens/inventory/BookEditScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/BookEditScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/BookEditScreen	charTyped	method_25400	(CI)Z
+m	net/minecraft/client/gui/screens/inventory/BookEditScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/BookEditScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/BookEditScreen	mouseDragged	method_25403	(DDIDD)Z
+f	net/minecraft/client/gui/screens/inventory/BookEditScreen$LineInfo	y	field_2853	I
+f	net/minecraft/client/gui/screens/inventory/BookEditScreen$Pos2i	y	field_24282	I
+m	net/minecraft/client/gui/screens/inventory/BookViewScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/BookViewScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/BookViewScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/BookViewScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/inventory/BookViewScreen$BookAccess	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/screens/inventory/BrewingStandScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/BrewingStandScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/CartographyTableScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/CommandBlockEditScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/ContainerScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+f	net/minecraft/client/gui/screens/inventory/CrafterScreen	player	field_46881	Lnet/minecraft/class_1657;
+m	net/minecraft/client/gui/screens/inventory/CrafterScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/CrafterScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/CraftingScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/CraftingScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/CraftingScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/CraftingScreen	charTyped	method_25400	(CI)Z
+m	net/minecraft/client/gui/screens/inventory/CraftingScreen	mouseClicked	method_25402	(DDI)Z
+f	net/minecraft/client/gui/screens/inventory/CreativeInventoryListener	minecraft	field_2876	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen	charTyped	method_25400	(CI)Z
+m	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen	mouseReleased	method_25406	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen$SlotWrapper	set	method_7673	(Lnet/minecraft/class_1799;)V
+m	net/minecraft/client/gui/screens/inventory/CreativeModeInventoryScreen$SlotWrapper	isActive	method_7682	()Z
+m	net/minecraft/client/gui/screens/inventory/CyclingSlotBackground	render	method_48469	(Lnet/minecraft/class_1703;Lnet/minecraft/class_332;FII)V
+m	net/minecraft/client/gui/screens/inventory/DispenserScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/DispenserScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/EffectRenderingInventoryScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+f	net/minecraft/client/gui/screens/inventory/EnchantmentNames	INSTANCE	field_2917	Lnet/minecraft/class_487;
+m	net/minecraft/client/gui/screens/inventory/EnchantmentNames	getInstance	method_2481	()Lnet/minecraft/class_487;
+m	net/minecraft/client/gui/screens/inventory/EnchantmentScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/EnchantmentScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/EnchantmentScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/GrindstoneScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/HopperScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/HorseInventoryScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/InventoryScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/InventoryScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/InventoryScreen	renderEntityInInventory	method_48472	(Lnet/minecraft/class_332;FFFLorg/joml/Vector3f;Lorg/joml/Quaternionf;Lorg/joml/Quaternionf;Lnet/minecraft/class_1309;)V
+m	net/minecraft/client/gui/screens/inventory/InventoryScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/InventoryScreen	charTyped	method_25400	(CI)Z
+m	net/minecraft/client/gui/screens/inventory/InventoryScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/InventoryScreen	mouseReleased	method_25406	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/ItemCombinerScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/ItemCombinerScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/JigsawBlockEditScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/inventory/JigsawBlockEditScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/JigsawBlockEditScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/JigsawBlockEditScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/JigsawBlockEditScreen$1	updateMessage	method_25346	()V
+m	net/minecraft/client/gui/screens/inventory/JigsawBlockEditScreen$1	applyValue	method_25344	()V
+m	net/minecraft/client/gui/screens/inventory/LecternScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/LecternScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/inventory/LoomScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/LoomScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/LoomScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/LoomScreen	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/screens/inventory/LoomScreen	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/screens/inventory/MerchantScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/MerchantScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/MerchantScreen	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/screens/inventory/MerchantScreen	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/screens/inventory/MerchantScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/MinecartCommandBlockEditScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/ShulkerBoxScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/SignEditScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/SmithingScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/StonecutterScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/StonecutterScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/inventory/StonecutterScreen	mouseDragged	method_25403	(DDIDD)Z
+m	net/minecraft/client/gui/screens/inventory/StonecutterScreen	mouseScrolled	method_25401	(DDDD)Z
+m	net/minecraft/client/gui/screens/inventory/StructureBlockEditScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/inventory/StructureBlockEditScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/inventory/StructureBlockEditScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/inventory/StructureBlockEditScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/inventory/StructureBlockEditScreen$1	charTyped	method_25400	(CI)Z
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientActivePlayersTooltip	getHeight	method_32661	()I
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientActivePlayersTooltip	getWidth	method_32664	(Lnet/minecraft/class_327;)I
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientActivePlayersTooltip$ActivePlayersTooltip	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientActivePlayersTooltip$ActivePlayersTooltip	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientActivePlayersTooltip$ActivePlayersTooltip	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientBundleTooltip	getHeight	method_32661	()I
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientBundleTooltip	getWidth	method_32664	(Lnet/minecraft/class_327;)I
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientTextTooltip	getWidth	method_32664	(Lnet/minecraft/class_327;)I
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientTextTooltip	getHeight	method_32661	()I
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent	create	method_32662	(Lnet/minecraft/class_5481;)Lnet/minecraft/class_5684;
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent	create	method_32663	(Lnet/minecraft/class_5632;)Lnet/minecraft/class_5684;
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent	getHeight	method_32661	()I
+m	net/minecraft/client/gui/screens/inventory/tooltip/ClientTooltipComponent	getWidth	method_32664	(Lnet/minecraft/class_327;)I
+f	net/minecraft/client/gui/screens/inventory/tooltip/DefaultTooltipPositioner	INSTANCE	field_41687	Lnet/minecraft/class_8000;
+m	net/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/multiplayer/JoinMultiplayerScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/multiplayer/SafetyScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/multiplayer/ServerLinksScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/multiplayer/ServerLinksScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/multiplayer/ServerLinksScreen$LinkListEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/multiplayer/ServerLinksScreen$LinkListEntry	children	method_25396	()Ljava/util/List;
+m	net/minecraft/client/gui/screens/multiplayer/ServerReconfigScreen	init	method_25426	()V
+f	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList	screen	field_19108	Lnet/minecraft/class_500;
+m	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$Entry	close	close	()V
+f	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$LANHeader	minecraft	field_19112	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$LANHeader	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+f	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$NetworkServerEntry	screen	field_19115	Lnet/minecraft/class_500;
+f	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$NetworkServerEntry	minecraft	field_19113	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$NetworkServerEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$NetworkServerEntry	mouseClicked	method_25402	(DDI)Z
+f	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$OnlineServerEntry	screen	field_19118	Lnet/minecraft/class_500;
+f	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$OnlineServerEntry	minecraft	field_19119	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$OnlineServerEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$OnlineServerEntry	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$OnlineServerEntry	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/multiplayer/ServerSelectionList$OnlineServerEntry	close	close	()V
+m	net/minecraft/client/gui/screens/multiplayer/WarningScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/options/AccessibilityOptionsScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/options/LanguageSelectScreen$LanguageSelectionList$Entry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/options/LanguageSelectScreen$LanguageSelectionList$Entry	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/options/LanguageSelectScreen$LanguageSelectionList$Entry	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/options/OnlineOptionsScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/options/OptionsScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/options/OptionsScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/options/OptionsSubScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/options/OptionsSubScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/options/UnsupportedGraphicsWarningScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/options/UnsupportedGraphicsWarningScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+f	net/minecraft/client/gui/screens/options/UnsupportedGraphicsWarningScreen$ButtonOption	onPress	field_25681	Lnet/minecraft/class_4185$class_4241;
+m	net/minecraft/client/gui/screens/options/VideoSettingsScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/options/VideoSettingsScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/options/VideoSettingsScreen	mouseScrolled	method_25401	(DDDD)Z
+f	net/minecraft/client/gui/screens/options/controls/KeyBindsList$CategoryEntry	width	field_2737	I
+m	net/minecraft/client/gui/screens/options/controls/KeyBindsList$CategoryEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/options/controls/KeyBindsList$CategoryEntry	children	method_25396	()Ljava/util/List;
+f	net/minecraft/client/gui/screens/options/controls/KeyBindsList$KeyEntry	key	field_2740	Lnet/minecraft/class_304;
+m	net/minecraft/client/gui/screens/options/controls/KeyBindsList$KeyEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/options/controls/KeyBindsList$KeyEntry	children	method_25396	()Ljava/util/List;
+m	net/minecraft/client/gui/screens/options/controls/KeyBindsScreen	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/options/controls/KeyBindsScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/options/controls/KeyBindsScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/packs/PackSelectionScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/packs/PackSelectionScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/packs/PackSelectionScreen$Watcher	create	method_30293	(Ljava/nio/file/Path;)Lnet/minecraft/class_5375$class_5426;
+m	net/minecraft/client/gui/screens/packs/PackSelectionScreen$Watcher	close	close	()V
+f	net/minecraft/client/gui/screens/packs/TransferableSelectionList	screen	field_41715	Lnet/minecraft/class_5375;
+m	net/minecraft/client/gui/screens/packs/TransferableSelectionList	keyPressed	method_25404	(III)Z
+f	net/minecraft/client/gui/screens/packs/TransferableSelectionList$PackEntry	minecraft	field_19128	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/screens/packs/TransferableSelectionList$PackEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/packs/TransferableSelectionList$PackEntry	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/recipebook/GhostRecipe	clear	method_2571	()V
+m	net/minecraft/client/gui/screens/recipebook/GhostRecipe	get	method_2570	(I)Lnet/minecraft/class_505$class_506;
+m	net/minecraft/client/gui/screens/recipebook/GhostRecipe	size	method_2572	()I
+m	net/minecraft/client/gui/screens/recipebook/GhostRecipe	render	method_2567	(Lnet/minecraft/class_332;Lnet/minecraft/class_310;IIZF)V
+f	net/minecraft/client/gui/screens/recipebook/GhostRecipe$GhostIngredient	y	field_3083	I
+m	net/minecraft/client/gui/screens/recipebook/GhostRecipe$GhostIngredient	getX	method_2574	()I
+m	net/minecraft/client/gui/screens/recipebook/GhostRecipe$GhostIngredient	getY	method_2575	()I
+f	net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent	y	field_3103	I
+f	net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent	minecraft	field_3108	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent	init	method_2617	(Lnet/minecraft/class_310;Lnet/minecraft/class_516;IIIIF)V
+m	net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+f	net/minecraft/client/gui/screens/recipebook/OverlayRecipeComponent$OverlayRecipeButton$Pos	y	field_3118	I
+f	net/minecraft/client/gui/screens/recipebook/RecipeBookComponent	width	field_3101	I
+f	net/minecraft/client/gui/screens/recipebook/RecipeBookComponent	height	field_3100	I
+f	net/minecraft/client/gui/screens/recipebook/RecipeBookComponent	minecraft	field_3091	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/screens/recipebook/RecipeBookComponent	visible	field_33679	Z
+m	net/minecraft/client/gui/screens/recipebook/RecipeBookComponent	init	method_2597	(IILnet/minecraft/class_310;ZLnet/minecraft/class_1729;)V
+m	net/minecraft/client/gui/screens/recipebook/RecipeBookComponent	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/recipebook/RecipeBookComponent	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/recipebook/RecipeBookComponent	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/recipebook/RecipeBookComponent	charTyped	method_25400	(CI)Z
+f	net/minecraft/client/gui/screens/recipebook/RecipeBookPage	overlay	field_3132	Lnet/minecraft/class_508;
+f	net/minecraft/client/gui/screens/recipebook/RecipeBookPage	minecraft	field_3126	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/screens/recipebook/RecipeBookPage	init	method_2636	(Lnet/minecraft/class_310;II)V
+m	net/minecraft/client/gui/screens/recipebook/RecipeBookPage	render	method_2634	(Lnet/minecraft/class_332;IIIIF)V
+m	net/minecraft/client/gui/screens/recipebook/RecipeBookPage	mouseClicked	method_2632	(DDIIIII)Z
+m	net/minecraft/client/gui/screens/recipebook/RecipeButton	init	method_2640	(Lnet/minecraft/class_516;Lnet/minecraft/class_513;)V
+m	net/minecraft/client/gui/screens/recipebook/RecipeButton	getWidth	method_25368	()I
+m	net/minecraft/client/gui/screens/reporting/AbstractReportScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/reporting/AbstractReportScreen	onClose	method_25419	()V
+f	net/minecraft/client/gui/screens/reporting/AbstractReportScreen$DiscardReportWarningScreen	RETURN	field_39725	Lnet/minecraft/class_2561;
+m	net/minecraft/client/gui/screens/reporting/AbstractReportScreen$DiscardReportWarningScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/reporting/ChatReportScreen	mouseReleased	method_25406	(DDI)Z
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$DividerEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$Heading	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$Heading	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$Heading	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$MessageEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$MessageEntry	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$MessageEntry	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$MessageHeadingEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/reporting/ChatSelectionScreen$ChatSelectionList$PaddingEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/reporting/NameReportScreen	mouseReleased	method_25406	(DDI)Z
+f	net/minecraft/client/gui/screens/reporting/ReportPlayerScreen	player	field_46049	Lnet/minecraft/class_5519;
+m	net/minecraft/client/gui/screens/reporting/ReportPlayerScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/reporting/ReportPlayerScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/reporting/ReportReasonSelectionScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/reporting/ReportReasonSelectionScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/reporting/ReportReasonSelectionScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/reporting/ReportReasonSelectionScreen$ReasonSelectionList$Entry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/reporting/ReportReasonSelectionScreen$ReasonSelectionList$Entry	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/reporting/SkinReportScreen	mouseReleased	method_25406	(DDI)Z
+f	net/minecraft/client/gui/screens/social/PlayerEntry	minecraft	field_26854	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/screens/social/PlayerEntry	children	field_26855	Ljava/util/List;
+m	net/minecraft/client/gui/screens/social/PlayerEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/social/PlayerEntry	children	method_25396	()Ljava/util/List;
+f	net/minecraft/client/gui/screens/social/PlayerSocialManager	minecraft	field_26865	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/screens/social/SocialInteractionsPlayerList	enableScissor	method_49603	(Lnet/minecraft/class_332;)V
+m	net/minecraft/client/gui/screens/social/SocialInteractionsScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/social/SocialInteractionsScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/social/SocialInteractionsScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/social/SocialInteractionsScreen	keyPressed	method_25404	(III)Z
+f	net/minecraft/client/gui/screens/telemetry/TelemetryEventWidget	font	field_41359	Lnet/minecraft/class_327;
+m	net/minecraft/client/gui/screens/telemetry/TelemetryEventWidget$Content	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/telemetry/TelemetryEventWidget$Content	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/telemetry/TelemetryEventWidget$Content	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/screens/telemetry/TelemetryEventWidget$ContentBuilder	width	field_41362	I
+m	net/minecraft/client/gui/screens/telemetry/TelemetryEventWidget$ContentBuilder	build	method_47641	()Lnet/minecraft/class_7941$class_7942;
+m	net/minecraft/client/gui/screens/telemetry/TelemetryInfoScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/telemetry/TelemetryInfoScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/worldselection/ConfirmExperimentalFeaturesScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/worldselection/ConfirmExperimentalFeaturesScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/worldselection/ConfirmExperimentalFeaturesScreen$DetailsScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/worldselection/ConfirmExperimentalFeaturesScreen$DetailsScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/worldselection/ConfirmExperimentalFeaturesScreen$DetailsScreen$PackListEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/worldselection/CreateWorldScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/worldselection/CreateWorldScreen	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/worldselection/CreateWorldScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/worldselection/CreateWorldScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/worldselection/CreateWorldScreen$DataPackReloadCookie	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/worldselection/CreateWorldScreen$DataPackReloadCookie	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/worldselection/CreateWorldScreen$DataPackReloadCookie	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$BooleanRuleEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$CategoryRuleEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$CategoryRuleEntry	children	method_25396	()Ljava/util/List;
+m	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$EntryFactory	create	create	(Lnet/minecraft/class_2561;Ljava/util/List;Ljava/lang/String;Lnet/minecraft/class_1928$class_4315;)Lnet/minecraft/class_5235$class_5240;
+f	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$GameRuleEntry	children	field_25630	Ljava/util/List;
+m	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$GameRuleEntry	children	method_25396	()Ljava/util/List;
+m	net/minecraft/client/gui/screens/worldselection/EditGameRulesScreen$IntegerRuleEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/worldselection/EditWorldScreen	create	method_54599	(Lnet/minecraft/class_310;Lnet/minecraft/class_32$class_5143;Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;)Lnet/minecraft/class_524;
+m	net/minecraft/client/gui/screens/worldselection/EditWorldScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/worldselection/EditWorldScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/worldselection/EditWorldScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/worldselection/ExperimentsScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/worldselection/ExperimentsScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/worldselection/OptimizeWorldScreen	create	method_27031	(Lnet/minecraft/class_310;Lit/unimi/dsi/fastutil/booleans/BooleanConsumer;Lcom/mojang/datafixers/DataFixer;Lnet/minecraft/class_32$class_5143;Z)Lnet/minecraft/class_527;
+m	net/minecraft/client/gui/screens/worldselection/OptimizeWorldScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/worldselection/OptimizeWorldScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/worldselection/OptimizeWorldScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+m	net/minecraft/client/gui/screens/worldselection/SelectWorldScreen	init	method_25426	()V
+m	net/minecraft/client/gui/screens/worldselection/SelectWorldScreen	onClose	method_25419	()V
+m	net/minecraft/client/gui/screens/worldselection/SelectWorldScreen	render	method_25394	(Lnet/minecraft/class_332;IIF)V
+f	net/minecraft/client/gui/screens/worldselection/SwitchGrid$Builder	width	field_42198	I
+m	net/minecraft/client/gui/screens/worldselection/SwitchGrid$Builder	build	method_48686	(Ljava/util/function/Consumer;)Lnet/minecraft/class_8096;
+m	net/minecraft/client/gui/screens/worldselection/SwitchGrid$InfoUnderneathSettings	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/worldselection/SwitchGrid$InfoUnderneathSettings	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/worldselection/SwitchGrid$InfoUnderneathSettings	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/screens/worldselection/SwitchGrid$LabeledSwitch	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/worldselection/SwitchGrid$LabeledSwitch	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/worldselection/SwitchGrid$LabeledSwitch	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/screens/worldselection/SwitchGrid$SwitchBuilder	build	method_48691	(Lnet/minecraft/class_8096$class_8097;Lnet/minecraft/class_7845;I)Lnet/minecraft/class_8096$class_8098;
+m	net/minecraft/client/gui/screens/worldselection/WorldCreationContext	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/worldselection/WorldCreationContext	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/worldselection/WorldCreationContext	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/client/gui/screens/worldselection/WorldCreationUiState$WorldTypeEntry	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/worldselection/WorldCreationUiState$WorldTypeEntry	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/worldselection/WorldCreationUiState$WorldTypeEntry	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/screens/worldselection/WorldOpenFlows	minecraft	field_37914	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/screens/worldselection/WorldOpenFlows$1Data	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/gui/screens/worldselection/WorldOpenFlows$1Data	hashCode	hashCode	()I
+m	net/minecraft/client/gui/screens/worldselection/WorldOpenFlows$1Data	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/client/gui/screens/worldselection/WorldSelectionList	screen	field_3237	Lnet/minecraft/class_526;
+m	net/minecraft/client/gui/screens/worldselection/WorldSelectionList	keyPressed	method_25404	(III)Z
+m	net/minecraft/client/gui/screens/worldselection/WorldSelectionList$Entry	close	close	()V
+f	net/minecraft/client/gui/screens/worldselection/WorldSelectionList$LoadingHeader	minecraft	field_38998	Lnet/minecraft/class_310;
+m	net/minecraft/client/gui/screens/worldselection/WorldSelectionList$LoadingHeader	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+f	net/minecraft/client/gui/screens/worldselection/WorldSelectionList$WorldListEntry	minecraft	field_19136	Lnet/minecraft/class_310;
+f	net/minecraft/client/gui/screens/worldselection/WorldSelectionList$WorldListEntry	screen	field_19137	Lnet/minecraft/class_526;
+m	net/minecraft/client/gui/screens/worldselection/WorldSelectionList$WorldListEntry	render	method_25343	(Lnet/minecraft/class_332;IIIIIIIZF)V
+m	net/minecraft/client/gui/screens/worldselection/WorldSelectionList$WorldListEntry	mouseClicked	method_25402	(DDI)Z
+m	net/minecraft/client/gui/screens/worldselection/WorldSelectionList$WorldListEntry	close	close	()V
+f	net/minecraft/client/gui/spectator/SpectatorMenu$ScrollMenuItem	enabled	field_3265	Z
+m	net/minecraft/client/gui/spectator/categories/TeleportToTeamMenuCategory$TeamSelectionItem	create	method_47433	(Lnet/minecraft/class_310;Lnet/minecraft/class_268;)Ljava/util/Optional;
+f	net/minecraft/client/resources/sounds/AbstractSoundInstance	y	field_5450	D
+m	net/minecraft/client/resources/sounds/AbstractSoundInstance	getX	method_4784	()D
+m	net/minecraft/client/resources/sounds/AbstractSoundInstance	getY	method_4779	()D
+m	net/minecraft/client/resources/sounds/AbstractSoundInstance	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/resources/sounds/AbstractTickableSoundInstance	stop	method_24876	()V
+f	net/minecraft/client/resources/sounds/BiomeAmbientSoundsHandler	player	field_22796	Lnet/minecraft/class_746;
+f	net/minecraft/client/resources/sounds/BubbleColumnAmbientSoundHandler	player	field_19192	Lnet/minecraft/class_746;
+f	net/minecraft/client/resources/sounds/ElytraOnPlayerSoundInstance	player	field_5452	Lnet/minecraft/class_746;
+f	net/minecraft/client/resources/sounds/RidingMinecartSoundInstance	player	field_5457	Lnet/minecraft/class_1657;
+m	net/minecraft/client/resources/sounds/SimpleSoundInstance	forUI	method_4758	(Lnet/minecraft/class_3414;F)Lnet/minecraft/class_1109;
+m	net/minecraft/client/resources/sounds/SimpleSoundInstance	forUI	method_47978	(Lnet/minecraft/class_6880;F)Lnet/minecraft/class_1109;
+m	net/minecraft/client/resources/sounds/SimpleSoundInstance	forUI	method_4757	(Lnet/minecraft/class_3414;FF)Lnet/minecraft/class_1109;
+m	net/minecraft/client/resources/sounds/Sound	toString	toString	()Ljava/lang/String;
+m	net/minecraft/client/resources/sounds/SoundInstance	getX	method_4784	()D
+m	net/minecraft/client/resources/sounds/SoundInstance	getY	method_4779	()D
+f	net/minecraft/client/resources/sounds/UnderwaterAmbientSoundHandler	player	field_5481	Lnet/minecraft/class_746;
+f	net/minecraft/client/resources/sounds/UnderwaterAmbientSoundInstances$SubSound	player	field_5482	Lnet/minecraft/class_746;
+f	net/minecraft/client/resources/sounds/UnderwaterAmbientSoundInstances$UnderwaterAmbientSoundInstance	player	field_5483	Lnet/minecraft/class_746;
+m	net/minecraft/client/sounds/ChannelAccess	clear	method_19728	()V
+m	net/minecraft/client/sounds/ChunkedSampleByteBuf	get	method_19679	()Ljava/nio/ByteBuffer;
+m	net/minecraft/client/sounds/ChunkedSampleByteBuf	size	method_59756	()I
+m	net/minecraft/client/sounds/JOrbisAudioStream	close	close	()V
+m	net/minecraft/client/sounds/LoopingAudioStream	close	close	()V
+m	net/minecraft/client/sounds/LoopingAudioStream$AudioStreamProvider	create	create	(Ljava/io/InputStream;)Lnet/minecraft/class_4234;
+m	net/minecraft/client/sounds/LoopingAudioStream$NoCloseBuffer	close	close	()V
+f	net/minecraft/client/sounds/MusicManager	minecraft	field_5575	Lnet/minecraft/class_310;
+m	net/minecraft/client/sounds/SoundBufferLibrary	clear	method_19738	()V
+m	net/minecraft/client/sounds/SoundEngine	stop	method_19753	(Lnet/minecraft/class_1113;)V
+m	net/minecraft/client/sounds/SoundEngine	isActive	method_4835	(Lnet/minecraft/class_1113;)Z
+m	net/minecraft/client/sounds/SoundEngine	play	method_4854	(Lnet/minecraft/class_1113;)V
+m	net/minecraft/client/sounds/SoundEngine	stop	method_4838	(Lnet/minecraft/class_2960;Lnet/minecraft/class_3419;)V
+m	net/minecraft/client/sounds/SoundEngineExecutor	flush	method_19763	()V
+m	net/minecraft/client/sounds/SoundManager	play	method_4873	(Lnet/minecraft/class_1113;)V
+m	net/minecraft/client/sounds/SoundManager	stop	method_4881	()V
+m	net/minecraft/client/sounds/SoundManager	stop	method_4870	(Lnet/minecraft/class_1113;)V
+m	net/minecraft/client/sounds/SoundManager	isActive	method_4877	(Lnet/minecraft/class_1113;)Z
+m	net/minecraft/client/sounds/SoundManager	stop	method_4875	(Lnet/minecraft/class_2960;Lnet/minecraft/class_3419;)V
+m	net/minecraft/network/chat/ChatType	create	method_43845	(Ljava/lang/String;)Lnet/minecraft/class_5321;
+m	net/minecraft/network/chat/ChatType	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/ChatType	hashCode	hashCode	()I
+m	net/minecraft/network/chat/ChatType	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/ChatType$Bound	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/ChatType$Bound	hashCode	hashCode	()I
+m	net/minecraft/network/chat/ChatType$Bound	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/ChatTypeDecoration	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/ChatTypeDecoration	hashCode	hashCode	()I
+m	net/minecraft/network/chat/ChatTypeDecoration	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/network/chat/ClickEvent	value	field_11740	Ljava/lang/String;
+m	net/minecraft/network/chat/ClickEvent	getAction	method_10845	()Lnet/minecraft/class_2558$class_2559;
+m	net/minecraft/network/chat/ClickEvent	getValue	method_10844	()Ljava/lang/String;
+m	net/minecraft/network/chat/ClickEvent	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/ClickEvent	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/ClickEvent	hashCode	hashCode	()I
+m	net/minecraft/network/chat/Component	getString	getString	()Ljava/lang/String;
+m	net/minecraft/network/chat/Component	getString	method_10858	(I)Ljava/lang/String;
+m	net/minecraft/network/chat/ComponentContents$Type	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/ComponentContents$Type	hashCode	hashCode	()I
+m	net/minecraft/network/chat/ComponentContents$Type	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/ComponentSerialization$FuzzyCodec	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/FilterMask	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/FilterMask	hashCode	hashCode	()I
+m	net/minecraft/network/chat/FormattedText	getString	getString	()Ljava/lang/String;
+m	net/minecraft/network/chat/HoverEvent	getAction	method_10892	()Lnet/minecraft/class_2568$class_5247;
+m	net/minecraft/network/chat/HoverEvent	getValue	method_10891	(Lnet/minecraft/class_2568$class_5247;)Ljava/lang/Object;
+m	net/minecraft/network/chat/HoverEvent	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/HoverEvent	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/HoverEvent	hashCode	hashCode	()I
+m	net/minecraft/network/chat/HoverEvent$Action	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/HoverEvent$EntityTooltipInfo	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/HoverEvent$EntityTooltipInfo	hashCode	hashCode	()I
+m	net/minecraft/network/chat/HoverEvent$ItemStackInfo	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/HoverEvent$ItemStackInfo	hashCode	hashCode	()I
+f	net/minecraft/network/chat/HoverEvent$TypedHoverEvent	value	comp_1986	Ljava/lang/Object;
+m	net/minecraft/network/chat/HoverEvent$TypedHoverEvent	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/HoverEvent$TypedHoverEvent	hashCode	hashCode	()I
+m	net/minecraft/network/chat/HoverEvent$TypedHoverEvent	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/HoverEvent$TypedHoverEvent	value	comp_1986	()Ljava/lang/Object;
+m	net/minecraft/network/chat/LastSeenMessages	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/LastSeenMessages	hashCode	hashCode	()I
+m	net/minecraft/network/chat/LastSeenMessages	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/LastSeenMessages$Packed	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/LastSeenMessages$Packed	hashCode	hashCode	()I
+m	net/minecraft/network/chat/LastSeenMessages$Packed	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/LastSeenMessages$Update	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/LastSeenMessages$Update	hashCode	hashCode	()I
+m	net/minecraft/network/chat/LastSeenMessages$Update	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/LastSeenMessagesTracker$Update	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/LastSeenMessagesTracker$Update	hashCode	hashCode	()I
+m	net/minecraft/network/chat/LastSeenMessagesTracker$Update	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/LastSeenTrackedEntry	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/LastSeenTrackedEntry	hashCode	hashCode	()I
+m	net/minecraft/network/chat/LastSeenTrackedEntry	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/LocalChatSession	create	method_46273	(Lnet/minecraft/class_7427;)Lnet/minecraft/class_7818;
+m	net/minecraft/network/chat/LocalChatSession	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/LocalChatSession	hashCode	hashCode	()I
+m	net/minecraft/network/chat/LocalChatSession	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/MessageSignature	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/MessageSignature	hashCode	hashCode	()I
+m	net/minecraft/network/chat/MessageSignature	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/MessageSignature$Packed	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/MessageSignature$Packed	hashCode	hashCode	()I
+m	net/minecraft/network/chat/MessageSignature$Packed	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/MutableComponent	create	method_43477	(Lnet/minecraft/class_7417;)Lnet/minecraft/class_5250;
+m	net/minecraft/network/chat/MutableComponent	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/MutableComponent	hashCode	hashCode	()I
+m	net/minecraft/network/chat/MutableComponent	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/OutgoingChatMessage	create	method_44857	(Lnet/minecraft/class_7471;)Lnet/minecraft/class_7604;
+m	net/minecraft/network/chat/OutgoingChatMessage$Disguised	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/OutgoingChatMessage$Disguised	hashCode	hashCode	()I
+m	net/minecraft/network/chat/OutgoingChatMessage$Disguised	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/OutgoingChatMessage$Player	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/OutgoingChatMessage$Player	hashCode	hashCode	()I
+m	net/minecraft/network/chat/OutgoingChatMessage$Player	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/PlayerChatMessage	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/PlayerChatMessage	hashCode	hashCode	()I
+m	net/minecraft/network/chat/PlayerChatMessage	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/RemoteChatSession	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/RemoteChatSession	hashCode	hashCode	()I
+m	net/minecraft/network/chat/RemoteChatSession	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/RemoteChatSession$Data	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/RemoteChatSession$Data	hashCode	hashCode	()I
+m	net/minecraft/network/chat/RemoteChatSession$Data	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/SignableCommand	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/SignableCommand	hashCode	hashCode	()I
+m	net/minecraft/network/chat/SignableCommand	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/network/chat/SignableCommand$Argument	value	comp_1089	Ljava/lang/String;
+m	net/minecraft/network/chat/SignableCommand$Argument	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/SignableCommand$Argument	hashCode	hashCode	()I
+m	net/minecraft/network/chat/SignableCommand$Argument	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/SignableCommand$Argument	value	comp_1089	()Ljava/lang/String;
+m	net/minecraft/network/chat/SignedMessageBody	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/SignedMessageBody	hashCode	hashCode	()I
+m	net/minecraft/network/chat/SignedMessageBody	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/SignedMessageBody$Packed	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/SignedMessageBody$Packed	hashCode	hashCode	()I
+m	net/minecraft/network/chat/SignedMessageBody$Packed	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/SignedMessageLink	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/SignedMessageLink	hashCode	hashCode	()I
+m	net/minecraft/network/chat/SignedMessageLink	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/network/chat/Style	font	field_24361	Lnet/minecraft/class_2960;
+m	net/minecraft/network/chat/Style	create	method_43870	(Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;Ljava/util/Optional;)Lnet/minecraft/class_2583;
+m	net/minecraft/network/chat/Style	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/Style	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/Style	hashCode	hashCode	()I
+m	net/minecraft/network/chat/SubStringSource	create	method_36144	(Lnet/minecraft/class_5348;)Lnet/minecraft/class_5492;
+m	net/minecraft/network/chat/SubStringSource	create	method_30943	(Lnet/minecraft/class_5348;Lit/unimi/dsi/fastutil/ints/Int2IntFunction;Ljava/util/function/UnaryOperator;)Lnet/minecraft/class_5492;
+f	net/minecraft/network/chat/TextColor	value	field_24364	I
+m	net/minecraft/network/chat/TextColor	getValue	method_27716	()I
+m	net/minecraft/network/chat/TextColor	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/TextColor	hashCode	hashCode	()I
+m	net/minecraft/network/chat/TextColor	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/BlockDataSource	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/BlockDataSource	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/contents/BlockDataSource	hashCode	hashCode	()I
+m	net/minecraft/network/chat/contents/DataSource$Type	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/DataSource$Type	hashCode	hashCode	()I
+m	net/minecraft/network/chat/contents/DataSource$Type	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/contents/EntityDataSource	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/EntityDataSource	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/contents/EntityDataSource	hashCode	hashCode	()I
+m	net/minecraft/network/chat/contents/KeybindContents	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/contents/KeybindContents	hashCode	hashCode	()I
+m	net/minecraft/network/chat/contents/KeybindContents	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/NbtContents	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/contents/NbtContents	hashCode	hashCode	()I
+m	net/minecraft/network/chat/contents/NbtContents	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/PlainTextContents	create	method_54232	(Ljava/lang/String;)Lnet/minecraft/class_8828;
+m	net/minecraft/network/chat/contents/PlainTextContents$1	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/PlainTextContents$LiteralContents	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/PlainTextContents$LiteralContents	hashCode	hashCode	()I
+m	net/minecraft/network/chat/contents/PlainTextContents$LiteralContents	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/contents/ScoreContents	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/contents/ScoreContents	hashCode	hashCode	()I
+m	net/minecraft/network/chat/contents/ScoreContents	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/SelectorContents	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/contents/SelectorContents	hashCode	hashCode	()I
+m	net/minecraft/network/chat/contents/SelectorContents	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/StorageDataSource	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/StorageDataSource	hashCode	hashCode	()I
+m	net/minecraft/network/chat/contents/StorageDataSource	equals	equals	(Ljava/lang/Object;)Z
+f	net/minecraft/network/chat/contents/TranslatableContents	key	field_11876	Ljava/lang/String;
+m	net/minecraft/network/chat/contents/TranslatableContents	create	method_54239	(Ljava/lang/String;Ljava/util/Optional;Ljava/util/Optional;)Lnet/minecraft/class_2588;
+m	net/minecraft/network/chat/contents/TranslatableContents	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/network/chat/contents/TranslatableContents	hashCode	hashCode	()I
+m	net/minecraft/network/chat/contents/TranslatableContents	toString	toString	()Ljava/lang/String;
+m	net/minecraft/network/chat/contents/TranslatableContents	getKey	method_11022	()Ljava/lang/String;
+f	net/minecraft/network/chat/numbers/BlankFormat	INSTANCE	field_47557	Lnet/minecraft/class_9020;
+f	net/minecraft/network/chat/numbers/FixedFormat	value	field_47561	Lnet/minecraft/class_2561;
+m	net/minecraft/sounds/SoundEvent	create	method_47956	(Lnet/minecraft/class_2960;Ljava/util/Optional;)Lnet/minecraft/class_3414;
+f	net/minecraft/sounds/SoundEvents	UI_BUTTON_CLICK	field_15015	Lnet/minecraft/class_6880$class_6883;
+m	net/minecraft/sounds/SoundEvents	register	method_43045	(Lnet/minecraft/class_2960;Lnet/minecraft/class_2960;F)Lnet/minecraft/class_6880;
+m	net/minecraft/sounds/SoundEvents	register	method_14838	(Ljava/lang/String;)Lnet/minecraft/class_3414;
+m	net/minecraft/sounds/SoundEvents	register	method_47962	(Lnet/minecraft/class_2960;)Lnet/minecraft/class_3414;
+m	net/minecraft/sounds/SoundEvents	register	method_47963	(Lnet/minecraft/class_2960;Lnet/minecraft/class_2960;)Lnet/minecraft/class_3414;
+m	net/minecraft/world/entity/Entity	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/world/entity/Entity	hashCode	hashCode	()I
+m	net/minecraft/world/entity/Entity	save	method_5662	(Lnet/minecraft/class_2487;)Z
+m	net/minecraft/world/entity/Entity	toString	toString	()Ljava/lang/String;
+m	net/minecraft/world/entity/Entity	getBbWidth	method_17681	()F
+m	net/minecraft/world/entity/Entity	getBbHeight	method_17682	()F
+m	net/minecraft/world/entity/Entity	getX	method_23317	()D
+m	net/minecraft/world/entity/Entity	getX	method_23316	(D)D
+m	net/minecraft/world/entity/Entity	getY	method_23318	()D
+m	net/minecraft/world/entity/Entity	getY	method_23323	(D)D
+m	net/minecraft/world/entity/Entity	getYRot	method_36454	()F
+m	net/minecraft/world/entity/Entity	setYRot	method_36456	(F)V
+m	net/minecraft/world/entity/Entity	getXRot	method_36455	()F
+m	net/minecraft/world/entity/Entity	setXRot	method_36457	(F)V
+f	net/minecraft/world/entity/Entity$RemovalReason	save	field_27004	Z
+m	net/minecraft/world/entity/EntityAttachment$Fallback	create	create	(FF)Ljava/util/List;
+m	net/minecraft/world/entity/EntityAttachments	get	method_55678	(Lnet/minecraft/class_9064;IF)Lnet/minecraft/class_243;
+m	net/minecraft/world/entity/EntityAttachments$Builder	build	method_55680	(FF)Lnet/minecraft/class_9066;
+f	net/minecraft/world/entity/EntityDimensions	width	comp_2185	F
+f	net/minecraft/world/entity/EntityDimensions	height	comp_2186	F
+m	net/minecraft/world/entity/EntityDimensions	toString	toString	()Ljava/lang/String;
+m	net/minecraft/world/entity/EntityDimensions	hashCode	hashCode	()I
+m	net/minecraft/world/entity/EntityDimensions	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/world/entity/EntityDimensions	width	comp_2185	()F
+m	net/minecraft/world/entity/EntityDimensions	height	comp_2186	()F
+m	net/minecraft/world/entity/EntityType	register	method_5895	(Ljava/lang/String;Lnet/minecraft/class_1299$class_1300;)Lnet/minecraft/class_1299;
+m	net/minecraft/world/entity/EntityType	getKey	method_5890	(Lnet/minecraft/class_1299;)Lnet/minecraft/class_2960;
+m	net/minecraft/world/entity/EntityType	create	method_5888	(Lnet/minecraft/class_3218;Ljava/util/function/Consumer;Lnet/minecraft/class_2338;Lnet/minecraft/class_3730;ZZ)Lnet/minecraft/class_1297;
+m	net/minecraft/world/entity/EntityType	toString	toString	()Ljava/lang/String;
+m	net/minecraft/world/entity/EntityType	getWidth	method_17685	()F
+m	net/minecraft/world/entity/EntityType	getHeight	method_17686	()F
+m	net/minecraft/world/entity/EntityType	create	method_5883	(Lnet/minecraft/class_1937;)Lnet/minecraft/class_1297;
+m	net/minecraft/world/entity/EntityType	create	method_5892	(Lnet/minecraft/class_2487;Lnet/minecraft/class_1937;)Ljava/util/Optional;
+m	net/minecraft/world/entity/EntityType$Builder	build	method_5905	(Ljava/lang/String;)Lnet/minecraft/class_1299;
+m	net/minecraft/world/entity/EntityType$EntityFactory	create	create	(Lnet/minecraft/class_1299;Lnet/minecraft/class_1937;)Lnet/minecraft/class_1297;
+f	net/minecraft/world/entity/LivingEntity	yBodyRot	field_6283	F
+f	net/minecraft/world/entity/LivingEntity	yHeadRot	field_6241	F
+f	net/minecraft/world/entity/LivingEntity	yHeadRotO	field_6259	F
+m	net/minecraft/world/entity/LivingEntity	getScale	method_55693	()F
+m	net/minecraft/world/entity/LivingEntity$Fallsounds	toString	toString	()Ljava/lang/String;
+m	net/minecraft/world/entity/LivingEntity$Fallsounds	hashCode	hashCode	()I
+m	net/minecraft/world/entity/LivingEntity$Fallsounds	equals	equals	(Ljava/lang/Object;)Z
+m	net/minecraft/world/entity/player/Player$1	get	method_32327	()Lnet/minecraft/class_1799;
+m	net/minecraft/world/entity/player/Player$1	set	method_32332	(Lnet/minecraft/class_1799;)Z
+m	net/minecraft/world/entity/player/Player$2	get	method_32327	()Lnet/minecraft/class_1799;
+m	net/minecraft/world/entity/player/Player$2	set	method_32332	(Lnet/minecraft/class_1799;)Z
+m	net/minecraft/world/entity/player/Player$BedSleepingProblem	getMessage	method_19206	()Lnet/minecraft/class_2561;
+f	com/elfmcys/yesstevemodel/O00O0000O0oooOO0OoOO000O	prefix	OO0ooo0OooOoO0OoO0ooOO0o	Lnet/minecraft/class_2561;
+f	com/elfmcys/yesstevemodel/O00O0000O0oooOO0OoOO000O	suffix	Ooo0OOOOO00O0Oo0oo0OOOo0	Lnet/minecraft/class_2561;
+f	com/elfmcys/yesstevemodel/O00O0000O0oooOO0OoOO000O	minValue	ooOoOOO00Oo0o0oO0Ooo0oO0	D
+f	com/elfmcys/yesstevemodel/O00O0000O0oooOO0OoOO000O	maxValue	ooOo0o0o0oOoOoOOOo0o0o00	D
+f	com/elfmcys/yesstevemodel/O00O0000O0oooOO0OoOO000O	stepSize	O0O0Ooo0OO0o00O0OO0ooOOo	D
+m	com/elfmcys/yesstevemodel/O00O0000O0oooOO0OoOO000O	getValue	ooOo0o0o0oOoOoOOOo0o0o00	()D
+m	com/elfmcys/yesstevemodel/O00O0000O0oooOO0OoOO000O	getValueString	OO0ooo0OooOoO0OoO0ooOO0o	()Ljava/lang/String;
+m	com/elfmcys/yesstevemodel/O00O0000O0oooOO0OoOO000O	setValue	OO0ooo0OooOoO0OoO0ooOO0o	(D)V
+m	com/elfmcys/yesstevemodel/O00O0000O0oooOO0OoOO000O	snapToNearest	ooOo0o0o0oOoOoOOOo0o0o00	(D)D

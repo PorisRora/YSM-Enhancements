@@ -9,8 +9,12 @@ public final class InputResetHooks {
     private static volatile CacheBinding binding;
     private static boolean disabled;
     private static long nextLookup;
+    private static CacheDescriptor fabricDescriptor;
 
     private InputResetHooks() {}
+
+    /** Installed by the Fabric client entrypoint; actual cache binding remains lazy. */
+    public static void useFabricCache(CacheDescriptor descriptor) { fabricDescriptor = descriptor; }
 
     public static void onFocus(boolean focused) {
         if (!focused) clearAll();
@@ -58,6 +62,13 @@ public final class InputResetHooks {
             // Both loaders keep these public APIs. No loader or Minecraft
             // classes occur in this bridge's binary method signatures.
             ClassLoader loader = InputResetHooks.class.getClassLoader();
+            if (fabricDescriptor != null) {
+                binding = fabricDescriptor.bind(loader);
+                return binding;
+            }
+            // Fabric calls Minecraft hooks before client initializers. Wait for
+            // its descriptor instead of attempting a Forge ModList lookup.
+            if (InputResetHooks.class.getResource("/ysm_enhancements.fabric.mixins.json") != null) return null;
             Object modList = findModList(loader);
             if (modList == null) return null; // Minecraft can call hooks during bootstrap.
             var getFile = modList.getClass().getMethod("getModFileById", String.class);

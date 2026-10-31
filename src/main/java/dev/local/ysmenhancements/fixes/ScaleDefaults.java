@@ -17,6 +17,16 @@ public final class ScaleDefaults {
     public record Layout(String parsed,String value,String ast,String number,String ternary,String binary,
                          String access,String variable,String scoped,String pool,String bones) {
         public static Layout of(YsmProfile p) {
+            if (p==YsmProfile.FABRIC_1201) return new Layout(
+                "oo0oooO0OoOOo0o00Oo0oOO0","oOOOo0oOo00OooOO000OOoo0","OOoo0OoO0o0O0oOOoO00ooOO",
+                "o0oooOoooOo0O0oOoOOo00OO","o00oOOOo000O00Oo00O0Oooo","O0Oo00oo0Oo00OOOo0o0o0oO",
+                "ooooooO0Oo000OO0oOO00Oo0","OOoOoO0Oooo0OoO00oOoO0oo","ooOoOoOooooO0OOO0o00oOOO",
+                "OO0o0OooOOooO00000o0oO0o","o0OO00OoOo0oOoOOo0OOOO00");
+            if (p==YsmProfile.FABRIC_1211) return new Layout(
+                "O00ooO000ooOOOo0O0000Ooo","oOo0oO0O0ooOO0o0O0OOoo0O","OooOO0oO0O0OO00OoO000OoO",
+                "oooOOo0oOoooo0oo0oooO0Oo","O00O00oooOooO0O0O0000ooo","O000000oO0OoOOoooOOoOooO",
+                "OoO00OOoo0O0oOooo0OooooO","o0o0OOooo0ooo0OooOoO0O00","o000OoO0o00ooo0oOo00oO00",
+                "ooo0OooOOOO0o0OO0Oo0oooO","Oo0OO0o0Ooo0OO0o0oOo00oo");
             return p==YsmProfile.NEO
                 ?new Layout("O0o00OOOOOooooo000o0oo00","o0oOo00o0oOOOOOo00o0O0oo","O00OO0O000oO0ooOOO0o0OOO",
                     "o00o000oooOoOO0oO0O0o0OO","ooo0OOOo0oO0o0oOOoOOo0Oo","o0O0oo0o0ooOOO0ooooO0o0o",
@@ -36,9 +46,9 @@ public final class ScaleDefaults {
         if(!outsideZero(min,max))return; // Zero may be an intentional, selectable value.
         try {
             YsmProfile p=YsmProfile.of(screen);
-            String binding=canonical((String)Reflect.get(widget,p.playMethod));
+            String binding=canonical((String)Reflect.get(widget,p.sliderBinding()));
             if(binding==null)return;
-            Object data=Reflect.get(screen,"ooOoO0OOO0oOo0Oo00oo000o|o0OooO00ooo0OO000O0OoOoO");
+            Object data=Reflect.get(screen,p.data());
             Map<String,Double> defaults;
             synchronized(CACHE){defaults=CACHE.computeIfAbsent(data,key->readModel(key,p));}
             Double initial=defaults.get(binding);
@@ -109,7 +119,13 @@ public final class ScaleDefaults {
         void expression(Object o) {
             if(!kind(o,layout.parsed)) {
                 // Constant scale values carry no variable; other value wrappers are unknown.
-                if(!o.getClass().getSimpleName().equals(p==YsmProfile.NEO?"o000OOo0ooo00o0OOOOOOO0O":"oOoOoOOooOOO0OO0oooO00oO"))
+                String constant = switch(p) {
+                    case NEO -> "o000OOo0ooo00o0OOOOOOO0O";
+                    case FORGE -> "oOoOoOOooOOO0OO0oooO00oO";
+                    case FABRIC_1201 -> "O0oOOOo0oo0o00OOOO0oO0OO";
+                    case FABRIC_1211 -> "ooO0Oo00o0O0oOoO0OOo00O0";
+                };
+                if(!o.getClass().getSimpleName().equals(constant))
                     throw new IllegalStateException("Unsupported scale value wrapper");
                 return;
             }

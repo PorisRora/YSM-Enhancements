@@ -1,6 +1,7 @@
 package dev.local.ysmenhancements;
 
 import dev.local.ysmenhancements.compat.YsmProfile;
+import dev.local.ysmenhancements.compat.RuntimeNames;
 import dev.local.ysmenhancements.fixes.ScaleDefaults;
 import java.io.*;
 import java.util.*;
@@ -19,7 +20,7 @@ public final class ApiContractTest {
         finally {for(ZipFile jar:audit.jars)jar.close();}
     }
     private ClassNode node(String owner) throws IOException {
-        owner=owner.replace('.','/');if(nodes.containsKey(owner))return nodes.get(owner);
+        owner=RuntimeNames.internal(owner);if(nodes.containsKey(owner))return nodes.get(owner);
         byte[] bytes=null;
         for(ZipFile jar:jars){var entry=jar.getEntry(owner+".class");if(entry!=null){try(var in=jar.getInputStream(entry)){bytes=in.readAllBytes();}break;}}
         if(bytes==null)try(var in=ApiContractTest.class.getClassLoader().getResourceAsStream(owner+".class")){if(in!=null)bytes=in.readAllBytes();}
@@ -28,7 +29,7 @@ public final class ApiContractTest {
     }
     private MethodNode lookup(String owner,String names,String parameters,Set<String> seen) throws IOException {
         if(owner==null||!seen.add(owner))return null;ClassNode n=node(owner);if(n==null)return null;
-        for(String name:names.split("\\|"))for(MethodNode m:n.methods)if(m.name.equals(name)&&m.desc.startsWith(parameters))return m;
+        for(String name:names.split("\\|"))for(MethodNode m:n.methods)if(RuntimeNames.methodMatches(n.name,m.name,m.desc,name)&&m.desc.startsWith(RuntimeNames.descriptor(parameters)))return m;
         MethodNode result=lookup(n.superName,names,parameters,seen);if(result!=null)return result;
         for(String parent:n.interfaces){result=lookup(parent,names,parameters,seen);if(result!=null)return result;}return null;
     }
@@ -39,12 +40,17 @@ public final class ApiContractTest {
     }
     private FieldNode field(String owner,String names) throws IOException {
         for(String name:names.split("\\|"))for(ClassNode n=node(owner);n!=null;n=n.superName==null?null:node(n.superName))
-            for(FieldNode f:n.fields)if(f.name.equals(name)){checks++;return f;}
+            for(FieldNode f:n.fields)if(f.name.equals(RuntimeNames.field(n.name,name))){checks++;return f;}
         throw new AssertionError("Missing field "+owner+"."+names);
     }
     private static String owner(FieldNode field){return Type.getType(field.desc).getInternalName();}
+    private static String ysmType(String signature) {
+        var matcher=java.util.regex.Pattern.compile("L(com/elfmcys/yesstevemodel/[^;<>]+);").matcher(signature);
+        String result=null;while(matcher.find())result=matcher.group(1);
+        if(result==null)throw new AssertionError("No YSM type in "+signature);return result;
+    }
     private void run() throws Exception {
-        String root=YsmProfile.ROOT.replace('.','/');YsmProfile p=node(root+YsmProfile.NEO.wheel)!=null?YsmProfile.NEO:YsmProfile.FORGE;boolean neo=p==YsmProfile.NEO;
+        String root=YsmProfile.ROOT.replace('.','/');YsmProfile p=null;for(YsmProfile candidate:YsmProfile.values())if(node(root+candidate.wheel)!=null){p=candidate;break;}if(p==null)throw new AssertionError("No supported YSM wheel");boolean neo=p.modern();
         String wheel=root+p.wheel,widget="net/minecraft/client/gui/components/AbstractWidget",screen="net/minecraft/client/gui/screens/Screen";
         for(String name:new String[]{p.x,p.y,p.scroll,p.max,p.up,p.down,p.selectedIndex})field(wheel,name);
         for(String name:new String[]{"width|f_96543_","height|f_96544_","renderables|f_169369_"})field(wheel,name);
@@ -52,27 +58,27 @@ public final class ApiContractTest {
         for(String name:new String[]{p.configMethod,p.playMethod,p.folderMethod})method(wheel,name,"(Ljava/lang/String;)");
         method(wheel,p.configMethod,"()");
         String menu=owner(field(wheel,p.menu)),config=owner(field(wheel,p.selected)),anim=owner(field(wheel,p.animatable));
-        field(wheel,p.configs);field(wheel,p.path);field(wheel,"ooOoO0OOO0oOo0Oo00oo000o|o0OooO00ooo0OO000O0OoOoO");
+        field(wheel,p.configs);field(wheel,p.path);field(wheel,p.data());
         method(menu,"size","()");method(menu,p.a,"(I)");method(menu,p.b,"(I)");method(config,p.b,"()");method(anim,p.entityMethod,"()");
-        method(root+p.lock,p.a,"()");method(root+p.lock,p.b,"()");method(root+p.keys,p.a,"()");
-        String resolver=root+(neo?"OoO0o00Oo0O00oOoO0OOO0oo":"OOOOooO0O0o0OOoOOo00oo00");
-        String data=field(wheel,"ooOoO0OOO0oOo0Oo00oo000o|o0OooO00ooo0OO000O0OoOoO").desc;
+        method(root+p.lock,p.a,"()");method(root+p.lock,p.b,"()");if(!p.fabric())method(root+p.keys,p.a,"()");
+        String resolver=root+p.localizer();
+        String data=field(wheel,p.data()).desc;
         method(resolver,p.a,"("+data+"Ljava/lang/String;Ljava/lang/String;)");
         String geometry=Type.getReturnType(method(Type.getType(data).getInternalName(),p.a,"()").desc).getInternalName();
-        String animation=root+(neo?"OOOOo0o0oOooO0oO0O00oOoO":"Oo0OOo00Oo00oO00Ooo0O00O");
-        String bone=root+(neo?"Oo00OOooo0Ooo000ooooOOOo":"o0OOOOooooOO00oOoO0o00OO");
+        String animation=ysmType(field(geometry,p.configMethod).signature);
+        String bone=ysmType(field(animation,ScaleDefaults.Layout.of(p).bones()).signature);
         for(String name:new String[]{p.configMethod,p.playMethod})
             RegressionTest.check(field(geometry,name).signature.contains(animation),"geometry map contains actual animation type");
         RegressionTest.check(field(animation,ScaleDefaults.Layout.of(p).bones()).signature.contains(bone),"animation bone list contract");
         FieldNode scale=field(bone,p.folderMethod);
         RegressionTest.check(scale.signature.startsWith("Ljava/util/List<"),"bone scale keyframe list contract");
-        String slider=root+(neo?"o0OO0ooOOo0Ooo00OO0Oo0O0":"oo0ooOoOOOO0OOoO0OOoOOo0");
-        String checkbox=root+(neo?"O0oo0oOOOoooO0o0oooOo000":"oOO0oo0OoOo0O0OOo0oooO0o");
-        for(String name:new String[]{"minValue","maxValue","prefix","stepSize","value|f_93577_",p.playMethod})field(slider,name);
+        String slider=root+p.slider();
+        String checkbox=root+p.checkbox();
+        for(String name:new String[]{"minValue","maxValue","prefix","stepSize","value|f_93577_",p.sliderBinding()})field(slider,name);
         method(slider,"snapToNearest","(D)");method(slider,"updateMessage|m_5695_","()");
         method(slider,"getValue","()");method(slider,"getValueString","()");method(slider,"setValue|m_93611_","(D)");
-        method(slider,neo?"applyValue":"m_5697_","()");method(slider,"onClick|m_5716_","(DD)");method(slider,"keyPressed|m_7933_","(III)");
-        method(checkbox,neo?p.a:"m_94620_","()");method(checkbox,"mouseClicked|m_6375_","(DDI)");
+        method(slider,"applyValue|m_5697_","()");method(slider,"onClick|m_5716_","(DD)");method(slider,"keyPressed|m_7933_","(III)");
+        method(checkbox,neo?p.a:"isStateTriggered|m_94620_","()");method(checkbox,"mouseClicked|m_6375_","(DDI)");
         for(String name:new String[]{"active|f_93623_","visible|f_93624_"})field(widget,name);
         for(String name:new String[]{"getX|m_252754_","getY|m_252907_","getWidth|m_5711_","getHeight|m_93694_","getMessage|m_6035_"})method(widget,name,"()");
         String g="Lnet/minecraft/client/gui/GuiGraphics;",font="Lnet/minecraft/client/gui/Font;",entity="Lnet/minecraft/world/entity/LivingEntity;";
@@ -91,7 +97,7 @@ public final class ApiContractTest {
         field("net/minecraft/client/gui/Font","lineHeight|f_92710_");
         method("net/minecraft/client/gui/Font","width|m_92895_","(Ljava/lang/String;)");
         method("net/minecraft/world/entity/Entity","getBbWidth|m_20205_","()");method("net/minecraft/world/entity/Entity","getBbHeight|m_20206_","()");
-        method("net/minecraft/client/gui/screens/inventory/InventoryScreen",neo?"renderEntityInInventory":"m_280432_","("+g+(neo?"FFFLorg/joml/Vector3f;":"III")+"Lorg/joml/Quaternionf;Lorg/joml/Quaternionf;"+entity+")");
+        method("net/minecraft/client/gui/screens/inventory/InventoryScreen","renderEntityInInventory|m_280432_","("+g+(neo?"FFFLorg/joml/Vector3f;":"III")+"Lorg/joml/Quaternionf;Lorg/joml/Quaternionf;"+entity+")");
         String living="net/minecraft/world/entity/LivingEntity";
         for(String name:new String[]{"yBodyRot|f_20883_","yHeadRot|f_20885_","yHeadRotO|f_20886_"})field(living,name);
         for(String name:new String[]{"getYRot|m_146908_","getXRot|m_146909_"})method(living,name,"()");
@@ -99,7 +105,7 @@ public final class ApiContractTest {
         if(neo)method(living,"getScale","()");
         for(String[] input:new String[][]{{"mouseDragged|m_7979_","(DDIDD)"},{"mouseReleased|m_6348_","(DDI)"},{"mouseScrolled|m_6050_",neo?"(DDDD)":"(DDD)"},{"charTyped|m_5534_","(CI)"},{"keyPressed|m_7933_","(III)"}})method(screen,input[0],input[1]);
         String search=owner(field(root+p.models,p.search));for(String name:new String[]{"cursorPos|f_94101_","highlightPos|f_94102_","displayPos|f_94100_"})field(search,name);method(search,"getValue|m_94155_","()");
-        String key="net/minecraft/client/KeyMapping";method(key,"matches|m_90832_","(II)");method(key,"matchesMouse|m_90830_","(I)");method(key,"getKeyModifier","()");method(key,"getKeyConflictContext","()");
+        String key="net/minecraft/client/KeyMapping";method(key,"matches|m_90832_","(II)");method(key,"matchesMouse|m_90830_","(I)");if(!p.fabric()){method(key,"getKeyModifier","()");method(key,"getKeyConflictContext","()");}
         String event="L"+p.loaderRoot().replace('.','/')+"/client/event/InputEvent$Key;";
         for(String handler:p.keyHandlers)method(root+handler,p.a,"("+event+")");
         System.out.println("PASS: "+checks+" actual "+p+" reflection member/signature contracts");

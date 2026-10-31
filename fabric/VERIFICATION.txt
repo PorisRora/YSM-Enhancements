@@ -1,0 +1,83 @@
+YSM Enhancements 1.2.0 Fabric verification
+Date: 2026-11-01 (Asia/Tokyo)
+
+Targets
+  Minecraft 1.20.1 + official YSM 2.6.5-fabric+mc1.20.1
+  Minecraft 1.21.1 + official YSM 2.6.5-fabric+mc1.21.1
+
+Minimum Fabric Loader, based on these exact official artifacts
+  1.20.1: 0.15.0 (YSM's own minimum; bundled Config API Port 8.0.0 requires 0.14.21)
+  1.21.1: 0.16.0 (YSM requires 0.15.0, but bundled Config API Port 21.1.3 requires 0.16.0)
+  Separately installed Fabric API/other mods may impose higher requirements.
+
+Build environment
+  Windows; JDK 21.0.7; Gradle Wrapper 9.5.1
+  Java bytecode: 17 for Minecraft 1.20.1; 21 for Minecraft 1.21.1
+  Main code compiled against Fabric Loader 0.15.0 / 0.16.0 APIs respectively.
+  All test JVMs ran on JDK 21. Java 17 compatibility was checked by --release 17
+  and artifact class-version inspection, not by launching a Java 17 JVM.
+
+PASS, both targets
+  Full Gradle build and all eight isolated verification tasks.
+  Actual Minecraft/YSM classes transformed by real Sponge Mixin.
+  Minimum-loader Mixin environments:
+    1.20.1: net.fabricmc:sponge-mixin:0.12.5+mixin.0.8.5 + ASM 9.6
+    1.21.1: net.fabricmc:sponge-mixin:0.15.0+mixin.0.8.7 + ASM 9.6
+  Also checked with sponge-mixin 0.15.2+mixin.0.8.7.
+  Each Mixin run verified Minecraft, KeyboardHandler, MouseHandler and three
+  actual YSM classes (wheel, model search, key registration), including operand analysis.
+  Reflection API contracts: 103 for 1.20.1; 104 for 1.21.1.
+  Actual YSM lock callback and default KeyBinding subclass: one toggle per press;
+  repeats, resynchronization, GUI/overlay/focus loss and rejected provider modifiers
+  do not toggle; mouse and scan-code bindings remain functional.
+  Shared input-reset assertions and actual YSM keyboard/mouse cache clearing.
+  Actual transformed scientific-number parser; negative boolean handling;
+  stale-generation and closed-screen callback rejection.
+  Actual YSM slider arithmetic/input: one apply callback, range clamping,
+  non-mutating author-default display initialization and correct first arrow step.
+  Actual YSM expression parser/AST: fallback constants, aliases, reversed comparisons,
+  arithmetic combinations and conservative rejection of conflicting/conditional rules.
+  Panel interaction: keyboard/mouse focus, navigation, value editing, preview
+  rotation/pose restoration and asynchronous control-list state.
+  Actual bundled configuration specs: TOML persistence, independent settings,
+  live input-reset gate and omission of redundant Fabric mouse forwarding.
+  Artifact metadata, client-only environment, Java targets and namespace inspection.
+  Each installable JAR contains 36 addon classes and no Minecraft/YSM/test classes.
+
+Existing NeoForge regression
+  NeoForge 21.1.264 + YSM 2.6.5: 38 input assertions, five actual YSM transforms,
+  real Mixin application, 113 API contracts, slider, expression and panel interaction tests passed.
+  Forge 1.20.1 was not rerun against an original Forge YSM artifact during this task.
+
+Full-client startup checks
+  1.20.1: Loader 0.15.0, Fabric API 0.90.7+1.20.1, YSM 2.6.5,
+    Config API Port 8.0.0, addon 1.2.0, Java 21. Logs confirm successful
+    client startup, configuration loading and entry into a singleplayer world.
+  1.21.1: Loader 0.16.0, Fabric API 0.102.0+1.21.1, YSM 2.6.5,
+    Config API Port 21.1.3, addon 1.2.0, Java 21. Logs confirm successful
+    startup, configuration loading, entry into a singleplayer world and normal shutdown.
+  The local model was copied to isolated test instances. No existing worlds were modified.
+  Initial launches failed while reading Fabric API Mixin resources (mining-level
+    on 1.20.1, loot-api-v2 on 1.21.1). The relevant source/cache JSON matched and
+    the inspected cached ZIPs passed integrity checks. Restarting recovered both
+    instances without changing the addon JAR. Root cause remains unconfirmed;
+    no addon-code fix for those initial resource-read failures is claimed.
+
+Scope limits
+  Startup/world entry is confirmed; the full panel interaction suite, modpack and
+  multiplayer behavior have not been manually verified in the game.
+  Modifier tests simulate provider filtering; they do not run every MKB/Amecs version.
+  Automated configuration tests use actual specs and persistence with an isolated
+  launcher flag. The separate full-client runs also generated the addon config.
+  Panel tests deliberately omit audio/game boot; the click-sound-unavailable warning
+  is expected in that isolated fixture. Actual sound API signatures are separately checked.
+  The Config API Port warning about correcting an empty test TOML is expected.
+
+Installable artifacts (SHA-256)
+  ecb124f7b73d22f6cffc5dbec4649577202724908ebbda26401c19babe99113c  ysm-enhancements-1.2.0-fabric-mc1.20.1.jar
+  8a585a56823fa3927ef213f56f245b2a750fe4e981f1cf6e64c44bd9badc8171  ysm-enhancements-1.2.0-fabric-mc1.21.1.jar
+
+Reproduce from repository root
+  python tools/prepare_fabric_fixtures.py
+  .\gradlew.bat -p fabric build
+  python tools/verify_fabric_artifacts.py

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "ysm_enhancements",
+  "version": "${version}",
+  "name": "YSM Enhancements",
+  "description": "Button panel, input improvements and fixes for Yes Steve Model 2.6.5.",
+  "authors": ["PorisRora"],
+  "contact": {"sources": "https://github.com/PorisRora/YSM-Enhancements", "issues": "https://github.com/PorisRora/YSM-Enhancements/issues"},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {"client": ["dev.local.ysmenhancements.fabric.FabricEntrypoint"]},
+  "mixins": ["ysm_enhancements.fabric.mixins.json"],
+  "depends": {
+    "fabricloader": ">=${loader}",
+    "minecraft": "${minecraft}",
+    "java": ">=${java}",
+    "yes_steve_model": "2.6.5-fabric+mc${minecraft}",
+    "forgeconfigapiport": "*"
+  }
+}

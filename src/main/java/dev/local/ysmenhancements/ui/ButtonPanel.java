@@ -74,7 +74,7 @@ public final class ButtonPanel {
         d.shape(new Rect(x+13,y+12,3,10),1,ACCENT);d.label("模型配置",new Rect(x+21,y+7,w-60,20),TEXT);
         ghost(d,s,"close",new Rect(x+w-29,y+7,20,19),"×",mx,my,()->Reflect.call(screen,"onClose|m_7379_"),0xE0B8473F);
         Object entity=Reflect.call(Reflect.get(screen,p.animatable),p.entityMethod);int scale=previewScale(entity,s);
-        stage(d,s.preview,scale>0?PreviewRenderer.feet(entity,s.preview,scale,p==YsmProfile.NEO):Integer.MIN_VALUE,scale);
+        stage(d,s.preview,scale>0?PreviewRenderer.feet(entity,s.preview,scale,p.modern()):Integer.MIN_VALUE,scale);
         if(scale>0)preview(graphics,entity,p,s,scale);
         int cx=s.preview.x+s.preview.w/2;
         zoom(d,s,new Rect(cx-50,y+h-29,100,19),mx,my);
@@ -142,8 +142,8 @@ public final class ButtonPanel {
         catch(IllegalAccessException e){return null;}
     }
     private static String localize(Object screen,YsmProfile p,String key,String fallback) {
-        String resolver=p==YsmProfile.NEO?"OoO0o00Oo0O00oOoO0OOO0oo":"OOOOooO0O0o0OOoOOo00oo00";
-        Object data=Reflect.get(screen,"ooOoO0OOO0oOo0Oo00oo000o|o0OooO00ooo0OO000O0OoOoO");
+        String resolver=p.localizer();
+        Object data=Reflect.get(screen,p.data());
         return (String)Reflect.call(Reflect.type(YsmProfile.ROOT+resolver),p.a,data,key,fallback);
     }
     private static void menu(Object screen,YsmProfile p,Draw d,State s,int mx,int my) {
@@ -218,8 +218,8 @@ public final class ButtonPanel {
     }
     private static void controls(Object screen,YsmProfile p,Draw d,State s,int mx,int my){
         Class<?> marker=Reflect.type(YsmProfile.ROOT+p.marker);
-        Class<?> slider=Reflect.type(YsmProfile.ROOT+(p==YsmProfile.NEO?"o0OO0ooOOo0Ooo00OO0Oo0O0":"oo0ooOoOOOO0OOoO0OOoOOo0"));
-        Class<?> checkbox=Reflect.type(YsmProfile.ROOT+(p==YsmProfile.NEO?"O0oo0oOOOoooO0o0oooOo000":"oOO0oo0OoOo0O0OOo0oooO0o"));
+        Class<?> slider=Reflect.type(YsmProfile.ROOT+p.slider());
+        Class<?> checkbox=Reflect.type(YsmProfile.ROOT+p.checkbox());
         List<Object> current=new ArrayList<>();
         for(Object widget:(List<?>)Reflect.get(screen,"renderables|f_169369_"))if(marker.isInstance(widget)&&(Boolean)Reflect.get(widget,"visible|f_93624_"))current.add(widget);
         long now=System.nanoTime();List<Object> displayed=s.controls.update(current,now);
@@ -296,7 +296,7 @@ public final class ButtonPanel {
     }
     private static void drawCheckbox(Object widget,String id,YsmProfile p,Rect r,boolean drawn,Draw d,State s,int mx,int my,boolean choice){
         if(drawn){
-            boolean checked=(Boolean)Reflect.call(widget,p==YsmProfile.NEO?p.a:"m_94620_");
+            boolean checked=(Boolean)Reflect.call(widget,p.modern()?p.a:"isStateTriggered|m_94620_");
             float over=ease(s,"check:"+id,s.viewport.contains(mx,my)&&r.contains(mx,my)),on=ease(s,"on:"+id,checked);
             String label=checkboxLabel(widget);
             // In both supported YSM 2.6.5 builds, selection options use the concrete
@@ -328,7 +328,7 @@ public final class ButtonPanel {
         if(!LABELS.containsKey(type)){
             Field found=null;
             for(Class<?> c=type;found==null&&c!=null&&c.getName().startsWith(YsmProfile.ROOT);c=c.getSuperclass())for(Field f:c.getDeclaredFields())
-                if(found==null&&!Modifier.isStatic(f.getModifiers())&&f.getType().getName().equals("net.minecraft.network.chat.Component")){f.setAccessible(true);found=f;}
+                if(found==null&&!Modifier.isStatic(f.getModifiers())&&f.getType()==Reflect.type("net.minecraft.network.chat.Component")){f.setAccessible(true);found=f;}
             LABELS.put(type,found);
         }
         Field label=LABELS.get(type);
@@ -347,7 +347,7 @@ public final class ButtonPanel {
         Rect r=s.preview;
         Reflect.call(graphics,"enableScissor|m_280588_",r.x,r.y,r.x+r.w,r.y+r.h);
         try {
-            PreviewRenderer.render(graphics,entity,r,scale,s.turn,s.pitch,p==YsmProfile.NEO);
+            PreviewRenderer.render(graphics,entity,r,scale,s.turn,s.pitch,p.modern());
         } finally {Reflect.call(graphics,"disableScissor|m_280618_");}
     }
     private static void hint(Draw d,State s,int cx,int y){
@@ -503,13 +503,13 @@ public final class ButtonPanel {
         double min=((Number)Reflect.get(widget,"minValue")).doubleValue(),max=((Number)Reflect.get(widget,"maxValue")).doubleValue();
         if(min==max)return;
         Reflect.call(widget,"setValue|m_93611_",value);
-        if(!neo&&Double.compare(old,((Number)Reflect.call(widget,"getValue")).doubleValue())!=0)Reflect.call(widget,"m_5697_");
+        if(!neo&&Double.compare(old,((Number)Reflect.call(widget,"getValue")).doubleValue())!=0)Reflect.call(widget,"applyValue|m_5697_");
     }
     public static void keySlider(Object widget,int key,int scan,int modifiers,boolean neo){
         double old=((Number)Reflect.call(widget,"getValue")).doubleValue();
         Reflect.call(widget,"keyPressed|m_7933_",key,scan,modifiers);
         // Forge's stepped-key branch calls its display-only setter; its continuous branch applies already.
-        if(!neo&&((Number)Reflect.get(widget,"stepSize")).doubleValue()>0&&Double.compare(old,((Number)Reflect.call(widget,"getValue")).doubleValue())!=0)Reflect.call(widget,"m_5697_");
+        if(!neo&&((Number)Reflect.get(widget,"stepSize")).doubleValue()>0&&Double.compare(old,((Number)Reflect.call(widget,"getValue")).doubleValue())!=0)Reflect.call(widget,"applyValue|m_5697_");
     }
     /** Vanilla buttons click when pressed and sliders when released; panel-drawn targets do the same. */
     private static void clickSound(){

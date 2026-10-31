@@ -1,6 +1,13 @@
-# YSM 体验优化（YSM Enhancements）1.1.0 正式版
+# YSM 体验优化（YSM Enhancements）
 
 [English](README.en.md)
+
+| 加载器 | 当前发布版 | 下载与说明 |
+|---|---|---|
+| Fabric 1.20.1 / 1.21.1 | 1.2.0 | [下载](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.2.0) · [Fabric 说明](fabric/README.md) |
+| Forge 1.20.1 / NeoForge 1.21.1 | 1.1.0 | [下载](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0) |
+
+下文为 Forge / NeoForge 1.1.0 的发布说明；Fabric 的最低加载器要求、配置方式和验证记录见上方独立说明。
 
 针对官方 YSM 2.6.5 的独立第三方客户端补丁：新增模型驱动的 Z 按钮面板、加载器原生配置入口，并修复按键状态、快捷键、数值读取和界面控件问题。不包含、覆盖或修改 YSM 原始 jar、模型及存档。与 YSM 官方无隶属关系。
 
@@ -55,7 +62,7 @@
 | 1.21.1 | NeoForge 21.1.x | 2.6.5 NeoForge | 21.1.264（1.0.0 为 21.1.249） |
 | 1.20.1 | Forge 47.x | 2.6.5 Forge | 47.4.16（1.0.0 验证；1.1.0 未重新运行） |
 
-这不代表整个 1.20–1.21 系列兼容。Fabric、其他 Minecraft 小版本、旧 NeoForge 1.20.1 及其他 YSM 版本未适配。运行游戏需使用该 Minecraft 版本要求的 Java；补丁字节码为 Java 17，构建需要 JDK 21。
+这不代表整个 1.20–1.21 系列兼容。此合并包不适用于 Fabric；Fabric 使用[独立构建](fabric/README.md)。其他 Minecraft 小版本、旧 NeoForge 1.20.1 及其他 YSM 版本未适配。运行游戏需使用该 Minecraft 版本要求的 Java；Forge / NeoForge 补丁字节码为 Java 17，构建需要 JDK 21。
 
 ## 安装与配置
 

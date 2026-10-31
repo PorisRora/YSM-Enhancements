@@ -11,8 +11,18 @@ public final class ScaleDefaultsTest {
     private final YsmProfile p;private final Object parser;
     ScaleDefaultsTest(YsmProfile profile)throws Exception {
         p=profile;var layout=ScaleDefaults.Layout.of(p);
-        String binding=p==YsmProfile.NEO?"O0OoOO0ooo0oOooo0oooO0o0":"OooOoO0O0O0o00Oo000o00Oo";
-        String engine=p==YsmProfile.NEO?"oO0o0O0oo00O00Oo0O00Oooo":"o00oO0OOoOOooOoOOoO0Oooo";
+        String binding=switch(p) {
+            case NEO -> "O0OoOO0ooo0oOooo0oooO0o0";
+            case FORGE -> "OooOoO0O0O0o00Oo000o00Oo";
+            case FABRIC_1201 -> "O0oO0OOOoOoo000oo0000OOo";
+            case FABRIC_1211 -> "O00o0O0O0oOOooooo0OOoOo0";
+        };
+        String engine=switch(p) {
+            case NEO -> "oO0o0O0oo00O00Oo0O00Oooo";
+            case FORGE -> "o00oO0OOoOOooOoOOoO0Oooo";
+            case FABRIC_1201 -> "oOooO0ooO0000OO0OoOO0O00";
+            case FABRIC_1211 -> "ooO0o0ooO0OooO0OOOo00o0O";
+        };
         Object scope=Reflect.type(YsmProfile.ROOT+layout.scoped()).getConstructor().newInstance();
         Class<?> bindingType=Reflect.type(YsmProfile.ROOT+binding);
         Object resolver=Proxy.newProxyInstance(bindingType.getClassLoader(),new Class<?>[]{bindingType},(obj,method,args)->{
@@ -35,7 +45,7 @@ public final class ScaleDefaultsTest {
         public void updateMessage(){updates++;}public void applyValue(){writes++;}
     }
     public static void main(String[] args)throws Exception {
-        var test=new ScaleDefaultsTest(args[0].equals("neo")?YsmProfile.NEO:YsmProfile.FORGE);
+        var test=new ScaleDefaultsTest(YsmProfile.valueOf(args[0].toUpperCase(Locale.ROOT)));
         String v="v.roaming.size";
         RegressionTest.check(test.analyze(v+"==0?1:"+v).get(v)==1,"actual AST recognizes zero fallback");
         RegressionTest.check(test.analyze("variable.roaming.Size != 0 ? variable.roaming.Size : 2").get(v)==2,"alias, case and reversed branch preserve author constant");

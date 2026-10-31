@@ -1,0 +1,63 @@
+## 中文
+
+YSM 体验优化 1.2.0 新增两个 Fabric 客户端安装包，针对官方 **YSM 2.6.5**。
+
+| Minecraft | 最低 Fabric Loader | Java | 安装包 |
+|---|---|---|---|
+| 1.20.1 | 0.15.0 | 17+ | `ysm-enhancements-1.2.0-fabric-mc1.20.1.jar` |
+| 1.21.1 | 0.16.0 | 21+ | `ysm-enhancements-1.2.0-fabric-mc1.21.1.jar` |
+
+最低 Loader 按当前官方 YSM 原包及其自带依赖确定：1.21.1 包中的 Forge Config API Port 要求 0.16.0。另行安装的 Fabric API 或其他模组可能要求更高版本。
+
+### 完成的功能和修复
+
+- 新增 Z 按钮面板：深色半透明界面、按空间自动排布、完整目录路径、模型预览旋转缩放、滑动开关、数值输入及键盘导航。
+- 修复动作锁定长按重复切换，阻止按键状态重同步、窗口失焦和 GUI 中的误触发，并遵循快捷键提供方的修饰键状态。
+- 修复打开界面、切换窗口、释放鼠标捕获或松键后残留的 YSM 按键状态。
+- 修复原轮盘滚动区域外的隐藏控件仍可点击、滚动箭头状态过期及旧页面异步回调叠加。
+- 正确读取科学计数法，将负数且非零的开关变量显示为已勾选，保留搜索光标、选区和文本显示位置。
+- 根据作者明确的缩放回退表达式修正超出范围的零初值显示，打开面板时不修改模型变量。
+- 适配两版 Fabric 滑块，确保数值输入和方向键只触发一次模型回调；面板发生错误时退回官方轮盘。
+
+### 安装与验证
+
+退出游戏并移除旧补丁，保留官方 YSM 2.6.5 及匹配的 Fabric API，只安装对应 Minecraft 版本的一个 JAR。配置文件为 `config/ysm_enhancements-client.toml`；将 `interface.buttonPanel` 设为 `false` 可恢复官方轮盘。客户端安装即可。
+
+两版自动测试通过，包括最低 Loader 配套的 Mixin 注入、实际类接口、输入、锁定回调、滑块、模型表达式和配置读写。两版完整客户端也已启动，日志确认进入单人世界；全部面板手动操作、整合包和联机组合尚未完整验证。
+
+本地首次启动曾遇到 Fabric API Mixin 资源读取失败；检查原包和生成缓存后重启均恢复，补丁 JAR 未改动。根因尚未确认，不将该现象列为本补丁已修复的问题。详见随附 `VERIFICATION.txt`。
+
+Forge 1.20.1 / NeoForge 1.21.1 用户继续使用 [1.1.0](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0)。本次附件为 Fabric 安装包。
+
+---
+
+## English
+
+YSM Enhancements 1.2.0 adds two Fabric client artifacts for official **YSM 2.6.5**.
+
+| Minecraft | Minimum Fabric Loader | Java | Artifact |
+|---|---|---|---|
+| 1.20.1 | 0.15.0 | 17+ | `ysm-enhancements-1.2.0-fabric-mc1.20.1.jar` |
+| 1.21.1 | 0.16.0 | 21+ | `ysm-enhancements-1.2.0-fabric-mc1.21.1.jar` |
+
+Loader minimums follow the current official YSM artifacts and their bundled dependencies. The Config API Port bundled with the 1.21.1 artifact requires Loader 0.16.0. Separately installed Fabric API or other mods may require newer loaders.
+
+### Features and fixes
+
+- Adds a Z button panel with a translucent dark interface, automatic layout, full folder paths, rotatable and zoomable model preview, toggles, numeric editing and keyboard navigation.
+- Fixes repeated animation-lock toggles while holding a key. State resynchronization, focus loss and GUI interaction cannot toggle the lock; provider modifier filtering is respected.
+- Clears stale YSM input after GUI opening, focus loss, cursor release and physical key/button release.
+- Fixes clicks on clipped wheel controls, outdated scroll arrows and delayed callbacks from previous screens.
+- Handles scientific notation and negative nonzero boolean values correctly; preserves search caret, selection and text viewport.
+- Initializes out-of-range zero-valued scale sliders from explicit author-defined fallback expressions without changing model variables when opening the panel.
+- Adapts both Fabric slider implementations so numeric edits and arrow keys apply exactly one model callback. Panel errors fall back to the official wheel.
+
+### Installation and verification
+
+Close the game, remove the previous addon, and keep official YSM 2.6.5 plus the matching Fabric API installed. Install exactly one JAR for your Minecraft version. Settings are stored in `config/ysm_enhancements-client.toml`; set `interface.buttonPanel = false` to restore the official wheel. Only the client needs this addon.
+
+Both automated suites passed, covering the minimum loaders' Mixin environments, actual API contracts, input, lock callbacks, sliders, expression parsing and config persistence. Both full clients also launched and entered singleplayer worlds according to their logs. The complete manual panel, modpack and multiplayer combinations have not been verified.
+
+Initial local launches encountered Fabric API Mixin resource-read failures. After inspecting original and generated cache files, restarting recovered both instances without changing the addon JARs. The root cause remains unconfirmed and is not claimed as an addon fix. See the attached `VERIFICATION.txt`.
+
+Forge 1.20.1 / NeoForge 1.21.1 users should continue using [1.1.0](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0). This release's installable artifacts are for Fabric.
