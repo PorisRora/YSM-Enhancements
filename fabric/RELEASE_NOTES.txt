@@ -1,63 +1,123 @@
 ## 中文
 
-YSM 体验优化 1.1.0 新增两个 Fabric 客户端安装包，针对官方 **YSM 2.6.5**。
+YSM 体验优化 1.1.0 Fabric，针对官方 **YSM 2.6.5** 的独立第三方客户端补丁。
 
-| Minecraft | 最低 Fabric Loader | Java | 安装包 |
-|---|---|---|---|
-| 1.20.1 | 0.15.0 | 17+ | `ysm-enhancements-1.1.0-fabric-mc1.20.1.jar` |
-| 1.21.1 | 0.16.0 | 21+ | `ysm-enhancements-1.1.0-fabric-mc1.21.1.jar` |
+| Minecraft | 官方 YSM | 安装包 | Java | 最低 Fabric Loader |
+|---|---|---|---|---|
+| 1.20.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.20.1.jar` | 17 或更高 | 0.15.0 |
+| 1.21.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.21.1.jar` | 21 或更高 | 0.16.0 |
 
-最低 Loader 按当前官方 YSM 原包及其自带依赖确定：1.21.1 包中的 Forge Config API Port 要求 0.16.0。另行安装的 Fabric API 或其他模组可能要求更高版本。
+### 相对官方 YSM 2.6.5 的新增功能
 
-### 完成的功能和修复
+- **Z 按钮面板**：可替换官方 Z 轮盘，读取当前模型作者定义的菜单、分类、参数和动作。按可用空间自动排布，宽屏最多三列，放得下时不分页；参数多时支持滚动与滚动条拖动。
+- **模型预览操作**：支持拖动旋转整个模型、滚轮及 ± 按钮缩放，点击百分比复位预览视角和缩放；预览带接地阴影。
+- **参数输入与键盘操作**：滑条支持直接输入数值，原值预先全选，清理冗长浮点尾数，无效输入标红；Enter 确认、Esc 取消。支持 Tab、方向键和 PageUp／PageDown，焦点会自动滚动到可视区域。数值输入和左右方向键只触发一次模型回调，面板操作不会误触被隐藏的原轮盘控件。
+- **面板导航与状态显示**：深色半透明面板、蓝色强调色、滑动开关和悬停过渡动画。标题显示完整目录路径，以 `›`、`‹` 标识子目录和返回入口；从子目录返回时保留原分页，根目录返回按钮不再意外关闭面板；选项组和键盘焦点有独立状态提示。
+- **独立功能配置**：按钮面板与各项修复默认开启，可在配置文件中分别控制；关闭按钮面板即可使用官方轮盘，其他修复继续独立生效。
+- **错误回退与开销优化**：面板绘制或输入处理出错时记录错误并退回原轮盘；缓存反射查询、菜单文字和文字截断结果，降低每帧开销。
 
-- 新增 Z 按钮面板：深色半透明界面、按空间自动排布、完整目录路径、模型预览旋转缩放、滑动开关、数值输入及键盘导航。
-- 修复动作锁定长按重复切换，阻止按键状态重同步、窗口失焦和 GUI 中的误触发，并遵循快捷键提供方的修饰键状态。
-- 修复打开界面、切换窗口、释放鼠标捕获或松键后残留的 YSM 按键状态。
-- 修复原轮盘滚动区域外的隐藏控件仍可点击、滚动箭头状态过期及旧页面异步回调叠加。
-- 正确读取科学计数法，将负数且非零的开关变量显示为已勾选，保留搜索光标、选区和文本显示位置。
-- 根据作者明确的缩放回退表达式修正超出范围的零初值显示，打开面板时不修改模型变量。
-- 适配两版 Fabric 滑块，确保数值输入和方向键只触发一次模型回调；面板发生错误时退回官方轮盘。
+### 修复的官方问题
 
-### 安装与验证
+以下 9 项修复以官方 YSM 2.6.5 Fabric 为对比基准：
 
-退出游戏并移除旧补丁，保留官方 YSM 2.6.5 及匹配的 Fabric API，只安装对应 Minecraft 版本的一个 JAR。配置文件为 `config/ysm_enhancements-client.toml`；将 `interface.buttonPanel` 设为 `false` 可恢复官方轮盘。客户端安装即可。
+1. **按键状态残留**：切换窗口、打开背包等界面、释放鼠标捕获或松开按键后，清理 YSM 中残留的按住状态，避免 Ctrl 等按键继续生效。
+2. **动作锁定快捷键误触发**：每次物理按下只切换一次锁定，阻止长按重复事件、按键状态重同步、窗口失焦及 GUI 中的误触发，并遵循快捷键提供方的修饰键状态。支持键盘、扫描码和鼠标绑定。
+3. **隐藏控件仍可点击**：阻止官方轮盘滚动区域外的隐藏模型控件响应点击。
+4. **滚动箭头状态错误**：滚动或异步加载控件后，及时更新上下箭头是否可用。
+5. **科学计数法读取错误**：正确读取 `1e-5` 等格式的模型变量。
+6. **缩放滑条首次显示错误**：当零初值超出滑条可选范围时，根据模型缩放表达式中明确的回退常数初始化显示。例如 `v.roaming.player_size==0?1:v.roaming.player_size` 的首次显示为 1。兼容官方轮盘和按钮面板；打开界面时不修改模型变量或发送同步。已有非零值、可选的 0、复杂条件及冲突规则保留原逻辑。
+7. **负数开关状态错误**：将负数且非零的模型变量正确显示为已勾选。
+8. **搜索光标和选区丢失**：模型搜索列表重建时，保留光标、选区及文本显示位置。
+9. **延迟回调造成控件叠加**：丢弃旧配置页或已关闭界面的异步控件回调，避免旧控件叠到当前界面。
 
-两版自动测试通过，包括最低 Loader 配套的 Mixin 注入、实际类接口、输入、锁定回调、滑块、模型表达式和配置读写。两版完整客户端也已启动，日志确认进入单人世界；全部面板手动操作、整合包和联机组合尚未完整验证。
+### 与 Forge / NeoForge 版的适配差异
 
-本地首次启动曾遇到 Fabric API Mixin 资源读取失败；检查原包和生成缓存后重启均恢复，补丁 JAR 未改动。根因尚未确认，不将该现象列为本补丁已修复的问题。详见随附 `VERIFICATION.txt`。
+| 项目 | Forge / NeoForge 1.1.0 | Fabric 1.1.0 |
+|---|---|---|
+| 核心界面 | 模型驱动的 Z 按钮面板 | 同一套面板功能，分别适配两版 Fabric 接口 |
+| 修复项 | 10 项 | 上述 9 项；原版已支持鼠标快捷键，无需重复修复 |
+| 动作锁定 | 修饰键与操作环境检查 | 针对 Fabric 回调额外处理长按重复与状态重同步 |
+| 配置入口 | Mods 内的配置界面 | 编辑 `config/ysm_enhancements-client.toml`，当前未提供游戏内配置界面 |
 
-Forge 1.20.1 / NeoForge 1.21.1 用户继续使用 [1.1.0](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0)。本次附件为 Fabric 安装包。
+Fabric 不加入重复的鼠标事件转发，也不提供 `mouseShortcuts` 配置项。
+
+### 安装与配置
+
+保留对应版本的官方 YSM 2.6.5 和它要求的 Fabric API，将表中匹配的一个补丁 JAR 放入客户端 `mods` 文件夹。升级时先移除旧的 YSM Enhancements 补丁，两个版本的包不能同时安装；服务器无需安装本补丁。
+
+最低加载器版本按当前官方原包及其自带依赖确定：两版 YSM 本体都要求 Loader ≥ 0.15.0；1.21.1 包内的 Forge Config API Port 21.1.3 另外要求 Loader ≥ 0.16.0。因此 1.21.1 的实际最低要求为 0.16.0，1.20.1 为 0.15.0。如果另行安装的 Fabric API 或其他模组要求更高版本，仍需满足它们的要求。
+
+配置通过 YSM 已依赖的 Forge Config API Port 注册，保存在 `config/ysm_enhancements-client.toml`。两个版本使用相同的配置键；本次 Fabric 构建通过编辑配置文件调整功能，建议退出游戏后编辑。`interface.buttonPanel = false` 恢复官方轮盘，其余修复可独立开启。
+
+### 验证范围
+
+两版均使用对应的官方 YSM 2.6.5 JAR 与 Minecraft 类文件进行测试：真实 Sponge Mixin 注入、字节码操作数验证、反射接口检查、实际锁定回调、实际滑块运算/输入、实际模型表达式解析及配置读写。分别使用 Loader 0.15.0 / 0.16.0 的 API 编译，并检查它们配套的 Mixin 0.8.5 / 0.8.7 和 ASM 9.6 注入环境。面板导航与输入状态使用隔离回归测试。
+
+另已在两个独立实例中启动完整客户端，日志确认两版都成功进入单人世界并加载配置。使用的 Fabric API 分别为 0.90.7+1.20.1 与 0.102.0+1.21.1。尚未完成全部面板操作、整合包、联机和第三方键位模组组合验证；修饰键回归测试模拟提供方的状态过滤，不代表已运行所有 ModernKeyBinding / Amecs 版本。
+
+本地首次启动曾遇到 Fabric API 的 Mixin 配置资源读取失败。检查原包和生成缓存后，重启均恢复，补丁 JAR 未改动；根因尚未确认，不将其列为本补丁已修复的问题。详细结果见 [验证记录](https://github.com/PorisRora/YSM-Enhancements/releases/download/v1.1.0-fabric/VERIFICATION.txt)。
+
+Forge / NeoForge 用户使用 [1.1.0 合并包](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0)。
 
 ---
 
 ## English
 
-YSM Enhancements 1.1.0 adds two Fabric client artifacts for official **YSM 2.6.5**.
+YSM Enhancements 1.1.0 Fabric is an independent third-party client addon for official **YSM 2.6.5**.
 
-| Minecraft | Minimum Fabric Loader | Java | Artifact |
-|---|---|---|---|
-| 1.20.1 | 0.15.0 | 17+ | `ysm-enhancements-1.1.0-fabric-mc1.20.1.jar` |
-| 1.21.1 | 0.16.0 | 21+ | `ysm-enhancements-1.1.0-fabric-mc1.21.1.jar` |
+| Minecraft | Required YSM | Artifact | Java | Minimum Fabric Loader |
+|---|---|---|---|---|
+| 1.20.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.20.1.jar` | 17+ | 0.15.0 |
+| 1.21.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.21.1.jar` | 21+ | 0.16.0 |
 
-Loader minimums follow the current official YSM artifacts and their bundled dependencies. The Config API Port bundled with the 1.21.1 artifact requires Loader 0.16.0. Separately installed Fabric API or other mods may require newer loaders.
+### Features added over official YSM 2.6.5
 
-### Features and fixes
+- **Z button panel**: Replaces the official radial wheel with menus, folders, parameters and actions defined by the current model. Layout adapts to available space, uses up to three columns and paginates only when needed. Long parameter lists support scrolling and scrollbar dragging.
+- **Model preview controls**: Drag to rotate the whole model, zoom with the wheel or +/- buttons, and click the percentage to reset the preview. A ground shadow helps position the model visually.
+- **Numeric editing and keyboard controls**: Slider values can be edited directly, with the original text selected, concise decimal formatting and invalid-input highlighting. Enter confirms and Esc cancels. Tab, arrow keys and PageUp/PageDown are supported, with automatic scrolling to the focused control. Numeric edits and left/right keys apply exactly one model callback; panel input does not activate hidden wheel controls.
+- **Navigation and state display**: A translucent dark panel with blue accents, switches and hover transitions. Full folder paths and `›` / `‹` indicators show navigation; returning from a subfolder restores its page, and the root back button does not accidentally close the panel. Choice groups and keyboard focus have distinct indicators.
+- **Independent feature settings**: The panel and fixes are enabled by default and can be toggled independently in the configuration file. Disabling the panel restores the official wheel while retaining other enabled fixes.
+- **Fallback and lower frame overhead**: Rendering or input errors are logged and fall back to the official wheel. Reflection lookups, menu labels and text fitting are cached to reduce per-frame work.
 
-- Adds a Z button panel with a translucent dark interface, automatic layout, full folder paths, rotatable and zoomable model preview, toggles, numeric editing and keyboard navigation.
-- Fixes repeated animation-lock toggles while holding a key. State resynchronization, focus loss and GUI interaction cannot toggle the lock; provider modifier filtering is respected.
-- Clears stale YSM input after GUI opening, focus loss, cursor release and physical key/button release.
-- Fixes clicks on clipped wheel controls, outdated scroll arrows and delayed callbacks from previous screens.
-- Handles scientific notation and negative nonzero boolean values correctly; preserves search caret, selection and text viewport.
-- Initializes out-of-range zero-valued scale sliders from explicit author-defined fallback expressions without changing model variables when opening the panel.
-- Adapts both Fabric slider implementations so numeric edits and arrow keys apply exactly one model callback. Panel errors fall back to the official wheel.
+### Official issues fixed
 
-### Installation and verification
+These nine fixes use official YSM 2.6.5 Fabric as the baseline:
 
-Close the game, remove the previous addon, and keep official YSM 2.6.5 plus the matching Fabric API installed. Install exactly one JAR for your Minecraft version. Settings are stored in `config/ysm_enhancements-client.toml`; set `interface.buttonPanel = false` to restore the official wheel. Only the client needs this addon.
+1. **Stuck input state**: Clears cached YSM key/button states after focus loss, GUI opening, cursor release and physical release, preventing keys such as Ctrl from remaining active.
+2. **Accidental animation-lock toggles**: Toggles once per physical press, rejecting repeats, state resynchronization, focus loss and GUI input while respecting provider modifier filtering. Keyboard, scan-code and mouse bindings are supported.
+3. **Clickable hidden controls**: Rejects clicks on model controls outside the official wheel's visible scrolling area.
+4. **Incorrect scroll-arrow state**: Refreshes arrow availability after scrolling and asynchronous control loading.
+5. **Scientific-notation parsing**: Correctly reads model values such as `1e-5`.
+6. **Incorrect initial scale-slider display**: When a zero initial value falls outside the slider range, uses explicit fallback constants in the model's scale expressions. For example, `v.roaming.player_size==0?1:v.roaming.player_size` initially displays 1. Works in both interfaces without writing model variables or sending synchronization on opening. Existing nonzero values, selectable zero, complex conditions and conflicting rules retain their original behavior.
+7. **Incorrect negative boolean state**: Displays negative nonzero model variables as checked.
+8. **Lost search caret and selection**: Preserves the caret, selection and visible text position when rebuilding the model search list.
+9. **Overlapping controls from delayed callbacks**: Discards callbacks from an older configuration page or a closed screen.
 
-Both automated suites passed, covering the minimum loaders' Mixin environments, actual API contracts, input, lock callbacks, sliders, expression parsing and config persistence. Both full clients also launched and entered singleplayer worlds according to their logs. The complete manual panel, modpack and multiplayer combinations have not been verified.
+### Differences from Forge / NeoForge
 
-Initial local launches encountered Fabric API Mixin resource-read failures. After inspecting original and generated cache files, restarting recovered both instances without changing the addon JARs. The root cause remains unconfirmed and is not claimed as an addon fix. See the attached `VERIFICATION.txt`.
+| Item | Forge / NeoForge 1.1.0 | Fabric 1.1.0 |
+|---|---|---|
+| Main interface | Model-driven Z button panel | The same panel features, adapted to each Fabric target |
+| Fixes | 10 items | The nine items above; mouse shortcuts are already supported upstream |
+| Animation lock | Modifier and interaction-context checks | Also handles Fabric callback repeats and state resynchronization |
+| Configuration entry | Configuration screen in the Mods menu | Edit `config/ysm_enhancements-client.toml`; no in-game config screen currently |
 
-Forge 1.20.1 / NeoForge 1.21.1 users should continue using [1.1.0](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0). This release's installable artifacts are for Fabric.
+Fabric does not inject duplicate mouse-event forwarding or expose the redundant `mouseShortcuts` setting.
+
+### Installation
+
+Keep the matching official YSM 2.6.5 and its Fabric API dependency installed. Add exactly one matching addon JAR to the client's `mods` folder. Remove the previous addon JAR when upgrading. No addon installation is needed on the server.
+
+Loader minimums follow the current official artifacts and their bundled dependencies. Both YSM artifacts declare Loader ≥ 0.15.0, but the 1.21.1 artifact bundles Forge Config API Port 21.1.3, which requires Loader ≥ 0.16.0. The effective minimums are therefore 0.15.0 and 0.16.0 respectively. Separately installed Fabric API or other mods may require newer loaders.
+
+Settings are registered through YSM's Forge Config API Port dependency and stored in `config/ysm_enhancements-client.toml`. This Fabric build uses file-based configuration; edit it while the game is closed. Set `interface.buttonPanel = false` to restore the original wheel while retaining individual fixes.
+
+### Verification
+
+Both targets are checked against actual official YSM and Minecraft class files: real Sponge Mixin transformations, operand verification, reflection contracts, actual lock callbacks, actual slider arithmetic/input, real expression parsing and configuration persistence. They compile against Loader 0.15.0 / 0.16.0 APIs and are checked with the corresponding Mixin 0.8.5 / 0.8.7 and ASM 9.6 environments. Panel interaction uses isolated regression tests.
+
+Both full clients were also launched in separate instances, and logs confirm entry into singleplayer worlds and configuration loading. Fabric API 0.90.7+1.20.1 and 0.102.0+1.21.1 were used respectively. The complete panel interaction suite, modpacks, multiplayer and all third-party keybinding provider combinations have not been play-tested. Modifier regression tests simulate provider filtering; they do not execute every ModernKeyBinding or Amecs release.
+
+Initial local launches encountered Fabric API Mixin configuration resource-read failures. Original and generated cache files were inspected, and both instances started successfully after restarting without changing the addon JARs. The root cause remains unconfirmed; this is not listed as a bug fixed by the addon. See the [verification record](https://github.com/PorisRora/YSM-Enhancements/releases/download/v1.1.0-fabric/VERIFICATION.txt).
+
+Forge / NeoForge users should use the [1.1.0 combined artifact](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0).

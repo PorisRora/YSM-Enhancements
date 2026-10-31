@@ -2,25 +2,48 @@
 
 [中文](README.md)
 
-A client addon for official Yes Steve Model 2.6.5. Core fixes are shared with the Forge / NeoForge implementation; Fabric adapters, tests and artifacts are maintained separately for each supported Minecraft version.
+An independent third-party client addon for official YSM 2.6.5. It adds a model-driven Z button panel and fixes input state, animation lock, numeric parsing and control handling. It does not bundle, overwrite or modify the original YSM JAR, models or saves. This project is not affiliated with YSM.
 
 | Minecraft | Required YSM | Artifact | Java | Minimum Fabric Loader |
 |---|---|---|---|---|
 | 1.20.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.20.1.jar` | 17+ | 0.15.0 |
 | 1.21.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.21.1.jar` | 21+ | 0.16.0 |
 
-As of November 1, 2026, these are the two Fabric targets provided by official YSM 2.6.5. Its minimum Minecraft version is 1.20.1. Older YSM 2.4.1 releases extend to 1.16.5 and require separate adapters. This table does not imply support for every intervening Minecraft patch release. [Official compatibility list](https://yesstevemodel.github.io/en/wiki/faq/)
+Support follows current official YSM 2.6.5 and is limited to the two environments listed above, not every 1.20.x / 1.21.x release. [Official compatibility list](https://yesstevemodel.github.io/en/wiki/faq/)
 
-## Features and fixes
+## Features added over official YSM 2.6.5
 
-- Port of the 1.1.0 button panel: automatic layout, full folder paths, rotatable and zoomable model preview, numeric editing, keyboard navigation and fallback to the original wheel.
-- Animation lock toggles once per physical press. Repeats, state resynchronization, focus loss and GUI interaction cannot toggle it. Keyboard, scan-code and mouse bindings remain supported; provider modifier filtering is respected.
-- Clears stale YSM input after focus loss, GUI opening, cursor release and physical key/button release.
-- Fixes clicks on clipped wheel controls, outdated scroll arrows, scientific notation, negative boolean values, lost search caret/selection and stale callbacks from previous screens.
-- Initializes out-of-range zero-valued scale sliders from explicit author-defined fallback expressions without modifying model variables.
-- Adapts each Fabric slider implementation so typed values and arrow keys apply exactly one model callback.
+- **Z button panel**: Replaces the official radial wheel with menus, folders, parameters and actions defined by the current model. Layout adapts to available space, uses up to three columns and paginates only when needed. Long parameter lists support scrolling and scrollbar dragging.
+- **Model preview controls**: Drag to rotate the whole model, zoom with the wheel or +/- buttons, and click the percentage to reset the preview. A ground shadow helps position the model visually.
+- **Numeric editing and keyboard controls**: Slider values can be edited directly, with the original text selected, concise decimal formatting and invalid-input highlighting. Enter confirms and Esc cancels. Tab, arrow keys and PageUp/PageDown are supported, with automatic scrolling to the focused control. Numeric edits and left/right keys apply exactly one model callback; panel input does not activate hidden wheel controls.
+- **Navigation and state display**: A translucent dark panel with blue accents, switches and hover transitions. Full folder paths and `›` / `‹` indicators show navigation; returning from a subfolder restores its page, and the root back button does not accidentally close the panel. Choice groups and keyboard focus have distinct indicators.
+- **Independent feature settings**: The panel and fixes are enabled by default and can be toggled independently in the configuration file. Disabling the panel restores the official wheel while retaining other enabled fixes.
+- **Fallback and lower frame overhead**: Rendering or input errors are logged and fall back to the official wheel. Reflection lookups, menu labels and text fitting are cached to reduce per-frame work.
 
-Fabric YSM already supports mouse-bound shortcuts, so Forge-specific mouse forwarding and its redundant configuration option are omitted.
+## Official issues fixed
+
+These nine fixes use official YSM 2.6.5 Fabric as the baseline:
+
+1. **Stuck input state**: Clears cached YSM key/button states after focus loss, GUI opening, cursor release and physical release, preventing keys such as Ctrl from remaining active.
+2. **Accidental animation-lock toggles**: Toggles once per physical press, rejecting repeats, state resynchronization, focus loss and GUI input while respecting provider modifier filtering. Keyboard, scan-code and mouse bindings are supported.
+3. **Clickable hidden controls**: Rejects clicks on model controls outside the official wheel's visible scrolling area.
+4. **Incorrect scroll-arrow state**: Refreshes arrow availability after scrolling and asynchronous control loading.
+5. **Scientific-notation parsing**: Correctly reads model values such as `1e-5`.
+6. **Incorrect initial scale-slider display**: When a zero initial value falls outside the slider range, uses explicit fallback constants in the model's scale expressions. For example, `v.roaming.player_size==0?1:v.roaming.player_size` initially displays 1. Works in both interfaces without writing model variables or sending synchronization on opening. Existing nonzero values, selectable zero, complex conditions and conflicting rules retain their original behavior.
+7. **Incorrect negative boolean state**: Displays negative nonzero model variables as checked.
+8. **Lost search caret and selection**: Preserves the caret, selection and visible text position when rebuilding the model search list.
+9. **Overlapping controls from delayed callbacks**: Discards callbacks from an older configuration page or a closed screen.
+
+## Differences from Forge / NeoForge
+
+| Item | Forge / NeoForge 1.1.0 | Fabric 1.1.0 |
+|---|---|---|
+| Main interface | Model-driven Z button panel | The same panel features, adapted to each Fabric target |
+| Fixes | 10 items | The nine items above; mouse shortcuts are already supported upstream |
+| Animation lock | Modifier and interaction-context checks | Also handles Fabric callback repeats and state resynchronization |
+| Configuration entry | Configuration screen in the Mods menu | Edit `config/ysm_enhancements-client.toml`; no in-game config screen currently |
+
+Fabric does not inject duplicate mouse-event forwarding or expose the redundant `mouseShortcuts` setting.
 
 ## Installation
 
