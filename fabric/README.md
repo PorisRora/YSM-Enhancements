@@ -1,4 +1,4 @@
-# YSM 体验优化 — Fabric 1.2.0
+# YSM 体验优化 — Fabric 1.1.0
 
 [English](README.en.md)
 
@@ -6,8 +6,8 @@
 
 | Minecraft | 官方 YSM | 安装包 | Java | 最低 Fabric Loader |
 |---|---|---|---|---|
-| 1.20.1 | 2.6.5 Fabric | `ysm-enhancements-1.2.0-fabric-mc1.20.1.jar` | 17 或更高 | 0.15.0 |
-| 1.21.1 | 2.6.5 Fabric | `ysm-enhancements-1.2.0-fabric-mc1.21.1.jar` | 21 或更高 | 0.16.0 |
+| 1.20.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.20.1.jar` | 17 或更高 | 0.15.0 |
+| 1.21.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.21.1.jar` | 21 或更高 | 0.16.0 |
 
 截至 2026-11-01，官方 YSM 2.6.5 的 Fabric 支持范围就是这两档，最低为 1.20.1。历史上的 YSM 2.4.1 支持到 1.16.5，属于另一套适配目标。支持的是表中的具体版本，并非 1.20.1 到 1.21.1 之间的所有小版本。[官方支持列表](https://yesstevemodel.github.io/en/wiki/faq/)
 

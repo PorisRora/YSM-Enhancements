@@ -1,4 +1,4 @@
-YSM Enhancements 1.2.0 Fabric verification
+YSM Enhancements 1.1.0 Fabric verification
 Date: 2026-11-01 (Asia/Tokyo)
 
 Targets
@@ -56,6 +56,8 @@ Full-client startup checks
   1.21.1: Loader 0.16.0, Fabric API 0.102.0+1.21.1, YSM 2.6.5,
     Config API Port 21.1.3, addon 1.2.0, Java 21. Logs confirm successful
     startup, configuration loading, entry into a singleplayer world and normal shutdown.
+  Full-client runs used the same addon class bytes as the final 1.1.0 artifacts;
+    only the release version metadata was aligned after those runs.
   The local model was copied to isolated test instances. No existing worlds were modified.
   Initial launches failed while reading Fabric API Mixin resources (mining-level
     on 1.20.1, loot-api-v2 on 1.21.1). The relevant source/cache JSON matched and
@@ -74,8 +76,8 @@ Scope limits
   The Config API Port warning about correcting an empty test TOML is expected.
 
 Installable artifacts (SHA-256)
-  ecb124f7b73d22f6cffc5dbec4649577202724908ebbda26401c19babe99113c  ysm-enhancements-1.2.0-fabric-mc1.20.1.jar
-  8a585a56823fa3927ef213f56f245b2a750fe4e981f1cf6e64c44bd9badc8171  ysm-enhancements-1.2.0-fabric-mc1.21.1.jar
+  dc8d14466bd7d7c85fedca2ae1b0425003f2c156e4a2414ee96e567ba9479239  ysm-enhancements-1.1.0-fabric-mc1.20.1.jar
+  2ecf31f09fab6a685647dd9a7e95f0c4c26f77dd02b010e77e370213120d61cb  ysm-enhancements-1.1.0-fabric-mc1.21.1.jar
 
 Reproduce from repository root
   python tools/prepare_fabric_fixtures.py

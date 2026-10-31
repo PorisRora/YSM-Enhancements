@@ -1,11 +1,11 @@
 ## 中文
 
-YSM 体验优化 1.2.0 新增两个 Fabric 客户端安装包，针对官方 **YSM 2.6.5**。
+YSM 体验优化 1.1.0 新增两个 Fabric 客户端安装包，针对官方 **YSM 2.6.5**。
 
 | Minecraft | 最低 Fabric Loader | Java | 安装包 |
 |---|---|---|---|
-| 1.20.1 | 0.15.0 | 17+ | `ysm-enhancements-1.2.0-fabric-mc1.20.1.jar` |
-| 1.21.1 | 0.16.0 | 21+ | `ysm-enhancements-1.2.0-fabric-mc1.21.1.jar` |
+| 1.20.1 | 0.15.0 | 17+ | `ysm-enhancements-1.1.0-fabric-mc1.20.1.jar` |
+| 1.21.1 | 0.16.0 | 21+ | `ysm-enhancements-1.1.0-fabric-mc1.21.1.jar` |
 
 最低 Loader 按当前官方 YSM 原包及其自带依赖确定：1.21.1 包中的 Forge Config API Port 要求 0.16.0。另行安装的 Fabric API 或其他模组可能要求更高版本。
 
@@ -33,12 +33,12 @@ Forge 1.20.1 / NeoForge 1.21.1 用户继续使用 [1.1.0](https://github.com/Por
 
 ## English
 
-YSM Enhancements 1.2.0 adds two Fabric client artifacts for official **YSM 2.6.5**.
+YSM Enhancements 1.1.0 adds two Fabric client artifacts for official **YSM 2.6.5**.
 
 | Minecraft | Minimum Fabric Loader | Java | Artifact |
 |---|---|---|---|
-| 1.20.1 | 0.15.0 | 17+ | `ysm-enhancements-1.2.0-fabric-mc1.20.1.jar` |
-| 1.21.1 | 0.16.0 | 21+ | `ysm-enhancements-1.2.0-fabric-mc1.21.1.jar` |
+| 1.20.1 | 0.15.0 | 17+ | `ysm-enhancements-1.1.0-fabric-mc1.20.1.jar` |
+| 1.21.1 | 0.16.0 | 21+ | `ysm-enhancements-1.1.0-fabric-mc1.21.1.jar` |
 
 Loader minimums follow the current official YSM artifacts and their bundled dependencies. The Config API Port bundled with the 1.21.1 artifact requires Loader 0.16.0. Separately installed Fabric API or other mods may require newer loaders.
 

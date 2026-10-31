@@ -4,7 +4,7 @@
 
 | 加载器 | 当前发布版 | 下载与说明 |
 |---|---|---|
-| Fabric 1.20.1 / 1.21.1 | 1.2.0 | [下载](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.2.0) · [Fabric 说明](fabric/README.md) |
+| Fabric 1.20.1 / 1.21.1 | 1.1.0 | [下载](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0-fabric) · [Fabric 说明](fabric/README.md) |
 | Forge 1.20.1 / NeoForge 1.21.1 | 1.1.0 | [下载](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0) |
 
 下文为 Forge / NeoForge 1.1.0 的发布说明；Fabric 的最低加载器要求、配置方式和验证记录见上方独立说明。

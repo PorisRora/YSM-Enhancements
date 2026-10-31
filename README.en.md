@@ -4,7 +4,7 @@
 
 | Loader | Current release | Downloads and documentation |
 |---|---|---|
-| Fabric 1.20.1 / 1.21.1 | 1.2.0 | [Download](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.2.0) · [Fabric guide](fabric/README.en.md) |
+| Fabric 1.20.1 / 1.21.1 | 1.1.0 | [Download](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0-fabric) · [Fabric guide](fabric/README.en.md) |
 | Forge 1.20.1 / NeoForge 1.21.1 | 1.1.0 | [Download](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0) |
 
 The following release notes describe Forge / NeoForge 1.1.0. See the Fabric guide for its minimum loaders, configuration and verification scope.

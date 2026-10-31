@@ -9,9 +9,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 if __name__ == '__main__':
     for mc, java in [('1.20.1', 17), ('1.21.1', 21)]:
-        path = ROOT / 'fabric' / ('mc' + mc.replace('.', '')) / 'build/libs' / f'ysm-enhancements-1.2.0-fabric-mc{mc}.jar'
+        path = ROOT / 'fabric' / ('mc' + mc.replace('.', '')) / 'build/libs' / f'ysm-enhancements-1.1.0-fabric-mc{mc}.jar'
         with zipfile.ZipFile(path) as jar:
             metadata = json.loads(jar.read('fabric.mod.json'))
+            assert metadata['version'] == '1.1.0'
             assert metadata['depends']['minecraft'] == mc
             assert metadata['depends']['yes_steve_model'] == f'2.6.5-fabric+mc{mc}'
             assert metadata['depends']['java'] == f'>={java}'

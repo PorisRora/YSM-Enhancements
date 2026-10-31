@@ -1,4 +1,4 @@
-# YSM Enhancements — Fabric 1.2.0
+# YSM Enhancements — Fabric 1.1.0
 
 [中文](README.md)
 
@@ -6,8 +6,8 @@ A client addon for official Yes Steve Model 2.6.5. Core fixes are shared with th
 
 | Minecraft | Required YSM | Artifact | Java | Minimum Fabric Loader |
 |---|---|---|---|---|
-| 1.20.1 | 2.6.5 Fabric | `ysm-enhancements-1.2.0-fabric-mc1.20.1.jar` | 17+ | 0.15.0 |
-| 1.21.1 | 2.6.5 Fabric | `ysm-enhancements-1.2.0-fabric-mc1.21.1.jar` | 21+ | 0.16.0 |
+| 1.20.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.20.1.jar` | 17+ | 0.15.0 |
+| 1.21.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.21.1.jar` | 21+ | 0.16.0 |
 
 As of November 1, 2026, these are the two Fabric targets provided by official YSM 2.6.5. Its minimum Minecraft version is 1.20.1. Older YSM 2.4.1 releases extend to 1.16.5 and require separate adapters. This table does not imply support for every intervening Minecraft patch release. [Official compatibility list](https://yesstevemodel.github.io/en/wiki/faq/)
 
