@@ -1,17 +1,16 @@
-# YSM Enhancements — Fabric 1.1.0
+# YSM Enhancements — Fabric 1.2.0
 
 [中文](README.md)
 
-The current 1.20.1 source build also supports OpenYSM 2.6.6.6 with Fabric Loader 0.16.10 or later. It integrates with the player model picker, Z panel and mouse shortcuts. Native maid skin selection is pending upstream on OpenYSM Fabric. The table below lists the official YSM requirements for the published 1.1.0 release. [OpenYSM Fabric release](https://modrinth.com/mod/openysm/version/8Yg50ABK) · [Upstream maid integration](https://github.com/OpenYSM/OpenYSM/issues/72)
+Install the addon JAR for your Minecraft version and choose one model mod from the table. Official YSM and OpenYSM share the mod ID `yes_steve_model`.
 
-An independent third-party client addon for official YSM 2.6.5. It adds a model-driven Z button panel and fixes input state, animation lock, numeric parsing and control handling. It does not bundle, overwrite or modify the original YSM JAR, models or saves. This project is not affiliated with YSM.
-
-| Minecraft | Required YSM | Artifact | Java | Minimum Fabric Loader |
+| Minecraft | Model mod | Artifact | Minimum Java | Minimum Fabric Loader |
 |---|---|---|---|---|
-| 1.20.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.20.1.jar` | 17+ | 0.15.0 |
-| 1.21.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.21.1.jar` | 21+ | 0.16.0 |
+| 1.20.1 | Official YSM 2.6.5 | `ysm-enhancements-1.2.0-fabric-mc1.20.1.jar` | 17 | 0.15.0 |
+| 1.20.1 | OpenYSM 2.6.6.6 | `ysm-enhancements-1.2.0-fabric-mc1.20.1.jar` | 17 | 0.16.10 |
+| 1.21.1 | Official YSM 2.6.5 | `ysm-enhancements-1.2.0-fabric-mc1.21.1.jar` | 21 | 0.16.0 |
 
-Support follows current official YSM 2.6.5 and is limited to the two environments listed above, not every 1.20.x / 1.21.x release. [Official compatibility list](https://yesstevemodel.github.io/en/wiki/faq/)
+Version 1.2.0 adds support for OpenYSM menus, controls and mouse shortcuts in the Z panel. Turning the panel off restores the wheel selected in OpenYSM. Both official YSM builds can use the native maid picker with Orihime, the Fabric port of Touhou Little Maid. OpenYSM 2.6.6.6 Fabric supports its native player picker and lacks upstream maid skin integration. [OpenYSM Fabric release](https://modrinth.com/mod/openysm/version/8Yg50ABK) · [Upstream maid integration](https://github.com/OpenYSM/OpenYSM/issues/72)
 
 ## Features added over official YSM 2.6.5
 
@@ -38,30 +37,28 @@ These nine fixes use official YSM 2.6.5 Fabric as the baseline:
 
 ## Differences from Forge / NeoForge
 
-| Item | Forge / NeoForge 1.1.0 | Fabric 1.1.0 |
+| Item | Forge / NeoForge 1.2.0 | Fabric 1.2.0 |
 |---|---|---|
 | Main interface | Model-driven Z button panel | The same panel features, adapted to each Fabric target |
-| Fixes | 10 items | The nine items above; mouse shortcuts are already supported upstream |
+| Official YSM fixes | 10 items | The nine items above. Official Fabric YSM handles mouse bindings itself |
 | Animation lock | Modifier and interaction-context checks | Also handles Fabric callback repeats and state resynchronization |
 | Configuration entry | Configuration screen in the Mods menu | Edit `config/ysm_enhancements-client.toml`; no in-game config screen currently |
 
-Fabric does not inject duplicate mouse-event forwarding or expose the redundant `mouseShortcuts` setting.
+Official YSM uses its native Fabric mouse bindings. With OpenYSM, the addon's `mouseShortcuts` setting controls mouse event forwarding.
 
 ## Installation
 
-Keep the matching official YSM 2.6.5 and its Fabric API dependency installed. Add exactly one matching addon JAR to the client's `mods` folder. Remove the previous addon JAR when upgrading. No addon installation is needed on the server.
+Keep the model mod chosen above and its required dependencies installed. Place the matching addon JAR in the client instance's `mods` folder. Remove the previous addon JAR when upgrading.
 
-Loader minimums follow the current official artifacts and their bundled dependencies. Both YSM artifacts declare Loader ≥ 0.15.0, but the 1.21.1 artifact bundles Forge Config API Port 21.1.3, which requires Loader ≥ 0.16.0. The effective minimums are therefore 0.15.0 and 0.16.0 respectively. Separately installed Fabric API or other mods may require newer loaders.
+The minimum loaders in the table include the model mods' bundled dependencies. A separate Fabric API installation or modpack may require a newer loader.
 
 Settings are registered through YSM's Forge Config API Port dependency and stored in `config/ysm_enhancements-client.toml`. This Fabric build uses file-based configuration; edit it while the game is closed. Set `interface.buttonPanel = false` to restore the original wheel while retaining individual fixes.
 
 ## Verification
 
-Both targets are checked against actual official YSM and Minecraft class files: real Sponge Mixin transformations, operand verification, reflection contracts, actual lock callbacks, actual slider arithmetic/input, real expression parsing and configuration persistence. They compile against Loader 0.15.0 / 0.16.0 APIs and are checked with the corresponding Mixin 0.8.5 / 0.8.7 and ASM 9.6 environments. Panel interaction uses isolated regression tests.
+Both official YSM targets passed real class and Mixin checks, input and slider tests, model expression tests and configuration persistence tests. OpenYSM 2.6.6.6 also passed its own interface, slider and expression checks.
 
-Both full clients were also launched in separate instances, and logs confirm entry into singleplayer worlds and configuration loading. Fabric API 0.90.7+1.20.1 and 0.102.0+1.21.1 were used respectively. The complete panel interaction suite, modpacks, multiplayer and all third-party keybinding provider combinations have not been play-tested. Modifier regression tests simulate provider filtering; they do not execute every ModernKeyBinding or Amecs release.
-
-Initial local launches encountered Fabric API Mixin configuration resource-read failures. Original and generated cache files were inspected, and both instances started successfully after restarting without changing the addon JARs. The root cause remains unconfirmed; this is not listed as a bug fixed by the addon. See the [verification record](VERIFICATION.txt).
+In local clients running official YSM, the selected maid skin was visible in the world and the saved entity retained the model ID. OpenYSM passed player model search, Z panel, model checkbox, mouse shortcut and native wheel restoration checks. [Verification record](VERIFICATION.txt)
 
 ## Building
 

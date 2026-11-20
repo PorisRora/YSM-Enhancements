@@ -1,17 +1,16 @@
-# YSM 体验优化 — Fabric 1.1.0
+# YSM 体验优化 — Fabric 1.2.0
 
 [English](README.en.md)
 
-当前源码构建的 1.20.1 增强包也支持 OpenYSM 2.6.6.6，需要 Fabric Loader 0.16.10 或更高。玩家的模型选择页、Z 面板和鼠标快捷键已适配。OpenYSM Fabric 的原生女仆换肤联动仍待上游提供。下表记录已发布的 1.1.0 对官方 YSM 的要求。[OpenYSM Fabric 发布包](https://modrinth.com/mod/openysm/version/8Yg50ABK) · [上游女仆联动](https://github.com/OpenYSM/OpenYSM/issues/72)
+在客户端安装与 Minecraft 版本匹配的增强包，再选择表中的一种模型模组。官方 YSM 和 OpenYSM 共用模组 ID `yes_steve_model`。
 
-针对官方 YSM 2.6.5 的独立第三方客户端补丁：新增模型驱动的 Z 按钮面板，并修复按键状态、动作锁定、数值读取和界面控件问题。不包含、覆盖或修改 YSM 原始 JAR、模型及存档。与 YSM 官方无隶属关系。
-
-| Minecraft | 官方 YSM | 安装包 | Java | 最低 Fabric Loader |
+| Minecraft | 模型模组 | 安装包 | Java | 最低 Fabric Loader |
 |---|---|---|---|---|
-| 1.20.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.20.1.jar` | 17 或更高 | 0.15.0 |
-| 1.21.1 | 2.6.5 Fabric | `ysm-enhancements-1.1.0-fabric-mc1.21.1.jar` | 21 或更高 | 0.16.0 |
+| 1.20.1 | 官方 YSM 2.6.5 | `ysm-enhancements-1.2.0-fabric-mc1.20.1.jar` | 17 | 0.15.0 |
+| 1.20.1 | OpenYSM 2.6.6.6 | `ysm-enhancements-1.2.0-fabric-mc1.20.1.jar` | 17 | 0.16.10 |
+| 1.21.1 | 官方 YSM 2.6.5 | `ysm-enhancements-1.2.0-fabric-mc1.21.1.jar` | 21 | 0.16.0 |
 
-支持范围按当前官方 YSM 2.6.5 确定，限于表中的两组环境；不代表整个 1.20.x / 1.21.x 系列兼容。[官方支持列表](https://yesstevemodel.github.io/en/wiki/faq/)
+1.2.0 新增 OpenYSM 的 Z 面板、模型菜单、参数和鼠标快捷键适配。关闭面板会恢复 OpenYSM 设置中的原生轮盘。搭配东方女仆 Fabric 移植版 Orihime，官方 YSM 的两个版本都能通过女仆原生界面换肤。OpenYSM 2.6.6.6 Fabric 的玩家选模页可用，女仆换肤仍缺少上游联动。[OpenYSM Fabric 发布包](https://modrinth.com/mod/openysm/version/8Yg50ABK) · [上游女仆联动](https://github.com/OpenYSM/OpenYSM/issues/72)
 
 ## 相对官方 YSM 2.6.5 的新增功能
 
@@ -38,30 +37,28 @@
 
 ## 与 Forge / NeoForge 版的适配差异
 
-| 项目 | Forge / NeoForge 1.1.0 | Fabric 1.1.0 |
+| 项目 | Forge / NeoForge 1.2.0 | Fabric 1.2.0 |
 |---|---|---|
 | 核心界面 | 模型驱动的 Z 按钮面板 | 同一套面板功能，分别适配两版 Fabric 接口 |
-| 修复项 | 10 项 | 上述 9 项；原版已支持鼠标快捷键，无需重复修复 |
+| 官方 YSM 修复项 | 10 项 | 上述 9 项，官方 YSM Fabric 自带鼠标快捷键 |
 | 动作锁定 | 修饰键与操作环境检查 | 针对 Fabric 回调额外处理长按重复与状态重同步 |
 | 配置入口 | Mods 内的配置界面 | 编辑 `config/ysm_enhancements-client.toml`，当前未提供游戏内配置界面 |
 
-Fabric 不加入重复的鼠标事件转发，也不提供 `mouseShortcuts` 配置项。
+官方 YSM Fabric 使用自带的鼠标绑定。搭配 OpenYSM 时，可以用 `mouseShortcuts` 配置增强包提供的鼠标快捷键转发。
 
 ## 安装与配置
 
-保留对应版本的官方 YSM 2.6.5 和它要求的 Fabric API，将表中匹配的一个补丁 JAR 放入客户端 `mods` 文件夹。升级时先移除旧的 YSM Enhancements 补丁，两个版本的包不能同时安装；服务器无需安装本补丁。
+保留上表中匹配的模型模组和它要求的依赖，将对应的增强包 JAR 放入客户端实例的 `mods` 文件夹。升级时先移除旧版增强包。
 
-最低加载器版本按当前官方原包及其自带依赖确定：两版 YSM 本体都要求 Loader ≥ 0.15.0；1.21.1 包内的 Forge Config API Port 21.1.3 另外要求 Loader ≥ 0.16.0。因此 1.21.1 的实际最低要求为 0.16.0，1.20.1 为 0.15.0。如果另行安装的 Fabric API 或其他模组要求更高版本，仍需满足它们的要求。
+表中的最低 Loader 版本已计入模型模组自带的依赖。另行安装的 Fabric API 或整合包可能要求更高版本。
 
 配置通过 YSM 已依赖的 Forge Config API Port 注册，保存在 `config/ysm_enhancements-client.toml`。两个版本使用相同的配置键；本次 Fabric 构建通过编辑配置文件调整功能，建议退出游戏后编辑。`interface.buttonPanel = false` 恢复官方轮盘，其余修复可独立开启。
 
 ## 验证范围
 
-两版均使用对应的官方 YSM 2.6.5 JAR 与 Minecraft 类文件进行测试：真实 Sponge Mixin 注入、字节码操作数验证、反射接口检查、实际锁定回调、实际滑块运算/输入、实际模型表达式解析及配置读写。分别使用 Loader 0.15.0 / 0.16.0 的 API 编译，并检查它们配套的 Mixin 0.8.5 / 0.8.7 和 ASM 9.6 注入环境。面板导航与输入状态使用隔离回归测试。
+两个游戏版本都通过了官方 YSM 的实际类文件、Mixin、输入、滑条、模型表达式和配置读写回归测试。OpenYSM 2.6.6.6 通过了独立的接口、滑条和模型表达式检查。
 
-另已在两个独立实例中启动完整客户端，日志确认两版都成功进入单人世界并加载配置。使用的 Fabric API 分别为 0.90.7+1.20.1 与 0.102.0+1.21.1。尚未完成全部面板操作、整合包、联机和第三方键位模组组合验证；修饰键回归测试模拟提供方的状态过滤，不代表已运行所有 ModernKeyBinding / Amecs 版本。
-
-本地首次启动曾遇到 Fabric API 的 Mixin 配置资源读取失败。检查原包和生成缓存后，重启均恢复，补丁 JAR 未改动；根因尚未确认，不将其列为本补丁已修复的问题。详细结果见 [验证记录](VERIFICATION.txt)。
+本地客户端实测中，官方 YSM 的女仆皮肤在返回世界后仍可见，并能从存档读回对应模型 ID。OpenYSM 通过了玩家模型搜索、Z 面板、模型参数开关、鼠标侧键和恢复原生轮盘测试。[验证记录](VERIFICATION.txt)
 
 ## 构建与测试
 

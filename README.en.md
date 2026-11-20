@@ -4,12 +4,12 @@
 
 | Loader | Current release | Downloads and documentation |
 |---|---|---|
-| Fabric 1.20.1 / 1.21.1 | 1.1.0 | [Download](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0-fabric) · [Fabric guide](fabric/README.en.md) |
-| Forge 1.20.1 / NeoForge 1.21.1 | 1.1.0 | [Download](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0) |
+| Fabric 1.20.1 / 1.21.1 | 1.2.0 | [Download](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.2.0-fabric) · [Fabric guide](fabric/README.en.md) |
+| Forge 1.20.1 / NeoForge 1.21.1 | 1.2.0 | [Download](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.2.0) |
 
-## Compatibility in the current source
+## Compatibility in 1.2.0
 
-Choose the enhancement JAR for your loader and Minecraft version, then install one of the model mods below. Official YSM and OpenYSM share the mod ID `yes_steve_model`. OpenYSM support was added after the 1.1.0 releases linked above.
+Choose the enhancement JAR for your loader and Minecraft version, then install one of the model mods below. Official YSM and OpenYSM share the mod ID `yes_steve_model`.
 
 | Minecraft | Loader | Supported model mods |
 |---|---|---|
@@ -19,9 +19,11 @@ Choose the enhancement JAR for your loader and Minecraft version, then install o
 
 The OpenYSM Z panel reads the selected model's menus and controls. Turning the panel off restores the wheel selected in OpenYSM's settings. On Forge, a maid's “Use YSM skin” button opens the model mod's own picker. OpenYSM 2.6.6.6 for Fabric lacks the native maid integration. [Older Forge release](https://github.com/OpenYSM/OpenYSM/releases/tag/ysm-2.6.5-forge%2Bmc1.20.1) · [Forge 2.6.6.6](https://modrinth.com/mod/openysm/version/Zt3PjPjn) · [Fabric 2.6.6.6](https://modrinth.com/mod/openysm/version/8Yg50ABK) · [Upstream maid integration](https://github.com/OpenYSM/OpenYSM/issues/72)
 
-The following release notes describe Forge / NeoForge 1.1.0. See the Fabric guide for its minimum loaders, configuration and verification scope.
+## New in 1.2.0
 
-An independent third-party client patch for official YSM 2.6.5. It adds a model-driven Z button panel and loader-native configuration, and fixes input, shortcut, numeric parsing, and control handling issues. It does not bundle, overwrite, or modify the original YSM JAR, models, or saves. This project is not affiliated with YSM.
+- Added support for OpenYSM model menus, controls, search and mouse shortcuts.
+- Fixed a crash when the native maid model picker rebuilds its search box and a legacy OpenYSM rendering crash when loading a maid with a saved YSM skin.
+- Fixed configuration screen registration on Forge 47.2.0 and supplied the two resource identifier methods OpenYSM 2.6.5 needs on that loader.
 
 ## What's new in 1.1.0 (since 1.0.0)
 
@@ -58,9 +60,9 @@ An independent third-party client patch for official YSM 2.6.5. It adds a model-
 
 ## Release information
 
-- Release type: stable; tag: `v1.1.0`.
-- Mod ID: `ysm_enhancements`; version: `1.1.0`.
-- Download: `ysm-enhancements-1.1.0-forge-neoforge.jar`.
+- Stable release tag `v1.2.0`.
+- Mod ID `ysm_enhancements`, version `1.2.0`.
+- Download `ysm-enhancements-1.2.0-forge-neoforge.jar`.
 - Configuration: `config/ysm_enhancements-client.toml`.
 
 ## Supported environments
@@ -69,15 +71,15 @@ The same JAR supports these two combinations:
 
 | Minecraft | Loader | YSM | Loader used for local verification |
 |---|---|---|---|
-| 1.21.1 | NeoForge 21.1.x | 2.6.5 NeoForge | 21.1.264 (1.0.0: 21.1.249) |
-| 1.20.1 | Forge 47.x | 2.6.5 Forge | 47.4.16 (verified for 1.0.0; not rerun for 1.1.0) |
+| 1.21.1 | NeoForge 21.1.x | Official YSM 2.6.5 | 21.1.264 |
+| 1.20.1 | Forge 47.x | Official YSM 2.6.5, OpenYSM 2.6.5 or 2.6.6.6 | 47.2.0, 47.4.16 |
 
 This combined JAR does not support Fabric; use the [separate Fabric builds](fabric/README.en.md). Other Minecraft versions, NeoForge for Minecraft 1.20.1, and other YSM versions are not supported. Use the Java version required by your Minecraft version. The Forge / NeoForge patch targets Java 17 bytecode and requires JDK 21 to build.
 
 ## Installation and configuration
 
 1. Fully exit the game. Remove any `ysm-input-reset-*.jar` or other `ysm-enhancements-*.jar` already installed in the instance to avoid loading duplicate patches.
-2. Keep official YSM 2.6.5 installed and place the patch JAR in the same instance's `mods` folder.
+2. Keep the matching model mod from the table installed and place the addon JAR in the same instance's `mods` folder.
 3. Start the game and open Mods → YSM Enhancements → Config.
 
 NeoForge 1.21.1 uses the loader's ConfigurationScreen. Forge 1.20.1 uses a vanilla-widget screen in the same Mods configuration entry; press Done to save. No additional configuration-screen mod is needed.
@@ -121,9 +123,7 @@ There is no universal “reset all author defaults” action: the model format d
 
 ## Verification
 
-For 1.1.0, compilation, actual class transformations and Mixin injection, reflection contracts, slider behavior, model expressions, panel interaction, and OpenGL preview depth handling were checked on NeoForge 21.1.264. The Forge 1.20.1 tests and the native configuration read/write test were not rerun for this version; they passed for 1.0.0. See [the verification record](VERIFICATION.txt) for environments and details.
-
-This release has not yet been launched in a complete Minecraft modpack for in-game visual verification.
+In all six Forge 47.2.0 / 47.4.16 combinations and on NeoForge 21.1.264, the native maid picker opened, the Taisho Maid Wine Fox skin rendered back in the world, and the model ID persisted in the save. OpenYSM tests also covered model controls, mouse shortcuts and restoring the configured native wheel. [Verification record](VERIFICATION.txt)
 
 For manual verification, check that the Mods configuration entry works, that disabling the button panel restores the radial menu, and that dragging, typing, and arrow-key slider adjustments change both the displayed value and the model. Test focus loss while holding Ctrl, rapidly switch parameter pages, and rotate the preview to inspect its sides and back. Keep `logs/latest.log` when reporting errors.
 

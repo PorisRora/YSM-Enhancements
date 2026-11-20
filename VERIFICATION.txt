@@ -1,3 +1,22 @@
+YSM 体验优化（YSM Enhancements）1.2.0 验证记录
+2026-11-20 · Forge / NeoForge · v1.2.0
+
+本地客户端实测
+Minecraft 1.20.1 分别使用 Forge 47.2.0 和 47.4.16，各测试官方 YSM 2.6.5、OpenYSM 2.6.5 和 OpenYSM 2.6.6.6。
+Minecraft 1.21.1 使用 NeoForge 21.1.264 和官方 YSM 2.6.5。
+
+七组组合均从女仆背包点击「使用 YSM 皮肤」，经过模型模组的原生选择页换上大正女仆酒狐，返回世界后可见。保存的女仆实体均包含 IsYsmModel=1 和 YsmModelId=wine_fox/01_taisho_maid。
+OpenYSM 测试还覆盖模型搜索框重建后的光标与选区、Z 面板、模型作者定义的开关、鼠标侧键绑定，以及关闭增强后恢复原生轮盘。旧版 OpenYSM 重新加载已换肤女仆的场景已用同一个存档复测。
+
+正式 JAR 检查
+使用 JDK 21 和随仓库提供的 Gradle 构建。官方 Forge 和 NeoForge 均通过输入回归、原生女仆选择页回归、实际 Mixin 注入、字节码、反射接口、滑条、面板交互、模型表达式和原生配置读写检查。
+OpenYSM 2.6.5 和 2.6.6.6 的 Forge 发布包通过了对应的接口和模型表达式验证。另验证了 2.6.6.6 滑条单次回调以及旧版实体类型和资源标识符兼容处理。
+逐项比较正式 JAR 与上述实测候选包，运行类和资源一致，差异仅为加载器元数据及清单中的版本号。又以 1.2.0 正式 JAR 在 Forge 47.2.0 搭配 OpenYSM 2.6.5 实际启动、打开女仆原生选模、返回世界并读回存档。
+
+SHA-256
+935b6facf6b7903631cbf58aa6debddf3954c834f702a7f7b1bec5fad50578c0  ysm-enhancements-1.2.0-forge-neoforge.jar
+
+
 YSM 体验优化（YSM Enhancements）1.1.0 验证记录
 日期：2026-10-30
 发布类型：正式版（v1.1.0）。

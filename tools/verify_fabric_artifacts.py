@@ -6,15 +6,18 @@ import struct
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+VERSION = '1.2.0'
 
 if __name__ == '__main__':
     for mc, java in [('1.20.1', 17), ('1.21.1', 21)]:
-        path = ROOT / 'fabric' / ('mc' + mc.replace('.', '')) / 'build/libs' / f'ysm-enhancements-1.1.0-fabric-mc{mc}.jar'
+        path = ROOT / 'fabric' / ('mc' + mc.replace('.', '')) / 'build/libs' / f'ysm-enhancements-{VERSION}-fabric-mc{mc}.jar'
         with zipfile.ZipFile(path) as jar:
             metadata = json.loads(jar.read('fabric.mod.json'))
-            assert metadata['version'] == '1.1.0'
+            assert metadata['version'] == VERSION
             assert metadata['depends']['minecraft'] == mc
-            assert metadata['depends']['yes_steve_model'] == f'2.6.5-fabric+mc{mc}'
+            official_ysm = f'2.6.5-fabric+mc{mc}'
+            expected_ysm = [official_ysm, '2.6.6.6'] if mc == '1.20.1' else official_ysm
+            assert metadata['depends']['yes_steve_model'] == expected_ysm
             assert metadata['depends']['java'] == f'>={java}'
             assert metadata['depends']['fabricloader'] == ('>=0.15.0' if mc == '1.20.1' else '>=0.16.0')
             assert metadata['environment'] == 'client'

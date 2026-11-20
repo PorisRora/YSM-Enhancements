@@ -1,3 +1,22 @@
+YSM Enhancements 1.2.0 Fabric verification
+2026-11-20 · v1.2.0-fabric
+
+Game tests
+Minecraft 1.20.1, Fabric Loader 0.15.6, official YSM 2.6.5 and Touhou Little Maid: Orihime. The native maid picker opened, the Taisho Maid Wine Fox skin appeared in the world, and the saved entity retained wine_fox/01_taisho_maid.
+Minecraft 1.21.1, Fabric Loader 0.16.0, official YSM 2.6.5 and Orihime. The same native picker, in-world appearance and saved model ID checks passed.
+Minecraft 1.20.1, Fabric Loader 0.16.10 and OpenYSM 2.6.6.6. The player picker preserved the search caret and selection. Z and a rebound mouse button opened the enhanced panel. A model-defined checkbox changed through its native control. Turning the panel off restored the configured wheel, including OpenYSM's modern wheel.
+OpenYSM 2.6.6.6 Fabric lacks native maid integration. Clicking the maid button left the maid inventory open.
+
+Release artifacts
+Both Fabric builds passed regression tests against the official Minecraft and YSM classes, Mixin checks for the minimum loaders, interface checks, model expression parsing, slider behavior, panel interaction and configuration persistence. The OpenYSM Fabric JAR also passed its interface, expression and slider checks.
+Artifact inspection verified the loader, game, model mod and Java requirements, client-only metadata and class namespaces. The 1.20.1 target uses Java 17 bytecode and the 1.21.1 target uses Java 21 bytecode.
+Every runtime class and resource matched the play-tested candidate. Only the version in fabric.mod.json changed. Both final 1.2.0 JARs were also launched in isolated clients. On 1.20.1 with OpenYSM the Z panel, mouse shortcut and native modern wheel passed. On 1.21.1 with official YSM the native maid picker and saved skin passed.
+
+SHA-256
+ef46b600175ec0a051d13223ba9fda194bc20856511e71dcb031710504a71efc  ysm-enhancements-1.2.0-fabric-mc1.20.1.jar
+b5aee99a7e8df78af1265c83d472c01050a768a6a2cebede05fed2cac3101f73  ysm-enhancements-1.2.0-fabric-mc1.21.1.jar
+
+
 YSM Enhancements 1.1.0 Fabric verification
 Date: 2026-11-01 (Asia/Tokyo)
 

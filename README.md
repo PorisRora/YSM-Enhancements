@@ -4,12 +4,12 @@
 
 | 加载器 | 当前发布版 | 下载与说明 |
 |---|---|---|
-| Fabric 1.20.1 / 1.21.1 | 1.1.0 | [下载](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0-fabric) · [Fabric 说明](fabric/README.md) |
-| Forge 1.20.1 / NeoForge 1.21.1 | 1.1.0 | [下载](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0) |
+| Fabric 1.20.1 / 1.21.1 | 1.2.0 | [下载](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.2.0-fabric) · [Fabric 说明](fabric/README.md) |
+| Forge 1.20.1 / NeoForge 1.21.1 | 1.2.0 | [下载](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.2.0) |
 
-## 当前源码的兼容范围
+## 1.2.0 兼容范围
 
-按 Minecraft 版本和加载器选择增强包，再安装下表中的一种模型模组。官方 YSM 和 OpenYSM 共用模组 ID `yes_steve_model`，同一实例只装一种。OpenYSM 适配在上表的 1.1.0 发布之后加入。
+按 Minecraft 版本和加载器选择增强包，再安装下表中的一种模型模组。官方 YSM 和 OpenYSM 共用模组 ID `yes_steve_model`，同一实例只装一种。
 
 | Minecraft | 加载器 | 支持的模型模组 |
 |---|---|---|
@@ -19,9 +19,11 @@
 
 OpenYSM 的 Z 面板读取当前模型的菜单和参数。关闭按钮面板即可恢复 OpenYSM 设置中的原生轮盘。Forge 上女仆的「使用 YSM 皮肤」打开模型模组自带的选择页。OpenYSM 2.6.6.6 的 Fabric 版尚未提供这个女仆联动入口。[Forge 旧版](https://github.com/OpenYSM/OpenYSM/releases/tag/ysm-2.6.5-forge%2Bmc1.20.1) · [Forge 2.6.6.6](https://modrinth.com/mod/openysm/version/Zt3PjPjn) · [Fabric 2.6.6.6](https://modrinth.com/mod/openysm/version/8Yg50ABK) · [上游女仆联动](https://github.com/OpenYSM/OpenYSM/issues/72)
 
-下文为 Forge / NeoForge 1.1.0 的发布说明；Fabric 的最低加载器要求、配置方式和验证记录见上方独立说明。
+## 1.2.0 更新
 
-针对官方 YSM 2.6.5 的独立第三方客户端补丁：新增模型驱动的 Z 按钮面板、加载器原生配置入口，并修复按键状态、快捷键、数值读取和界面控件问题。不包含、覆盖或修改 YSM 原始 jar、模型及存档。与 YSM 官方无隶属关系。
+- 新增 OpenYSM 的模型菜单、参数控件、搜索和鼠标快捷键适配。
+- 修复女仆原生选模界面重建搜索框时的崩溃，以及旧版 OpenYSM 在重新加载已换肤女仆时的渲染崩溃。
+- 修复 Forge 47.2.0 的配置界面注册问题，并为该加载器补齐 OpenYSM 2.6.5 启动时用到的两个资源标识符方法。
 
 ## 1.1.0 更新（相对 1.0.0）
 
@@ -60,26 +62,26 @@ OpenYSM 的 Z 面板读取当前模型的菜单和参数。关闭按钮面板即
 
 ## 发布信息
 
-- 发布类型：正式版；版本标签：`v1.1.0`。
-- MODID：`ysm_enhancements`；版本：`1.1.0`。
-- 安装包：`ysm-enhancements-1.1.0-forge-neoforge.jar`。
+- 正式版标签为 `v1.2.0`。
+- 模组 ID 为 `ysm_enhancements`，版本为 `1.2.0`。
+- 安装包为 `ysm-enhancements-1.2.0-forge-neoforge.jar`。
 - 配置文件：`config/ysm_enhancements-client.toml`。
 
 ## 支持范围
 
-同一个 `ysm-enhancements-1.1.0-forge-neoforge.jar` 支持以下两组环境：
+Forge 与 NeoForge 共用 `ysm-enhancements-1.2.0-forge-neoforge.jar`。
 
 | Minecraft | 加载器 | YSM | 本地验证使用的加载器 |
 |---|---|---|---|
-| 1.21.1 | NeoForge 21.1.x | 2.6.5 NeoForge | 21.1.264（1.0.0 为 21.1.249） |
-| 1.20.1 | Forge 47.x | 2.6.5 Forge | 47.4.16（1.0.0 验证；1.1.0 未重新运行） |
+| 1.21.1 | NeoForge 21.1.x | 官方 YSM 2.6.5 | 21.1.264 |
+| 1.20.1 | Forge 47.x | 官方 YSM 2.6.5、OpenYSM 2.6.5 或 2.6.6.6 | 47.2.0、47.4.16 |
 
 这不代表整个 1.20–1.21 系列兼容。此合并包不适用于 Fabric；Fabric 使用[独立构建](fabric/README.md)。其他 Minecraft 小版本、旧 NeoForge 1.20.1 及其他 YSM 版本未适配。运行游戏需使用该 Minecraft 版本要求的 Java；Forge / NeoForge 补丁字节码为 Java 17，构建需要 JDK 21。
 
 ## 安装与配置
 
 1. 完全退出游戏。如 mods 文件夹中已有 `ysm-input-reset-*.jar` 或其他版本的 `ysm-enhancements-*.jar`，请先移除，避免重复加载补丁。
-2. 保留原来的 YSM 2.6.5，把新补丁 jar 放到同一个 mods 文件夹。
+2. 保留上表中匹配的模型模组，把新补丁 JAR 放到同一个 `mods` 文件夹。
 3. 启动游戏，进入 Mods → YSM 体验优化（YSM Enhancements）→ 配置。
 
 NeoForge 1.21.1 使用加载器提供的 ConfigurationScreen；Forge 1.20.1 使用挂在同一 Mods 配置入口的原版按钮界面，点击“完成”保存。Forge 的具体布局与 NeoForge 不同，开关含义和默认值相同，不需要额外配置界面模组。
@@ -136,9 +138,7 @@ NeoForge 1.21.1 使用加载器提供的 ConfigurationScreen；Forge 1.20.1 使�
 
 ## 验证情况
 
-1.1.0 在 NeoForge 21.1.264 上通过编译、实际类文件注入、反射接口检查、滑条与模型表达式回归、面板交互回归，以及 OpenGL 预览深度测试。Forge 1.20.1 的测试和原生配置读写测试本版未重新运行（1.0.0 已通过）。具体环境和检查项见 [验证记录](VERIFICATION.txt)。
-
-尚未在完整 Minecraft 整合包内启动本发布版进行实机画面确认。
+Forge 47.2.0、47.4.16 的六组组合与 NeoForge 21.1.264 均已在本地客户端实际打开女仆原生选择页，换上大正女仆酒狐，并在返回世界后读回已保存的模型 ID。另已验证 OpenYSM 模型控件、鼠标侧键和关闭增强面板后恢复原生轮盘的行为。[验证记录](VERIFICATION.txt)
 
 ## 源码与构建
 
