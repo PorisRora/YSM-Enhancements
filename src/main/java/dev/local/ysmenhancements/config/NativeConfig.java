@@ -1,9 +1,10 @@
 package dev.local.ysmenhancements.config;
 
+import dev.local.ysmenhancements.compat.YsmProfile;
 import java.lang.reflect.*;
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 /** Registers an actual loader CLIENT config, not an independent settings file. */
@@ -12,14 +13,14 @@ public final class NativeConfig {
     private static volatile Object spec;
     private static final Map<Feature, Object> VALUES = new EnumMap<>(Feature.class);
     private static Method loaded, get, set, save;
-    private static boolean fabric;
+    private static boolean nativeMouseBindings;
     private NativeConfig() {}
 
     /** Fabric YSM already depends on Forge Config API Port; use its native registry. */
     public static synchronized void registerFabric(boolean modern) {
         if (spec != null) throw new IllegalStateException("YSM patch config registered twice");
         try {
-            fabric = true;
+            nativeMouseBindings = !YsmProfile.openInstalled();
             String root = modern ? "net.neoforged" : "net.minecraftforge";
             Class<?> api = Class.forName(modern
                 ? "fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry"
@@ -58,7 +59,7 @@ public final class NativeConfig {
         Class<?> builderClass = Class.forName(specName + "$Builder");
         Object builder = builderClass.getConstructor().newInstance();
         for (Feature feature : Feature.values()) {
-            if (fabric && feature == Feature.MOUSE_SHORTCUTS) continue; // Already supported by Fabric YSM.
+            if (nativeMouseBindings && feature == Feature.MOUSE_SHORTCUTS) continue;
             builderClass.getMethod("comment", String.class).invoke(builder, feature.description);
             builderClass.getMethod("translation", String.class).invoke(builder, feature.translationKey());
             Object value = builderClass.getMethod("define", String.class, boolean.class)
@@ -89,20 +90,20 @@ public final class NativeConfig {
                     .invoke(container, api, (Supplier<Object>) () -> factory);
         } else {
             Class<?> api = Class.forName("net.minecraftforge.client.ConfigScreenHandler$ConfigScreenFactory");
-            Function<Object, Object> create = parent -> {
+            BiFunction<Object, Object, Object> create = (minecraft, parent) -> {
                 try {
                     return Class.forName("dev.local.ysmenhancements.config.ForgeConfigScreen")
                             .getMethod("create", Object.class).invoke(null, parent);
                 } catch (ReflectiveOperationException e) { throw new IllegalStateException(unwrap(e)); }
             };
-            Object factory = api.getConstructor(Function.class).newInstance(create);
+            Object factory = api.getConstructor(BiFunction.class).newInstance(create);
             registration.getClass().getMethod("registerExtensionPoint", Class.class, Supplier.class)
                     .invoke(registration, api, (Supplier<Object>) () -> factory);
         }
     }
 
     public static boolean enabled(Feature feature) {
-        if (fabric && feature == Feature.MOUSE_SHORTCUTS) return false;
+        if (nativeMouseBindings && feature == Feature.MOUSE_SHORTCUTS) return false;
         Object current = spec;
         if (current == null) return true; // Before the loader loads CLIENT configuration.
         try { return !((Boolean) loaded.invoke(current)) || (Boolean) get.invoke(VALUES.get(feature)); }

@@ -1,6 +1,7 @@
 package dev.local.ysmenhancements;
 
 import dev.local.ysmenhancements.compat.Reflect;
+import dev.local.ysmenhancements.compat.YsmProfile;
 import dev.local.ysmenhancements.ui.ButtonPanel;
 import dev.local.ysmenhancements.fixes.ScaleDefaults;
 import java.io.*;
@@ -12,11 +13,16 @@ import org.objectweb.asm.tree.*;
 /** Executes the real loader slider arithmetic/input methods with only rendering and apply side effects stubbed. */
 public final class SliderContractTest implements Opcodes {
     public static void main(String[] args) throws Exception {
-        boolean neo=args[0].equals("neo");String original=neo?"net/neoforged/neoforge/client/gui/widget/ExtendedSlider":"net/minecraftforge/client/gui/widget/ForgeSlider";
+        boolean neo=args[0].equals("neo"), open=args[0].equals("open");
+        String original=switch(args[0]) {
+            case "open" -> YsmProfile.internal("client.gui.button.RangedSliderWidget");
+            case "neo" -> "net/neoforged/neoforge/client/gui/widget/ExtendedSlider";
+            default -> "net/minecraftforge/client/gui/widget/ForgeSlider";
+        };
         ClassNode source=read(args[1],original),mathSource=read(args[2],"net/minecraft/util/Mth");
-        String owner="fixture/"+(neo?"NeoSlider":"ForgeSlider"),mathOwner=owner+"Math";
+        String owner=open?original:"fixture/"+(neo?"NeoSlider":"ForgeSlider"),mathOwner=owner+"Math";
         Set<String> selected=neo?Set.of("getValue","setValue","setFractionalValue","snapToNearest","keyPressed"):
-                Set.of("getValue","m_93611_","setSliderValue","snapToNearest","m_7933_");
+                Set.of("getValue",open?"setValue":"m_93611_","setSliderValue","snapToNearest","m_7933_");
         ClassNode slider=empty(owner),math=empty(mathOwner);Set<String> neededMath=new HashSet<>();Map<String,String> fields=new HashMap<>();
         for(MethodNode m:source.methods)if(selected.contains(m.name)){
             m.access=ACC_PUBLIC;
@@ -47,7 +53,7 @@ public final class SliderContractTest implements Opcodes {
         for(String name:new String[]{"getWidth","m_5711_"}){MethodNode m=new MethodNode(ACC_PUBLIC,name,"()I",null,null);m.instructions.add(new IntInsnNode(SIPUSH,120));m.instructions.add(new InsnNode(IRETURN));slider.methods.add(m);}
         Class<?> type=new RegressionTest.ByteLoader(Map.of(owner.replace('/','.'),bytes(slider),mathOwner.replace('/','.'),bytes(math))).loadClass(owner.replace('/','.'));
         Object obj=type.getConstructor().newInstance();Reflect.set(obj,"minValue",0.0);Reflect.set(obj,"maxValue",2.0);Reflect.set(obj,"stepSize",.1);
-        Reflect.set(obj,neo?"width":"f_93618_",120);
+        if (!open || fields.containsKey("f_93618_")) Reflect.set(obj,neo?"width":"f_93618_",120);
         ButtonPanel.setSliderValue(obj,1,neo);check(obj,1,1,"typed value applies exactly once");
         ButtonPanel.setSliderValue(obj,1,neo);check(obj,1,1,"same value does not apply twice");
         ButtonPanel.keySlider(obj,262,0,0,neo);check(obj,1.1,2,"stepped right key updates model once");

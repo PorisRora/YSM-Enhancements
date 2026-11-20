@@ -7,6 +7,18 @@
 | Fabric 1.20.1 / 1.21.1 | 1.1.0 | [Download](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0-fabric) · [Fabric guide](fabric/README.en.md) |
 | Forge 1.20.1 / NeoForge 1.21.1 | 1.1.0 | [Download](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0) |
 
+## Compatibility in the current source
+
+Choose the enhancement JAR for your loader and Minecraft version, then install one of the model mods below. Official YSM and OpenYSM share the mod ID `yes_steve_model`. OpenYSM support was added after the 1.1.0 releases linked above.
+
+| Minecraft | Loader | Supported model mods |
+|---|---|---|
+| 1.20.1 | Forge | Official YSM 2.6.5, OpenYSM 2.6.5 or OpenYSM 2.6.6.6 |
+| 1.20.1 | Fabric | Official YSM 2.6.5 or OpenYSM 2.6.6.6. OpenYSM requires Fabric Loader 0.16.10 or later |
+| 1.21.1 | NeoForge, Fabric | Official YSM 2.6.5 |
+
+The OpenYSM Z panel reads the selected model's menus and controls. Turning the panel off restores the wheel selected in OpenYSM's settings. On Forge, a maid's “Use YSM skin” button opens the model mod's own picker. OpenYSM 2.6.6.6 for Fabric lacks the native maid integration. [Older Forge release](https://github.com/OpenYSM/OpenYSM/releases/tag/ysm-2.6.5-forge%2Bmc1.20.1) · [Forge 2.6.6.6](https://modrinth.com/mod/openysm/version/Zt3PjPjn) · [Fabric 2.6.6.6](https://modrinth.com/mod/openysm/version/8Yg50ABK) · [Upstream maid integration](https://github.com/OpenYSM/OpenYSM/issues/72)
+
 The following release notes describe Forge / NeoForge 1.1.0. See the Fabric guide for its minimum loaders, configuration and verification scope.
 
 An independent third-party client patch for official YSM 2.6.5. It adds a model-driven Z button panel and loader-native configuration, and fixes input, shortcut, numeric parsing, and control handling issues. It does not bundle, overwrite, or modify the original YSM JAR, models, or saves. This project is not affiliated with YSM.
@@ -122,6 +134,8 @@ Use JDK 21 and the included Gradle 9.5.1 wrapper. The first build downloads Grad
 ```powershell
 .\gradlew.bat build '-PminecraftLibraries=C:/your-instance/.minecraft/libraries'
 ```
+
+Run `openYsmContractTest -PopenYsmJar=<Forge JAR path>` against an OpenYSM release. For Fabric use `-p fabric :mc1201:openYsmContractTest -PopenYsmJar=<Fabric JAR path>`. The tests check the wheel, search and input hooks. The older Forge build also exercises the 47.2.0 resource identifier factories and the entity type used by the maid riding animation.
 
 The test properties refer to the original YSM JAR (`ysmJar`), the loader-patched client JAR (`minecraftJar`), the full base client JAR (`minecraftBaseJar`), and the loader universal JAR (`loaderApiJar`). Set `configLoader` to `neo` or `forge`.
 

@@ -33,6 +33,7 @@ public final class RuntimeNames {
         } catch (IOException error) { throw new ExceptionInInitializerError(error); }
     }
     private RuntimeNames() {}
+    public static boolean fabric() { return !CLASSES.isEmpty(); }
     public static String type(String name) { return CLASSES.getOrDefault(name.replace('.','/'),name.replace('.','/')).replace('/','.'); }
     public static String internal(String name) { return type(name).replace('.','/'); }
     public static String descriptor(String desc) { return TYPE.matcher(desc).replaceAll(m -> java.util.regex.Matcher.quoteReplacement("L"+internal(m.group(1))+";")); }

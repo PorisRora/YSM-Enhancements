@@ -7,6 +7,18 @@
 | Fabric 1.20.1 / 1.21.1 | 1.1.0 | [下载](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0-fabric) · [Fabric 说明](fabric/README.md) |
 | Forge 1.20.1 / NeoForge 1.21.1 | 1.1.0 | [下载](https://github.com/PorisRora/YSM-Enhancements/releases/tag/v1.1.0) |
 
+## 当前源码的兼容范围
+
+按 Minecraft 版本和加载器选择增强包，再安装下表中的一种模型模组。官方 YSM 和 OpenYSM 共用模组 ID `yes_steve_model`，同一实例只装一种。OpenYSM 适配在上表的 1.1.0 发布之后加入。
+
+| Minecraft | 加载器 | 支持的模型模组 |
+|---|---|---|
+| 1.20.1 | Forge | 官方 YSM 2.6.5、OpenYSM 2.6.5 或 2.6.6.6 |
+| 1.20.1 | Fabric | 官方 YSM 2.6.5 或 OpenYSM 2.6.6.6。OpenYSM 要求 Fabric Loader 0.16.10 起 |
+| 1.21.1 | NeoForge、Fabric | 官方 YSM 2.6.5 |
+
+OpenYSM 的 Z 面板读取当前模型的菜单和参数。关闭按钮面板即可恢复 OpenYSM 设置中的原生轮盘。Forge 上女仆的「使用 YSM 皮肤」打开模型模组自带的选择页。OpenYSM 2.6.6.6 的 Fabric 版尚未提供这个女仆联动入口。[Forge 旧版](https://github.com/OpenYSM/OpenYSM/releases/tag/ysm-2.6.5-forge%2Bmc1.20.1) · [Forge 2.6.6.6](https://modrinth.com/mod/openysm/version/Zt3PjPjn) · [Fabric 2.6.6.6](https://modrinth.com/mod/openysm/version/8Yg50ABK) · [上游女仆联动](https://github.com/OpenYSM/OpenYSM/issues/72)
+
 下文为 Forge / NeoForge 1.1.0 的发布说明；Fabric 的最低加载器要求、配置方式和验证记录见上方独立说明。
 
 针对官方 YSM 2.6.5 的独立第三方客户端补丁：新增模型驱动的 Z 按钮面板、加载器原生配置入口，并修复按键状态、快捷键、数值读取和界面控件问题。不包含、覆盖或修改 YSM 原始 jar、模型及存档。与 YSM 官方无隶属关系。
@@ -129,6 +141,8 @@ NeoForge 1.21.1 使用加载器提供的 ConfigurationScreen；Forge 1.20.1 使�
 尚未在完整 Minecraft 整合包内启动本发布版进行实机画面确认。
 
 ## 源码与构建
+
+使用 OpenYSM 的实际发布包可运行 `openYsmContractTest -PopenYsmJar=<Forge 包路径>`。Fabric 版使用 `-p fabric :mc1201:openYsmContractTest -PopenYsmJar=<Fabric 包路径>`。测试会检查原生轮盘、搜索和按键入口。Forge 旧包还会检查 47.2.0 的资源标识符工厂以及女仆骑乘动画的实体类型。
 
 使用 JDK 21；Gradle Wrapper 为 9.5.1。首次构建下载 Gradle、Mixin、ASM 等依赖。`-PminecraftLibraries` 应指向同时包含构建脚本所列 Forge 1.20.1 和 NeoForge 1.21.1 API 的本机 Minecraft libraries 目录。这些依赖不打入补丁。
 

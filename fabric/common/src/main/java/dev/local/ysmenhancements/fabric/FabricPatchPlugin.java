@@ -19,7 +19,7 @@ public final class FabricPatchPlugin implements IMixinConfigPlugin, Opcodes {
     }
     public static void patch(ClassNode node) {
         YsmProfile p = YsmProfile.ofName(node.name.replace('/','.'));
-        if (!node.name.endsWith("/"+p.keys)) { ClientPatchPlugin.patch(node); return; }
+        if (p == YsmProfile.OPEN || !node.name.endsWith("/"+p.keys)) { ClientPatchPlugin.patch(node); return; }
         MethodNode callback = node.methods.stream()
             .filter(m -> m.name.equals(p.b) && m.desc.equals("(Lnet/minecraft/class_304;)V") && (m.access&ACC_STATIC)!=0)
             .findFirst().orElseThrow(() -> new IllegalStateException("Unsupported YSM lock callback"));

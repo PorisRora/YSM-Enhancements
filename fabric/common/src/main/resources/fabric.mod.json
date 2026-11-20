@@ -3,7 +3,7 @@
   "id": "ysm_enhancements",
   "version": "${version}",
   "name": "YSM Enhancements",
-  "description": "Button panel, input improvements and fixes for Yes Steve Model 2.6.5.",
+  "description": "Model-driven button panel, input improvements and model selection fixes.",
   "authors": ["PorisRora"],
   "contact": {"sources": "https://github.com/PorisRora/YSM-Enhancements", "issues": "https://github.com/PorisRora/YSM-Enhancements/issues"},
   "license": "MIT",
@@ -14,7 +14,7 @@
     "fabricloader": ">=${loader}",
     "minecraft": "${minecraft}",
     "java": ">=${java}",
-    "yes_steve_model": "2.6.5-fabric+mc${minecraft}",
+    "yes_steve_model": ${ysmDependency},
     "forgeconfigapiport": "*"
   }
 }

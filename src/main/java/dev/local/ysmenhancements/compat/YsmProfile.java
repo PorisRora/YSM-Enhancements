@@ -1,6 +1,15 @@
 package dev.local.ysmenhancements.compat;
 
 public enum YsmProfile {
+    OPEN("client.gui.AnimationRouletteScreen", "client.gui.PlayerModelScreen", "util.InputUtil",
+        "client.event.AnimationLockEvent", "client.input.InputStateKey", "keyStates", "mouseStates",
+        "centerX", "centerY", "configScrollOffset", "maxConfigScroll", "scrollUpButton", "scrollDownButton",
+        "currentConfigGroup", "currentProperties", "renderGroups", "currentNavEntry", "hoveredIndex",
+        "showConfigGroup", "playAnimation", "navigateToSubmenu", "client.gui.ISpecialWidget",
+        "animatableModel", "getEntity", "searchBox",
+        new String[]{"client.input.DebugAnimationKey", "client.input.AnimationRouletteKey",
+            "client.input.ExtraAnimationKey", "client.input.ExtraPlayerRenderKey",
+            "client.input.PlayerModelToggleKey", "client.event.AnimationLockEvent"}),
     NEO("Oo0Oo0Oooo00OoOOOO0O00o0", "O0o0Oo0Oo0Ooo0oO000o0OOO", "OOoOOoo00oOo0OOOoOooooO0", "Ooo0o0Ooo0OO0oo0OOOoOooO", "O0ooooOoOO0ooO0000oo0ooo",
         "oOo0OO0O0o000OO0O000oo0o", "oOoo00O0o0oO0o0oO00OO0O0",
         "ooOooOO0oO00o00o0o0oOOoO", "OOo0O00Ooo00O0Ooo0OoOo0o", "oo0o0Oooo0OOO00OOo0OO000", "O0OO0O0o00o0o00oOoO0o0oO", "oo000ooO0O00oo0OO0ooO000", "O0O00oOooOo000oo00OoO0Oo",
@@ -33,37 +42,71 @@ public enum YsmProfile {
     YsmProfile(String wheel, String models, String keys, String lock, String input, String a, String b, String x, String y, String scroll, String max, String up, String down, String selected, String menu, String configs, String path, String selectedIndex, String configMethod, String playMethod, String folderMethod, String marker, String animatable, String entityMethod, String search, String[] keyHandlers) {
         this.wheel=wheel; this.models=models; this.keys=keys; this.lock=lock; this.input=input; this.a=a; this.b=b; this.x=x; this.y=y; this.scroll=scroll; this.max=max; this.up=up; this.down=down; this.selected=selected; this.menu=menu; this.configs=configs; this.path=path; this.selectedIndex=selectedIndex; this.configMethod=configMethod; this.playMethod=playMethod; this.folderMethod=folderMethod; this.marker=marker; this.animatable=animatable; this.entityMethod=entityMethod; this.search=search; this.keyHandlers=keyHandlers;
     }
-    public boolean fabric() { return this == FABRIC_1201 || this == FABRIC_1211; }
+    public boolean fabric() { return this == FABRIC_1201 || this == FABRIC_1211 || this == OPEN && RuntimeNames.fabric(); }
+    public String member(String openName, String officialName) { return this == OPEN ? openName : officialName; }
+    public static String internal(String relative) { return (ROOT + relative).replace('.', '/'); }
+    public static boolean openInstalled() {
+        return YsmProfile.class.getClassLoader().getResource(internal(OPEN.input) + ".class") != null;
+    }
     public boolean modern() { return this == NEO || this == FABRIC_1211; }
     public String data() { return switch(this) {
+        case OPEN -> "renderContext";
         case NEO -> "ooOoO0OOO0oOo0Oo00oo000o";
         case FORGE -> "o0OooO00ooo0OO000O0OoOoO";
         case FABRIC_1201 -> "oO0O0oO0OOOo0oOO0OO0o0O0";
         case FABRIC_1211 -> "oO00O0Oo00ooOooo0oo0OOo0";
     }; }
     public String localizer() { return switch(this) {
+        case OPEN -> "client.gui.ModelMetadataPresenter";
         case NEO -> "OoO0o00Oo0O00oOoO0OOO0oo";
         case FORGE -> "OOOOooO0O0o0OOoOOo00oo00";
         case FABRIC_1201 -> "OOOoo0oOOOo0OOo00O0oo00O";
         case FABRIC_1211 -> "O0ooO0oOOO0OOOoooo00Oooo";
     }; }
     public String slider() { return switch(this) {
+        case OPEN -> "client.gui.button.AnimationSlider";
         case NEO -> "o0OO0ooOOo0Ooo00OO0Oo0O0";
         case FORGE -> "oo0ooOoOOOO0OOoO0OOoOOo0";
         case FABRIC_1201 -> "Oo0Oo0oOOOOO00ooO0o0ooo0";
         case FABRIC_1211 -> "OOOOOoO00o00ooo0oo0o0Ooo";
     }; }
     public String checkbox() { return switch(this) {
+        case OPEN -> "client.gui.button.ConfigCheckBox";
         case NEO -> "O0oo0oOOOoooO0o0oooOo000";
         case FORGE -> "oOO0oo0OoOo0O0OOo0oooO0o";
         case FABRIC_1201 -> "oo00OOO0O0oo0ooo0oOO0O0o";
         case FABRIC_1211 -> "Oo00OO00oO0oOO0OO00OoO00";
     }; }
-    public String sliderBinding() { return fabric() ? y : playMethod; }
+    public String sliderBinding() { return member("controllerName", fabric() ? y : playMethod); }
     public String loaderRoot() { return this == NEO ? "net.neoforged.neoforge" : "net.minecraftforge"; }
-    public static YsmProfile of(Object instance) { return ofName(instance.getClass().getName()); }
+
+    /** An inherited hook receives the concrete screen, including TLM's maid skin picker. */
+    public static YsmProfile of(Object instance) {
+        Class<?> runtimeType = instance.getClass();
+        for (Class<?> type = runtimeType; type != null; type = type.getSuperclass()) {
+            YsmProfile profile = findByName(type.getName());
+            if (profile != null) return profile;
+        }
+        throw new IllegalArgumentException("Unsupported YSM class: " + runtimeType.getName());
+    }
+
     public static YsmProfile ofName(String name) {
-        for (YsmProfile p: values()) if (name.equals(ROOT+p.wheel)||name.equals(ROOT+p.models)||name.equals(ROOT+p.keys)||name.equals(ROOT+p.lock)||name.equals(ROOT+p.input)) return p;
+        YsmProfile profile = findByName(name);
+        if (profile != null) return profile;
         throw new IllegalArgumentException("Unsupported YSM class: " + name);
+    }
+
+    private static YsmProfile findByName(String name) {
+        for (YsmProfile profile : values()) {
+            if (name.equals(ROOT + profile.wheel) || name.equals(ROOT + profile.models)
+                    || name.equals(ROOT + profile.keys) || name.equals(ROOT + profile.lock)
+                    || name.equals(ROOT + profile.input)) {
+                return profile;
+            }
+        }
+        for (String handler : OPEN.keyHandlers) {
+            if (name.equals(ROOT + handler)) return OPEN;
+        }
+        return null;
     }
 }

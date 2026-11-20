@@ -5,6 +5,11 @@ import org.spongepowered.asm.mixin.Pseudo;
 
 @Pseudo
 @Mixin(targets={
+    "com.elfmcys.yesstevemodel.client.gui.AnimationRouletteScreen", "com.elfmcys.yesstevemodel.client.gui.PlayerModelScreen",
+    "com.elfmcys.yesstevemodel.util.InputUtil", "com.elfmcys.yesstevemodel.client.event.AnimationLockEvent",
+    "com.elfmcys.yesstevemodel.client.input.InputStateKey", "com.elfmcys.yesstevemodel.client.input.AnimationRouletteKey",
+    "com.elfmcys.yesstevemodel.client.input.DebugAnimationKey", "com.elfmcys.yesstevemodel.client.input.ExtraAnimationKey",
+    "com.elfmcys.yesstevemodel.client.input.ExtraPlayerRenderKey", "com.elfmcys.yesstevemodel.client.input.PlayerModelToggleKey",
     "com.elfmcys.yesstevemodel.oOOooOOooooOo0oo0O0oOoOo",
     "com.elfmcys.yesstevemodel.o0Ooo0OOo00oo0OoooOOO0Oo",
     "com.elfmcys.yesstevemodel.O0o0o0OoO0oOoo0oO0o0OoOo",

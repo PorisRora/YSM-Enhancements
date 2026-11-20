@@ -48,6 +48,7 @@ subprojects {
                 setSrcDirs(['../common/src/test/java', '../../src/test/java'])
                 include 'dev/local/ysmenhancements/fabric/**', 'net/minecraft/**',
                     'dev/local/ysmenhancements/RegressionTest.java',
+                    'dev/local/ysmenhancements/OpenYsmContractTest.java',
                     'dev/local/ysmenhancements/ApiContractTest.java',
                     'dev/local/ysmenhancements/config/NativeConfigTest.java',
                     'dev/local/ysmenhancements/fixes/ScaleDefaultsTest.java',
@@ -67,7 +68,9 @@ subprojects {
     processResources {
         inputs.property 'version', project.version
         inputs.property 'minimumLoader', minimumLoader
-        filesMatching('fabric.mod.json') { expand version: project.version, minecraft: mc, java: releaseJava, loader: minimumLoader }
+        def officialYsm = "2.6.5-fabric+mc${mc}"
+        def ysmDependency = groovy.json.JsonOutput.toJson(mc == '1.20.1' ? [officialYsm, '2.6.6.6'] : officialYsm)
+        filesMatching('fabric.mod.json') { expand version: project.version, minecraft: mc, java: releaseJava, loader: minimumLoader, ysmDependency: ysmDependency }
         filesMatching('ysm_enhancements.fabric.mixins.json') { expand java: releaseJava }
         from('../../src/main/resources/assets') { into 'assets' }
     }
@@ -79,6 +82,15 @@ subprojects {
     jar { archiveFileName = "ysm-enhancements-${version}-fabric-mc${mc}.jar" }
     test.enabled = false
     def fixture = providers.gradleProperty(name+'Ysm').orElse("../../build/fabric-fixtures/ysm-2.6.5-fabric+mc${mc}-release.jar")
+    if (mc == '1.20.1') {
+        tasks.register('openYsmContractTest', JavaExec) {
+            dependsOn testClasses
+            classpath = sourceSets.test.runtimeClasspath
+            mainClass = 'dev.local.ysmenhancements.OpenYsmContractTest'
+            if (project.hasProperty('openYsmJar')) args project.property('openYsmJar')
+        }
+        if (project.hasProperty('openYsmJar')) check.dependsOn openYsmContractTest
+    }
     tasks.register('regressionTest', JavaExec) {
         dependsOn testClasses
         classpath = sourceSets.test.runtimeClasspath

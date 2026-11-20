@@ -15,20 +15,49 @@ public final class ClientPatchPlugin implements IMixinConfigPlugin, Opcodes {
     private static final String PANEL="dev/local/ysmenhancements/ui/ButtonPanel";
     @Override public void onLoad(String pkg) {}
     @Override public String getRefMapperConfig() { return null; }
-    @Override public boolean shouldApplyMixin(String target,String mixin) { return true; }
+    @Override public boolean shouldApplyMixin(String target,String mixin) {
+        if (!mixin.endsWith(".OpenYsmResourceLocationMixin")) return true;
+        String legacyPicker=YsmProfile.internal("client.gui.TouhouMaidModelScreen")+".class";
+        return ClientPatchPlugin.class.getClassLoader().getResource(legacyPicker)!=null;
+    }
     @Override public void acceptTargets(Set<String> mine,Set<String> others) {}
     @Override public List<String> getMixins() { return null; }
     @Override public void postApply(String name,ClassNode node,String mixin,IMixinInfo info) {}
     @Override public void preApply(String name,ClassNode node,String mixin,IMixinInfo info) {
         if (mixin.endsWith("YsmClientMixin")) patch(node);
+        if (mixin.endsWith(".OpenYsmResourceLocationMixin")) {
+            addResourceFactory(node,"parse",1);
+            addResourceFactory(node,"fromNamespaceAndPath",2);
+        }
+    }
+    /** Forge 47.4 supplies both factories as wrappers around the validating 1.20.1 constructors. */
+    private static void addResourceFactory(ClassNode node,String name,int arguments) {
+        String parameters="("+"Ljava/lang/String;".repeat(arguments)+")";
+        String descriptor=parameters+"L"+node.name+";";
+        if (node.methods.stream().anyMatch(m -> m.name.equals(name) && m.desc.equals(descriptor))) return;
+        MethodNode factory=new MethodNode(ACC_PUBLIC | ACC_STATIC,name,descriptor,null,null);
+        factory.instructions.add(new TypeInsnNode(NEW,node.name));
+        factory.instructions.add(new InsnNode(DUP));
+        for (int i=0;i<arguments;i++) factory.instructions.add(new VarInsnNode(ALOAD,i));
+        factory.instructions.add(new MethodInsnNode(INVOKESPECIAL,node.name,"<init>",parameters+"V",false));
+        factory.instructions.add(new InsnNode(ARETURN));
+        factory.maxLocals=arguments;
+        factory.maxStack=arguments+2;
+        node.methods.add(factory);
     }
     public static void patch(ClassNode node) {
+        if (node.name.equals(YsmProfile.internal("client.animation.predicate.LivingMovementAnimationPredicate"))) {
+            patchOpenMaidRiding(node);
+            return;
+        }
         YsmProfile p=YsmProfile.ofName(node.name.replace('/','.'));
-        if (node.name.endsWith("/"+p.wheel)) wheel(node,p);
-        else if (node.name.endsWith("/"+p.models)) {
+        if (node.name.equals(YsmProfile.internal(p.wheel))) wheel(node,p);
+        else if (node.name.equals(YsmProfile.internal(p.models))) {
             MethodNode init=find(node,mc(p,"init","m_7856_","()V"),"()V");
             init.instructions.insert(objectHook("captureCaret"));
             returns(init,()->objectHook("restoreCaret"));
+        } else if (p == YsmProfile.OPEN) {
+            OpenYsmInputPatch.patch(node);
         } else if (node.name.endsWith("/"+p.keys)) {
             MethodNode match=node.methods.stream().filter(m->m.desc.endsWith("Lnet/minecraft/client/KeyMapping;)Z")).findFirst().orElseThrow();
             match.instructions.clear(); match.tryCatchBlocks.clear(); if(match.localVariables!=null)match.localVariables.clear();
@@ -50,7 +79,7 @@ public final class ClientPatchPlugin implements IMixinConfigPlugin, Opcodes {
     private static void wheel(ClassNode node,YsmProfile p) {
         MethodNode init=find(node,mc(p,"init","m_7856_","()V"),"()V");
         init.instructions.insert(objectHook("begin"));
-        MethodNode parser=find(node,p.b,"(Ljava/lang/String;)F");
+        MethodNode parser=find(node,p.member("parseFloatValue",p.b),"(Ljava/lang/String;)F");
         MethodNode original=rename(node,parser);
         LabelNode legacy=new LabelNode();
         parser.instructions.add(new LdcInsnNode("NUMERIC_VALUES")); parser.instructions.add(call(FIX,"enabled","(Ljava/lang/String;)Z"));
@@ -87,7 +116,7 @@ public final class ClientPatchPlugin implements IMixinConfigPlugin, Opcodes {
         MethodNode render=find(node,mc(p,"render","m_88315_","(Lnet/minecraft/client/gui/GuiGraphics;IIF)V"),RuntimeNames.descriptor("(Lnet/minecraft/client/gui/GuiGraphics;IIF)V"));
         render.instructions.insert(objectHook("arrows"));
         require(truth==1,"boolean comparison",truth);require(track==1,"callback token",track);require(guards>=5,"callback guards",guards);require(clip==1,"clipped click",clip);
-        String slider=YsmProfile.ROOT.replace('.','/')+p.slider();
+        String slider=YsmProfile.internal(p.slider());
         int defaults=0;
         for(MethodNode m:node.methods)if(Type.getReturnType(m.desc).getDescriptor().equals("L"+slider+";")) {
             Type[] args=Type.getArgumentTypes(m.desc);
@@ -99,6 +128,38 @@ public final class ClientPatchPlugin implements IMixinConfigPlugin, Opcodes {
         }
         require(defaults==1,"scale default hook",defaults);
         panel(node,p,init,render);
+    }
+    /** Older OpenYSM Forge evaluated the shared riding animation with an unconditional Player cast. */
+    private static void patchOpenMaidRiding(ClassNode node) {
+        String player = "net/minecraft/world/entity/player/Player";
+        String living = "net/minecraft/world/entity/LivingEntity";
+        for (MethodNode method : node.methods) {
+            if (!method.name.equals("renderRidingAnimation")) continue;
+            boolean legacy = false;
+            for (AbstractInsnNode insn : method.instructions) {
+                if (insn instanceof MethodInsnNode call && call.owner.equals(YsmProfile.internal("client.entity.LivingAnimatable"))
+                        && call.name.equals("getEntity") && call.getNext() instanceof TypeInsnNode cast
+                        && cast.getOpcode() == CHECKCAST && cast.desc.equals(player)) {
+                    cast.desc = living;
+                    legacy = true;
+                    break;
+                }
+            }
+            if (!legacy) return;
+            for (AbstractInsnNode insn : method.instructions.toArray()) {
+                if (insn instanceof FrameNode frame && frame.local != null)
+                    java.util.Collections.replaceAll(frame.local, player, living);
+                if (!(insn instanceof MethodInsnNode call)) continue;
+                if (call.owner.equals(player) && call.name.equals("m_20202_")) call.owner = living;
+                // This player-only call is already guarded by instanceof Player.
+                if (call.owner.equals(YsmProfile.internal("client.compat.carryon.CarryOnCompat"))
+                        && call.name.equals("isPlayerCarrying") && call.desc.equals("(L" + player + ";)Z"))
+                    method.instructions.insertBefore(call, new TypeInsnNode(CHECKCAST, player));
+            }
+            if (method.localVariables != null) for (LocalVariableNode local : method.localVariables)
+                if (local.index == 4 && local.desc.equals("L" + player + ";")) local.desc = "L" + living + ";";
+            return;
+        }
     }
     private static void panel(ClassNode node,YsmProfile p,MethodNode init,MethodNode render) {
         // A compile-time constant: inlined, so the transformer never loads the panel class.

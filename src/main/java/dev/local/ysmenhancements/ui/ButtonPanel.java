@@ -80,11 +80,11 @@ public final class ButtonPanel {
         zoom(d,s,new Rect(cx-50,y+h-29,100,19),mx,my);
         int toolbarY=y+41;
         if(Reflect.type("net.minecraft.world.entity.player.Player").isInstance(entity)){
-            Object lock=Reflect.type(YsmProfile.ROOT+p.lock);boolean locked=(Boolean)Reflect.call(lock,p.b);
+            Object lock=Reflect.type(YsmProfile.ROOT+p.lock);boolean locked=(Boolean)Reflect.call(lock,p.member("isLocked",p.b));
             Rect chip=new Rect(x+10,toolbarY,80,18);float over=ease(s,"lock",chip.contains(mx,my)),on=ease(s,"lock:on",locked);
             d.shape(chip,5,mix(SURFACE,RAISED,over));d.label("动作锁定",new Rect(chip.x+9,chip.y,40,chip.h),mix(SUB,TEXT,Math.max(over,on)));
             drawSwitch(d,new Rect(chip.x+chip.w-29,chip.y+4,22,10),on);
-            s.hits.add(new Hit("lock",chip,chip,()->Reflect.call(lock,p.a),null,false,true));
+            s.hits.add(new Hit("lock",chip,chip,()->Reflect.call(lock,p.member("toggleLock",p.a)),null,false,true));
         }else{
             for(Object widget:(List<?>)Reflect.call(screen,"children|m_6702_")){
                 if(((Number)Reflect.call(widget,"getX|m_252754_")).intValue()==Reflect.integer(screen,p.x)-20){
@@ -124,7 +124,7 @@ public final class ButtonPanel {
         StringJoiner names=new StringJoiner(" › ");
         if(folders==null)names.add(folderTitle(screen,p,String.valueOf(Reflect.call(Reflect.get(screen,p.path),"getLeft"))));
         else for(Object folder:folders)names.add(folderTitle(screen,p,String.valueOf(Reflect.call(folder,"getLeft"))));
-        if(selected!=null)names.add(String.valueOf(Reflect.call(selected,p.b)));
+        if(selected!=null)names.add(String.valueOf(Reflect.call(selected,p.member("getName",p.b))));
         s.crumbFor=selected;return s.crumb=names.toString();
     }
     private static String folderTitle(Object screen,YsmProfile p,String path) {
@@ -144,7 +144,7 @@ public final class ButtonPanel {
     private static String localize(Object screen,YsmProfile p,String key,String fallback) {
         String resolver=p.localizer();
         Object data=Reflect.get(screen,p.data());
-        return (String)Reflect.call(Reflect.type(YsmProfile.ROOT+resolver),p.a,data,key,fallback);
+        return (String)Reflect.call(Reflect.type(YsmProfile.ROOT+resolver),p.member("getLocalizedModelString",p.a),data,key,fallback);
     }
     private static void menu(Object screen,YsmProfile p,Draw d,State s,int mx,int my) {
         Object menu=Reflect.get(screen,p.menu);
@@ -193,9 +193,9 @@ public final class ButtonPanel {
     private static void entries(Object screen,YsmProfile p,State s,Object menu,int total) {
         Map<?,?> configs=(Map<?,?>)Reflect.get(screen,p.configs);s.menu=menu;s.entries.clear();
         for(int i=0;i<total;i++){
-            String key=(String)Reflect.call(menu,p.a,i),value=(String)Reflect.call(menu,p.b,i);
+            String key=(String)Reflect.call(menu,p.member("getKeyAt",p.a),i),value=(String)Reflect.call(menu,p.member("getValueAt",p.b),i);
             String configId=value.startsWith("#")&&configs.get(value.substring(1))!=null?value.substring(1):null;
-            String name=configId!=null?String.valueOf(Reflect.call(configs.get(configId),p.b)):value;
+            String name=configId!=null?String.valueOf(Reflect.call(configs.get(configId),p.member("getName",p.b))):value;
             s.entries.add(new Entry(key,configId,localize(screen,p,"properties.extra_animation."+key,name.isBlank()?key:name)));
         }
     }
@@ -208,13 +208,13 @@ public final class ButtonPanel {
     }
     private static void activate(Object screen,YsmProfile p,int index,String key){
         Reflect.set(screen,p.selectedIndex,index);
-        if(key.equals("#return"))Reflect.call(screen,p.configMethod);
+        if(key.equals("#return"))Reflect.call(screen,p.member("navigateBack",p.configMethod));
         else if(key.startsWith("#"))Reflect.call(screen,p.folderMethod,key);
         else Reflect.call(screen,p.playMethod,key);
     }
     private static void back(Object screen,YsmProfile p,State s){
         if(Reflect.get(screen,p.selected)!=null){Reflect.set(screen,p.selected,null);Reflect.set(screen,p.scroll,0);Reflect.set(screen,p.max,0);s.scroll=0;Reflect.call(screen,"init|m_7856_");}
-        else Reflect.call(screen,p.configMethod);
+        else Reflect.call(screen,p.member("navigateBack",p.configMethod));
     }
     private static void controls(Object screen,YsmProfile p,Draw d,State s,int mx,int my){
         Class<?> marker=Reflect.type(YsmProfile.ROOT+p.marker);
@@ -503,13 +503,20 @@ public final class ButtonPanel {
         double min=((Number)Reflect.get(widget,"minValue")).doubleValue(),max=((Number)Reflect.get(widget,"maxValue")).doubleValue();
         if(min==max)return;
         Reflect.call(widget,"setValue|m_93611_",value);
-        if(!neo&&Double.compare(old,((Number)Reflect.call(widget,"getValue")).doubleValue())!=0)Reflect.call(widget,"applyValue|m_5697_");
+        if(needsSliderCallback(widget,neo)&&Double.compare(old,((Number)Reflect.call(widget,"getValue")).doubleValue())!=0)Reflect.call(widget,"applyValue|m_5697_");
     }
     public static void keySlider(Object widget,int key,int scan,int modifiers,boolean neo){
         double old=((Number)Reflect.call(widget,"getValue")).doubleValue();
         Reflect.call(widget,"keyPressed|m_7933_",key,scan,modifiers);
         // Forge's stepped-key branch calls its display-only setter; its continuous branch applies already.
-        if(!neo&&((Number)Reflect.get(widget,"stepSize")).doubleValue()>0&&Double.compare(old,((Number)Reflect.call(widget,"getValue")).doubleValue())!=0)Reflect.call(widget,"applyValue|m_5697_");
+        if(needsSliderCallback(widget,neo)&&((Number)Reflect.get(widget,"stepSize")).doubleValue()>0&&Double.compare(old,((Number)Reflect.call(widget,"getValue")).doubleValue())!=0)Reflect.call(widget,"applyValue|m_5697_");
+    }
+    private static boolean needsSliderCallback(Object widget, boolean neo) {
+        if (neo) return false;
+        // OpenYSM's newer shared slider calls the author's callback inside setValue.
+        for (Class<?> type=widget.getClass(); type!=null; type=type.getSuperclass())
+            if (type.getName().equals(YsmProfile.ROOT+"client.gui.button.RangedSliderWidget")) return false;
+        return true;
     }
     /** Vanilla buttons click when pressed and sliders when released; panel-drawn targets do the same. */
     private static void clickSound(){

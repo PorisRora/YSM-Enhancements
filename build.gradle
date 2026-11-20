@@ -72,6 +72,12 @@ tasks.register('regressionTest', JavaExec) {
     if (project.hasProperty('ysmJar')) args project.property('ysmJar')
 }
 
+tasks.register('maidSkinScreenTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.local.ysmenhancements.MaidSkinScreenTest'
+}
+
 tasks.register('mixinSmokeTest', JavaExec) {
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath
@@ -92,6 +98,13 @@ tasks.register('clientPatchTest', JavaExec) {
     classpath = sourceSets.test.runtimeClasspath
     mainClass = 'dev.local.ysmenhancements.ClientPatchTest'
     if (project.hasProperty('ysmJar')) args project.property('ysmJar')
+}
+
+tasks.register('openYsmContractTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'dev.local.ysmenhancements.OpenYsmContractTest'
+    if (project.hasProperty('openYsmJar')) args project.property('openYsmJar')
 }
 
 tasks.register('nativeConfigTest', JavaExec) {
@@ -160,6 +173,7 @@ tasks.register('previewDepthTest', JavaExec) {
     mainClass = 'dev.local.ysmenhancements.ui.PreviewDepthTest'
 }
 
-check.dependsOn regressionTest
+check.dependsOn regressionTest, maidSkinScreenTest
+if (project.hasProperty('openYsmJar')) check.dependsOn openYsmContractTest
 // These tests run as isolated Java programs; no JUnit engine is required.
 test.enabled = false

@@ -12,12 +12,14 @@ public final class ScaleDefaultsTest {
     ScaleDefaultsTest(YsmProfile profile)throws Exception {
         p=profile;var layout=ScaleDefaults.Layout.of(p);
         String binding=switch(p) {
+            case OPEN -> "molang.runtime.binding.ObjectBinding";
             case NEO -> "O0OoOO0ooo0oOooo0oooO0o0";
             case FORGE -> "OooOoO0O0O0o00Oo000o00Oo";
             case FABRIC_1201 -> "O0oO0OOOoOoo000oo0000OOo";
             case FABRIC_1211 -> "O00o0O0O0oOOooooo0OOoOo0";
         };
         String engine=switch(p) {
+            case OPEN -> "molang.MolangEngine";
             case NEO -> "oO0o0O0oo00O00Oo0O00Oooo";
             case FORGE -> "o00oO0OOoOOooOoOOoO0Oooo";
             case FABRIC_1201 -> "oOooO0ooO0000OO0OoOO0O00";
@@ -29,10 +31,10 @@ public final class ScaleDefaultsTest {
             if(method.getName().equals("getProperty")&&Set.of("v","variable").contains(args[0]))return scope;
             return null;
         });
-        parser=Reflect.call(Reflect.type(YsmProfile.ROOT+engine),p.a,resolver);
+        parser=Reflect.call(Reflect.type(YsmProfile.ROOT+engine),p.member("fromCustomBinding",p.a),resolver);
     }
     private Object parse(String source)throws Exception {
-        Object ast=Reflect.call(parser,p.a,source);
+        Object ast=Reflect.call(parser,p.member("parse",p.a),source);
         return Reflect.type(YsmProfile.ROOT+ScaleDefaults.Layout.of(p).parsed()).getConstructor(List.class,boolean.class).newInstance(ast,false);
     }
     private Map<String,Double> analyze(String... sources)throws Exception {

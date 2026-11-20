@@ -14,7 +14,8 @@ public final class FabricEntrypoint implements ClientModInitializer {
             case "1.21.1" -> YsmProfile.FABRIC_1211;
             default -> throw new IllegalStateException("Unsupported Minecraft version: "+mc);
         };
-        InputResetHooks.useFabricCache(new CacheDescriptor(YsmProfile.ROOT+profile.input,profile.a,profile.b));
+        InputResetHooks.useFabricCache(YsmProfile.openInstalled() ? CacheDescriptor.openYsm()
+                : new CacheDescriptor(YsmProfile.ROOT+profile.input,profile.a,profile.b));
         NativeConfig.registerFabric(profile.modern());
     }
 }

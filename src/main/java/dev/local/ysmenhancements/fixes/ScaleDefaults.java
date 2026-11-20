@@ -17,6 +17,11 @@ public final class ScaleDefaults {
     public record Layout(String parsed,String value,String ast,String number,String ternary,String binary,
                          String access,String variable,String scoped,String pool,String bones) {
         public static Layout of(YsmProfile p) {
+            if (p==YsmProfile.OPEN) return new Layout(
+                "geckolib3.core.molang.value.MolangValue","geckolib3.core.molang.value.IValue","molang.parser.ast.Expression",
+                "molang.parser.ast.FloatExpression","molang.parser.ast.TernaryConditionalExpression","molang.parser.ast.BinaryExpression",
+                "molang.parser.ast.StructAccessExpression","molang.parser.ast.AssignableVariableExpression","geckolib3.core.molang.binding.variable.ScopedVariableBinding",
+                "geckolib3.core.molang.util.StringPool","boneAnimations");
             if (p==YsmProfile.FABRIC_1201) return new Layout(
                 "oo0oooO0OoOOo0o00Oo0oOO0","oOOOo0oOo00OooOO000OOoo0","OOoo0OoO0o0O0oOOoO00ooOO",
                 "o0oooOoooOo0O0oOoOOo00OO","o00oOOOo000O00Oo00O0Oooo","O0Oo00oo0Oo00OOOo0o0o0oO",
@@ -81,12 +86,12 @@ public final class ScaleDefaults {
     }
 
     public static Map<String,Double> readModel(Object data,YsmProfile p) {
-        Object geometry=Reflect.call(data,p.a);
+        Object geometry=Reflect.call(data,p.member("getAnimationBundle",p.a));
         Analysis result=new Analysis(p);Set<Object> seen=Collections.newSetFromMap(new IdentityHashMap<>());
-        for(String mapField:new String[]{p.configMethod,p.playMethod}) {
+        for(String mapField:new String[]{p.member("mainAnimations",p.configMethod),p.member("armAnimations",p.playMethod)}) {
             for(Object animation:((Map<?,?>)Reflect.get(geometry,mapField)).values()) {
                 for(Object bone:(List<?>)Reflect.get(animation,result.layout.bones)) {
-                    result.keyframes(Reflect.get(bone,p.folderMethod),seen,0);
+                    result.keyframes(Reflect.get(bone,p.member("scaleKeyFrames",p.folderMethod)),seen,0);
                 }
             }
         }
@@ -105,7 +110,9 @@ public final class ScaleDefaults {
         final Map<String,Double> defaults=new HashMap<>();final Set<String> blocked=new HashSet<>();int visited;
         Analysis(YsmProfile p){this.p=p;layout=Layout.of(p);valueType=Reflect.type(YsmProfile.ROOT+layout.value);astType=Reflect.type(YsmProfile.ROOT+layout.ast);}
         boolean kind(Object o,String type){return o!=null&&o.getClass().getName().equals(YsmProfile.ROOT+type);}
-        Object first(Object o){return Reflect.get(o,p.a);}Object second(Object o){return Reflect.get(o,p.b);}Object third(Object o){return Reflect.get(o,p.configMethod);}
+        Object first(Object o,String named){return Reflect.get(o,p.member(named,p.a));}
+        Object second(Object o,String named){return Reflect.get(o,p.member(named,p.b));}
+        Object third(Object o,String named){return Reflect.get(o,p.member(named,p.configMethod));}
         void budget(int depth){if(++visited>LIMIT||depth>64)throw new IllegalStateException("Scale expression analysis limit");}
         Map<String,Double> finish(){blocked.forEach(defaults::remove);return Map.copyOf(defaults);}
         void keyframes(Object o,Set<Object> seen,int depth) {
@@ -120,6 +127,7 @@ public final class ScaleDefaults {
             if(!kind(o,layout.parsed)) {
                 // Constant scale values carry no variable; other value wrappers are unknown.
                 String constant = switch(p) {
+                    case OPEN -> "FloatValue";
                     case NEO -> "o000OOo0ooo00o0OOOOOOO0O";
                     case FORGE -> "oOoOoOOooOOO0OO0oooO00oO";
                     case FABRIC_1201 -> "O0oOOOo0oo0o00OOOO0oO0OO";
@@ -129,7 +137,7 @@ public final class ScaleDefaults {
                     throw new IllegalStateException("Unsupported scale value wrapper");
                 return;
             }
-            List<?> nodes=(List<?>)first(o);
+            List<?> nodes=(List<?>)first(o,"expressions");
             for(Object node:nodes)visit(node,nodes.size()==1,0);
         }
         void visit(Object node,boolean safe,int depth) {
@@ -137,14 +145,15 @@ public final class ScaleDefaults {
             String variable=variable(node);
             if(variable!=null){blocked.add(variable);return;}
             if(safe&&kind(node,layout.ternary)) {
-                Object cond=first(node);
+                Object cond=first(node,"conditional");
                 if(kind(cond,layout.binary)) {
                     int op=operator(cond);
-                    Object left=second(cond),right=third(cond);
+                    Object left=second(cond,"left"),right=third(cond,"right");
                     String v=variable(left);Double zero=number(right);
                     if(v==null){v=variable(right);zero=number(left);}
                     if(v!=null&&zero!=null&&zero==0&&(op==14||op==15)) {
-                        Object constant=op==14?second(node):third(node),identity=op==14?third(node):second(node);
+                        Object yes=second(node,"trueExpression"),no=third(node,"falseExpression");
+                        Object constant=op==14?yes:no,identity=op==14?no:yes;
                         Double initial=number(constant);
                         if(v.equals(variable(identity))&&initial!=null&&Double.isFinite(initial)) {
                             Double old=defaults.putIfAbsent(v,initial);
@@ -156,7 +165,7 @@ public final class ScaleDefaults {
             }
             if(kind(node,layout.binary)) {
                 int op=operator(node);boolean arithmetic=safe&&op>=6&&op<=9;
-                visit(second(node),arithmetic,depth+1);visit(third(node),arithmetic,depth+1);return;
+                visit(second(node,"left"),arithmetic,depth+1);visit(third(node,"right"),arithmetic,depth+1);return;
             }
             // Never infer from conditionally executed statements, function calls or assignments.
             for(Field f:fields(node))if(!f.getType().isPrimitive())astChildren(read(f,node),depth+1);
@@ -173,18 +182,18 @@ public final class ScaleDefaults {
                     astChildren(read(f,o),depth+1);
             }
         }
-        int operator(Object node){return ((Number)Reflect.call(first(node),p.b)).intValue();}
-        Double number(Object node){return kind(node,layout.number)?((Number)Reflect.call(node,p.a)).doubleValue():null;}
+        int operator(Object node){return ((Number)Reflect.call(first(node,"op"),p.member("index",p.b))).intValue();}
+        Double number(Object node){return kind(node,layout.number)?((Number)Reflect.call(node,p.member("value",p.a))).doubleValue():null;}
         String variable(Object node) {
             if(!kind(node,layout.access))return null;
-            Object root=first(node);
+            Object root=first(node,"left");
             if(!kind(root,layout.variable))return null;
-            Object scoped=first(root);
-            if(!kind(scoped,layout.scoped+"$"+p.a))return null;
+            Object scoped=first(root,"target");
+            if(!kind(scoped,layout.scoped+"$"+p.member("ScopedVariable",p.a)))return null;
             Object pool=Reflect.type(YsmProfile.ROOT+layout.pool);
-            String parent=(String)Reflect.call(pool,p.a,Reflect.integer(scoped,p.a));
+            String parent=(String)Reflect.call(pool,p.member("getString",p.a),Reflect.integer(scoped,p.member("name",p.a)));
             if(!parent.equalsIgnoreCase("roaming"))return null;
-            String name=(String)Reflect.call(pool,p.a,Reflect.integer(node,p.b));
+            String name=(String)Reflect.call(pool,p.member("getString",p.a),Reflect.integer(node,p.member("path",p.b)));
             return canonical("v.roaming."+name);
         }
     }

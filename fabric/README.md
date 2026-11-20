@@ -2,6 +2,8 @@
 
 [English](README.en.md)
 
+当前源码构建的 1.20.1 增强包也支持 OpenYSM 2.6.6.6，需要 Fabric Loader 0.16.10 或更高。玩家的模型选择页、Z 面板和鼠标快捷键已适配。OpenYSM Fabric 的原生女仆换肤联动仍待上游提供。下表记录已发布的 1.1.0 对官方 YSM 的要求。[OpenYSM Fabric 发布包](https://modrinth.com/mod/openysm/version/8Yg50ABK) · [上游女仆联动](https://github.com/OpenYSM/OpenYSM/issues/72)
+
 针对官方 YSM 2.6.5 的独立第三方客户端补丁：新增模型驱动的 Z 按钮面板，并修复按键状态、动作锁定、数值读取和界面控件问题。不包含、覆盖或修改 YSM 原始 JAR、模型及存档。与 YSM 官方无隶属关系。
 
 | Minecraft | 官方 YSM | 安装包 | Java | 最低 Fabric Loader |

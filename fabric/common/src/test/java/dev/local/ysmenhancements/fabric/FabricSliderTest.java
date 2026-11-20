@@ -19,6 +19,7 @@ public final class FabricSliderTest implements Opcodes {
     public static void main(String[] args)throws Exception {
         var profile=YsmProfile.valueOf(args[0]);
         try(var ysm=new ZipFile(args[1]);var mc=new ZipFile(args[2])) {
+            if (ysm.getEntry(YsmProfile.internal(YsmProfile.OPEN.slider()) + ".class") != null) profile=YsmProfile.OPEN;
             String owner=FabricRegressionTest.node(ysm,YsmProfile.ROOT+profile.slider()).superName;
             ClassNode source=FabricRegressionTest.node(ysm,owner),mathSource=FabricRegressionTest.node(mc,"net/minecraft/class_3532");
             ClassNode slider=empty(owner,"net/minecraft/class_357"),base=empty("net/minecraft/class_357","java/lang/Object"),math=empty("fixture/Math","java/lang/Object");

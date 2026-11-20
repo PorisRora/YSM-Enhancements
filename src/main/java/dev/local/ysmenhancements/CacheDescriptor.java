@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.zip.ZipFile;
+import dev.local.ysmenhancements.compat.YsmProfile;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.AbstractInsnNode;
@@ -23,7 +24,9 @@ import org.objectweb.asm.tree.MethodNode;
 public record CacheDescriptor(String owner, String keyField, String mouseField) {
     public static CacheDescriptor discover(Path modPath) throws IOException {
         List<CacheDescriptor> candidates = new ArrayList<>();
+        String namedCache = YsmProfile.internal(YsmProfile.OPEN.input);
         if (Files.isDirectory(modPath)) {
+            if (Files.isRegularFile(modPath.resolve(namedCache+".class"))) return openYsm();
             Path packageRoot = modPath.resolve("com/elfmcys");
             if (Files.isDirectory(packageRoot)) {
                 try (var files = Files.walk(packageRoot)) {
@@ -36,6 +39,7 @@ public record CacheDescriptor(String owner, String keyField, String mouseField) 
             }
         } else {
             try (ZipFile zip = new ZipFile(modPath.toFile())) {
+                if (zip.getEntry(namedCache+".class") != null) return openYsm();
                 var entries = zip.entries();
                 while (entries.hasMoreElements()) {
                     var entry = entries.nextElement();
@@ -50,6 +54,10 @@ public record CacheDescriptor(String owner, String keyField, String mouseField) 
             throw new IOException("Expected exactly one YSM input cache, found " + candidates.size());
         }
         return candidates.get(0);
+    }
+
+    public static CacheDescriptor openYsm() {
+        return new CacheDescriptor(YsmProfile.internal(YsmProfile.OPEN.input),"keyStates","mouseStates");
     }
 
     private static void addCandidate(byte[] bytes, List<CacheDescriptor> candidates) {

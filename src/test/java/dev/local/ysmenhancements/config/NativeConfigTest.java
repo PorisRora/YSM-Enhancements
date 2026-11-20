@@ -9,7 +9,7 @@ import java.nio.file.*;
 public final class NativeConfigTest {
     public static void main(String[] args) throws Exception {
         boolean fabric=args[0].startsWith("fabric"),neo=args[0].equals("neo")||args[0].equals("fabric_1211");
-        if(fabric)Reflect.set(NativeConfig.class,"fabric",true);
+        if(fabric)Reflect.set(NativeConfig.class,"nativeMouseBindings",true);
         Object spec=NativeConfig.prepare(neo);
         Path path=Path.of("build/native-config-"+args[0]+".toml").toAbsolutePath();Files.createDirectories(path.getParent());Files.deleteIfExists(path);
         Object builder=Reflect.call(Reflect.type("com.electronwill.nightconfig.core.file.CommentedFileConfig"),"builder",path);

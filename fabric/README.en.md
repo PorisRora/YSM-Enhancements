@@ -2,6 +2,8 @@
 
 [中文](README.md)
 
+The current 1.20.1 source build also supports OpenYSM 2.6.6.6 with Fabric Loader 0.16.10 or later. It integrates with the player model picker, Z panel and mouse shortcuts. Native maid skin selection is pending upstream on OpenYSM Fabric. The table below lists the official YSM requirements for the published 1.1.0 release. [OpenYSM Fabric release](https://modrinth.com/mod/openysm/version/8Yg50ABK) · [Upstream maid integration](https://github.com/OpenYSM/OpenYSM/issues/72)
+
 An independent third-party client addon for official YSM 2.6.5. It adds a model-driven Z button panel and fixes input state, animation lock, numeric parsing and control handling. It does not bundle, overwrite or modify the original YSM JAR, models or saves. This project is not affiliated with YSM.
 
 | Minecraft | Required YSM | Artifact | Java | Minimum Fabric Loader |
